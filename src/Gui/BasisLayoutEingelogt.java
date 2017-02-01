@@ -17,7 +17,7 @@ public class BasisLayoutEingelogt extends BasisLayout {
 	private String vorname = "Vorname";
 	private String nachname = "Nachname";
 
-	public void start() {
+	public void startGui() {
 
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		

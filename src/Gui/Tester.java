@@ -7,7 +7,7 @@ public class Tester {
 		BasisLayoutEingelogt ble = new BasisLayoutEingelogt();
 		ble.setVorname("Andrin");
 		ble.setNachname("Kappeler");
-		ble.start();
+		ble.startGui();
 	}
 
 }
