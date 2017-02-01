@@ -3,7 +3,6 @@ package Gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -18,10 +17,10 @@ public class BasisLayoutEingelogt extends BasisLayout {
 	private String vorname = "Vorname";
 	private String nachname = "Nachname";
 
-	public BasisLayoutEingelogt() {
-		JPanel panelAlles = new JPanel(new BorderLayout());
-		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	public void start() {
 
+		JPanel panelAlles = new JPanel(new BorderLayout());
+		
 		JLabel labelTitel = new JLabel();
 		JLabel labelName = new JLabel();
 		JLabel labelAngemeldet = new JLabel();
@@ -58,7 +57,9 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		buttonAusloggen.setPreferredSize(new Dimension(130, 30));
 		panelFusszeile.add(buttonAusloggen, BorderLayout.EAST);
 
+		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		panelAlles.add(panelFusszeile, BorderLayout.SOUTH);
+		
 		add(panelAlles, BorderLayout.CENTER);
 
 		setVisible(true);

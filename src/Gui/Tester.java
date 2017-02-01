@@ -5,6 +5,9 @@ public class Tester {
 	public static void main(String[] args) {
 		//BasisLayout bl = new BasisLayout();
 		BasisLayoutEingelogt ble = new BasisLayoutEingelogt();
+		ble.setVorname("Andrin");
+		ble.setNachname("Kappeler");
+		ble.start();
 	}
 
 }
