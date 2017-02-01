@@ -53,7 +53,7 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		add(tabbedPaneMenu, BorderLayout.CENTER);
 		setVisible(true);
 	}
-
+sdf
 	public String getTitel() {
 		return titel;
 	}
@@ -77,5 +77,5 @@ public class BasisLayoutEingelogt extends BasisLayout {
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
-//BAUM
+
 }
