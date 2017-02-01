@@ -37,7 +37,7 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		panelKopfzeileEAST.add(labelAngemeldet);
 		panelKopfzeile.add(labelTitel, BorderLayout.WEST);
 		panelKopfzeile.add(panelKopfzeileEAST, BorderLayout.EAST);
-		
+
 		add(panelKopfzeile, BorderLayout.NORTH);
 
 		JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -53,7 +53,7 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		add(tabbedPaneMenu, BorderLayout.CENTER);
 		setVisible(true);
 	}
-sdf
+
 	public String getTitel() {
 		return titel;
 	}
