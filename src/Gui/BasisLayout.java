@@ -8,9 +8,11 @@ public class BasisLayout extends JFrame {
 	public BasisLayout() {
 		setTitle("BBC BANK - Online Banking");
 		setVisible(true);
-		setSize(1100, 800);
+		setSize(1200, 800);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout( new BorderLayout());
 	}
 }
+
+// BANANANANANANNANANANNAN
