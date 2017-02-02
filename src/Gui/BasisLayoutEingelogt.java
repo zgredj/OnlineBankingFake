@@ -19,7 +19,7 @@ public class BasisLayoutEingelogt extends BasisLayout {
 	public BasisLayoutEingelogt() {
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		
+
 		JLabel labelTitel = new JLabel();
 		JLabel labelName = new JLabel();
 		JLabel labelAngemeldet = new JLabel();
@@ -54,12 +54,11 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		JButton buttonAusloggen = new JButton("Ausloggen");
 		panelAusloggen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		panelAusloggen.add(buttonAusloggen);
-		panelAlles.add(panelAusloggen,BorderLayout.SOUTH);
-		
+		panelAlles.add(panelAusloggen, BorderLayout.SOUTH);
+
 		panelAlles.add(tabbedPaneMenu, BorderLayout.CENTER);
-		
+
 		add(panelAlles);
-		setVisible(true);
 	}
 
 	public String getTitel() {

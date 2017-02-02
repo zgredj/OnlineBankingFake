@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -30,5 +31,6 @@ public class Registrieren extends BasisLayout {
 		panelInhalt.add(labelTitel2);
 
 		add(panelInhalt, BorderLayout.SOUTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 	}
 }
