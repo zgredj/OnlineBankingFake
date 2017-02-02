@@ -1,54 +1,68 @@
 package Gui;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
+import java.awt.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class Login extends BasisLayout {
 
 	public Login() {
-		
 
+		JPanel panelSeite = new JPanel();
+		panelSeite.setLayout(new BoxLayout(panelSeite, BoxLayout.PAGE_AXIS));
+
+		// Titel
 		JPanel panelTitel = new JPanel(new BorderLayout());
-		JLabel labelTitelBig = new JLabel("BBC BANK");
-		JLabel labelTitelSmall = new JLabel("Login");
-		labelTitelBig.setFont(new Font("Arial", Font.PLAIN, 70));
-		labelTitelSmall.setFont(new Font("Arial", Font.PLAIN, 50));
-		panelTitel.add(labelTitelBig, BorderLayout.NORTH);
-		panelTitel.add(labelTitelSmall, BorderLayout.SOUTH);
+		JLabel labelBbcBank = new JLabel("BBC BANK");
+		labelBbcBank.setFont(new Font("Arial", Font.PLAIN, 70));
+		panelTitel.add(labelBbcBank, BorderLayout.CENTER);
 
-		alles.add(panelTitel, BorderLayout.NORTH);
+		// Login
+		JPanel panelLogin = new JPanel(new BorderLayout());
+		JLabel labelLogin = new JLabel("Login2");
+		labelLogin.setFont(new Font("Arial", Font.PLAIN, 50));
+		panelLogin.add(labelLogin, BorderLayout.CENTER);
 
-		JPanel panelInhalt = new JPanel(new BorderLayout());
-		JTextField textFieldKartennummer = new JTextField(10);
-		JPanel panelPassLog = new JPanel(new BorderLayout());
-		JTextField textFieldPasswort = new JTextField(10);
+		// Kartennummer
+		JPanel panelKartennummer = new JPanel(new FlowLayout());
+		JTextField textFieldKartennummer = new JTextField(20);
+		JLabel labelKartennummer = new JLabel("Kartennummer:");
+		panelKartennummer.add(labelKartennummer);
+		panelKartennummer.add(textFieldKartennummer);
+
+		// Passwort
+		JPanel panelPasswortUndLogin = new JPanel(new FlowLayout());
+		JTextField textFieldPasswort = new JTextField(20);
+		JLabel labelPasswort = new JLabel("Passwort:");
+		panelPasswortUndLogin.add(labelPasswort);
+		panelPasswortUndLogin.add(textFieldPasswort);
+
+		// Login
 		JButton buttonLogin = new JButton("Login");
-		JPanel panelLabelRegbutton = new JPanel(new BorderLayout());
+		panelPasswortUndLogin.add(buttonLogin);
+
+		// Text
+		JPanel panelText = new JPanel(new BorderLayout());
 		JLabel labelText = new JLabel("Noch kein Benutzerkonto?");
+		panelText.add(labelText);
+
+		// Button
+		JPanel panelRegistrieren = new JPanel(new BorderLayout());
 		JButton buttonRegistrieren = new JButton("Registrieren");
+		panelRegistrieren.add(buttonRegistrieren);
 
-		panelInhalt.add(textFieldKartennummer, BorderLayout.NORTH);
+		panelSeite.add(panelTitel);
+		panelSeite.add(panelLogin);
+		panelSeite.add(panelKartennummer);
+		panelSeite.add(panelPasswortUndLogin);
+		panelSeite.add(panelText);
+		panelSeite.add(panelRegistrieren);
 
-		panelPassLog.add(textFieldPasswort, BorderLayout.WEST);
-		panelPassLog.add(buttonLogin, BorderLayout.EAST);
+		alles.add(panelSeite);
 
-		panelLabelRegbutton.add(labelText, BorderLayout.NORTH);
-		panelLabelRegbutton.add(buttonRegistrieren, BorderLayout.SOUTH);
+		Container contentPane = getContentPane();
+		contentPane.add(alles);
 
-		panelInhalt.add(panelPassLog, BorderLayout.CENTER);
-		panelInhalt.add(panelLabelRegbutton, BorderLayout.SOUTH);
-
-		alles.add(panelInhalt, BorderLayout.SOUTH);
-		
-		add(alles, BorderLayout.CENTER);
-		
 		setSize(1200, 800);
 		setResizable(false);
 	}
