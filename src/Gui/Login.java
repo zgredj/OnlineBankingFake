@@ -13,8 +13,7 @@ import javax.swing.JTextField;
 public class Login extends BasisLayout {
 
 	public Login() {
-		JPanel alles = new JPanel(new BorderLayout());
-		alles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		
 
 		JPanel panelTitel = new JPanel(new BorderLayout());
 		JLabel labelTitelBig = new JLabel("BBC BANK");
