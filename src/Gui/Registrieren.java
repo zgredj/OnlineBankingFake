@@ -14,16 +14,16 @@ public class Registrieren extends BasisLayout {
 	public Registrieren() {
 
 		JLabel labelTitel = new JLabel();
-		JPanel panel = new JPanel(new BorderLayout());
+		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		labelTitel.setText("Neues Benutzerkonto");
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 		
-		add(panel, BorderLayout.NORTH);
-		panel.setBorder(BorderFactory.createEmptyBorder(100, 230, 0, 0));
-		panel.add(labelTitel, BorderLayout.WEST);
+		add(panelKopfzeile, BorderLayout.NORTH);
+		panelKopfzeile.setBorder(BorderFactory.createEmptyBorder(100, 230, 0, 0));
+		panelKopfzeile.add(labelTitel, BorderLayout.WEST);
 		
 		JTextField kartennummer = new JTextField("Kartennummer", 15);
-		.add(kartennummer, BorderLayout.NORTH);
+		add(kartennummer, BorderLayout.NORTH);
 		
 	}
 }
