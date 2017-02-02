@@ -49,6 +49,7 @@ public class Login extends BasisLayout {
 		alles.add(panelInhalt, BorderLayout.SOUTH);
 		
 		add(alles, BorderLayout.CENTER);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		setSize(1200, 800);
+		setResizable(false);
 	}
 }
