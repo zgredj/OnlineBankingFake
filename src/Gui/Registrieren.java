@@ -27,10 +27,9 @@ public class Registrieren extends BasisLayout {
 		JTextField textFieldHausNr = new JTextField("HausNr.");
 
 		JPanel panelInhalt = new JPanel(new GridLayout(10, 1));
-		panelInhalt.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 1000));
 		JPanel panelInhaltOrt = new JPanel(new BorderLayout());
 		JPanel panelInhaltStrasse = new JPanel(new BorderLayout());
-		add(panelInhalt, BorderLayout.WEST);
+		alles.add(panelInhalt, BorderLayout.CENTER);
 
 		panelInhalt.add(textFieldKartennummer);
 		panelInhalt.add(textFieldPassword);
@@ -42,6 +41,8 @@ public class Registrieren extends BasisLayout {
 		panelInhalt.add(textFieldPlz);
 		panelInhalt.add(panelInhaltOrt);
 		panelInhalt.add(panelInhaltStrasse);
+		
+		
 
 		panelInhaltOrt.add(textFieldWohnort, BorderLayout.WEST);
 		panelInhaltOrt.add(textFieldPlz, BorderLayout.CENTER);
@@ -54,9 +55,12 @@ public class Registrieren extends BasisLayout {
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 		panelKopfzeile.add(labelTitel, BorderLayout.NORTH);
 
-		add(panelKopfzeile, BorderLayout.NORTH);
+		alles.add(panelKopfzeile, BorderLayout.NORTH);
 
-		add(panelInhalt, BorderLayout.SOUTH);
+		panelKopfzeile.add(panelInhalt, BorderLayout.SOUTH);
+		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 5, 10, 800));
+		
+		add(alles);
 		setSize(1200, 800);
 		setResizable(true);
 	}
