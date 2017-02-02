@@ -14,7 +14,7 @@ public class Login extends BasisLayout {
 
 	public Login() {
 		JPanel alles = new JPanel(new BorderLayout());
-		alles.setBorder(BorderFactory.createEmptyBorder(40, 110, 0, 0));
+		alles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 		JPanel panelTitel = new JPanel(new BorderLayout());
 		JLabel labelTitelBig = new JLabel("BBC BANK");
@@ -49,6 +49,7 @@ public class Login extends BasisLayout {
 		alles.add(panelInhalt, BorderLayout.SOUTH);
 		
 		add(alles, BorderLayout.CENTER);
+		
 		setSize(1200, 800);
 		setResizable(false);
 	}
