@@ -42,7 +42,15 @@ public class Registrieren extends BasisLayout {
 		panelInhalt.add(panelInhaltOrt);
 		panelInhalt.add(panelInhaltStrasse);
 		
-		
+		textFieldKartennummer;
+		textFieldPassword;
+		textFieldPasswordWiederholen;
+		textFieldVorname;
+		textFieldNachname;
+		textFieldGeburtsdatum;
+		textFieldWohnort;
+		textFieldPlz;
+		text
 
 		panelInhaltOrt.add(textFieldWohnort, BorderLayout.WEST);
 		panelInhaltOrt.add(textFieldPlz, BorderLayout.CENTER);
