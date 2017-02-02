@@ -1,8 +1,8 @@
 package Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -13,8 +13,24 @@ import javax.swing.JTextField;
 public class Registrieren extends BasisLayout {
 
 	public Registrieren() {
-		//JTextField textFieldKartennummer2 = new JTextField("Kartennummer"); 
-		//add(textFieldKartennummer2);
+		JTextField textFieldKartennummer = new JTextField("Kartennummer");
+		JTextField textFieldPassword = new JTextField("Passwort");
+		JTextField textFieldPasswordWiederholen = new JTextField("Passwort wiederholen");
+		JTextField textFieldVorname = new JTextField("Vorname");
+		JTextField textFieldNachname = new JTextField("Nachname");
+		JTextField textFieldGeburtsdatum = new JTextField("Geburtsdatum");
+		JTextField textFieldWohnort = new JTextField("Wohnort");
+		JTextField textFieldPlz = new JTextField("PLZ");
+		JTextField textFieldStrasse = new JTextField("Strasse");
+		JTextField textFieldHausNr = new JTextField("HausNr.");
+		
+		
+		
+		
+		
+		JPanel panelInhalt = new JPanel(new GridLayout(8, 1));
+		add(panelInhalt, BorderLayout.CENTER);
+		panelInhalt.add(textFieldKartennummer);
 		JLabel labelTitel = new JLabel("Neues Benutzerkonto");
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
@@ -23,14 +39,9 @@ public class Registrieren extends BasisLayout {
 
 		add(panelKopfzeile, BorderLayout.NORTH);
 
-		JPanel panelInhalt = new JPanel(); // new GridLayout(8, 1)
-		panelInhalt.setBackground(Color.blue);
-
-		JLabel labelTitel2 = new JLabel("Neues Benutzerkonto");
-		// labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
-		panelInhalt.add(labelTitel2);
 
 		add(panelInhalt, BorderLayout.SOUTH);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		setSize(1200, 800); 
+		setResizable(false);
 	}
 }
