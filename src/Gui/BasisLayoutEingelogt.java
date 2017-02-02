@@ -18,13 +18,14 @@ public class BasisLayoutEingelogt extends BasisLayout {
 
 	public BasisLayoutEingelogt() {
 		JPanel panelAlles = new JPanel(new BorderLayout());
-		panelAlles.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
+		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 		JLabel labelTitel = new JLabel();
 		JLabel labelName = new JLabel();
 		JLabel labelAngemeldet = new JLabel();
 		labelTitel.setText(titel);
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
+		labelTitel.setBorder(BorderFactory.createEmptyBorder(20, 40, 10, 0));
 		labelName.setText(vorname + "  " + nachname);
 		labelName.setFont(new Font("Arial", Font.PLAIN, 16));
 		labelAngemeldet.setText("Angemeldet");
@@ -33,7 +34,6 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelKopfzeileEAST = new JPanel();
 		panelKopfzeileEAST.setLayout(new BoxLayout(panelKopfzeileEAST, BoxLayout.Y_AXIS));
-		//panelKopfzeile.setBorder(BorderFactory.createEmptyBorder(15, 10, 10, 10));
 		panelKopfzeileEAST.add(labelName);
 		panelKopfzeileEAST.add(labelAngemeldet);
 		panelKopfzeile.add(labelTitel, BorderLayout.WEST);
@@ -52,7 +52,6 @@ public class BasisLayoutEingelogt extends BasisLayout {
 
 		JPanel panelAusloggen = new JPanel(new BorderLayout());
 		JButton buttonAusloggen = new JButton("Ausloggen");
-		//panelAusloggen.setBorder(BorderFactory.createEmptyBorder(10, 500, 0, 0));
 		panelAusloggen.add(buttonAusloggen);
 		panelAlles.add(panelAusloggen, BorderLayout.SOUTH);
 
