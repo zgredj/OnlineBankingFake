@@ -1,15 +1,14 @@
 package Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.border.Border;
 
 public class BasisLayoutEingelogt extends BasisLayout {
 
@@ -18,7 +17,9 @@ public class BasisLayoutEingelogt extends BasisLayout {
 	private String nachname = "Nachname";
 
 	public BasisLayoutEingelogt() {
-
+		JPanel panelAlles = new JPanel(new BorderLayout());
+		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		
 		JLabel labelTitel = new JLabel();
 		JLabel labelName = new JLabel();
 		JLabel labelAngemeldet = new JLabel();
@@ -32,13 +33,13 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelKopfzeileEAST = new JPanel();
 		panelKopfzeileEAST.setLayout(new BoxLayout(panelKopfzeileEAST, BoxLayout.Y_AXIS));
-		panelKopfzeile.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
+		panelKopfzeile.setBorder(BorderFactory.createEmptyBorder(15, 10, 10, 10));
 		panelKopfzeileEAST.add(labelName);
 		panelKopfzeileEAST.add(labelAngemeldet);
 		panelKopfzeile.add(labelTitel, BorderLayout.WEST);
 		panelKopfzeile.add(panelKopfzeileEAST, BorderLayout.EAST);
-		
-		add(panelKopfzeile, BorderLayout.NORTH);
+
+		panelAlles.add(panelKopfzeile, BorderLayout.NORTH);
 
 		JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 		JPanel panelHome = new JPanel();
@@ -48,9 +49,16 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		tabbedPaneMenu.addTab("Home", panelHome);
 		tabbedPaneMenu.addTab("Zahlungen", panelZahlungen);
 		tabbedPaneMenu.addTab("Rechnugnen", panelRechnungen);
-		tabbedPaneMenu.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		add(tabbedPaneMenu, BorderLayout.CENTER);
+		JPanel panelAusloggen = new JPanel(new BorderLayout());
+		JButton buttonAusloggen = new JButton("Ausloggen");
+		panelAusloggen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+		panelAusloggen.add(buttonAusloggen);
+		panelAlles.add(panelAusloggen,BorderLayout.SOUTH);
+		
+		panelAlles.add(tabbedPaneMenu, BorderLayout.CENTER);
+		
+		add(panelAlles);
 		setVisible(true);
 	}
 
