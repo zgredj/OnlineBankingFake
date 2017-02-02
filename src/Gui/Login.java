@@ -1,14 +1,12 @@
 package Gui;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 public class Login extends BasisLayout {
 
@@ -16,11 +14,11 @@ public class Login extends BasisLayout {
 		JPanel alles = new JPanel(new BorderLayout());
 		alles.setBorder(BorderFactory.createEmptyBorder(40, 110, 0, 0));
 
-		JPanel panelTitel = new JPanel(new BorderLayout());
+		JPanel panelTitel = new JPanel();
 		JLabel labelTitelBig = new JLabel("BBC BANK");
 		JLabel labelTitelSmall = new JLabel("Login");
-		labelTitelBig.setFont(new Font("Arial", Font.PLAIN, 70));
-		labelTitelSmall.setFont(new Font("Arial", Font.PLAIN, 50));
+		labelTitelBig.setFont(new Font("Arial", Font.PLAIN, 80));
+		labelTitelSmall.setFont(new Font("Arial", Font.PLAIN, 60));
 		panelTitel.add(labelTitelBig, BorderLayout.NORTH);
 		panelTitel.add(labelTitelSmall, BorderLayout.SOUTH);
 
