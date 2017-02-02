@@ -14,5 +14,3 @@ public class BasisLayout extends JFrame {
 		setLayout( new BorderLayout());
 	}
 }
-
-// BANANANANANANNANANANNAN

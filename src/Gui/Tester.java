@@ -3,8 +3,7 @@ package Gui;
 public class Tester {
 
 	public static void main(String[] args) {
-		//BasisLayout bl = new BasisLayout();
-		BasisLayoutEingelogt ble = new BasisLayoutEingelogt();
+		Login l = new Login();
 	}
 
 }
