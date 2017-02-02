@@ -11,6 +11,10 @@ public class BasisLayout extends JFrame {
 		setSize(1200, 800);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLayout( new BorderLayout());
+		
+		JPanel alles = new JPanel();
+		alles.setLayout(new BorderLayout());
+		
+		add(alles);
 	}
 }
