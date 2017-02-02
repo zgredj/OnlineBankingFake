@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -48,5 +49,6 @@ public class Login extends BasisLayout {
 		alles.add(panelInhalt, BorderLayout.SOUTH);
 		
 		add(alles, BorderLayout.CENTER);
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 	}
 }
