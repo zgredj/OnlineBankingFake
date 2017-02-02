@@ -1,6 +1,8 @@
 package Gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -25,7 +27,6 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		JLabel labelAngemeldet = new JLabel();
 		labelTitel.setText(titel);
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
-		labelTitel.setBorder(BorderFactory.createEmptyBorder(20, 40, 10, 0));
 		labelName.setText(vorname + "  " + nachname);
 		labelName.setFont(new Font("Arial", Font.PLAIN, 16));
 		labelAngemeldet.setText("Angemeldet");
@@ -36,6 +37,7 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		panelKopfzeileEAST.setLayout(new BoxLayout(panelKopfzeileEAST, BoxLayout.Y_AXIS));
 		panelKopfzeileEAST.add(labelName);
 		panelKopfzeileEAST.add(labelAngemeldet);
+		panelKopfzeile.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 10));
 		panelKopfzeile.add(labelTitel, BorderLayout.WEST);
 		panelKopfzeile.add(panelKopfzeileEAST, BorderLayout.EAST);
 
@@ -50,9 +52,10 @@ public class BasisLayoutEingelogt extends BasisLayout {
 		tabbedPaneMenu.addTab("Zahlungen", panelZahlungen);
 		tabbedPaneMenu.addTab("Rechnugnen", panelRechnungen);
 
-		JPanel panelAusloggen = new JPanel(new BorderLayout());
+		JPanel panelAusloggen = new JPanel(new FlowLayout());
 		JButton buttonAusloggen = new JButton("Ausloggen");
 		panelAusloggen.add(buttonAusloggen);
+		panelAusloggen.setBorder(BorderFactory.createEmptyBorder(10, 1065, 0, 0));
 		panelAlles.add(panelAusloggen, BorderLayout.SOUTH);
 
 		panelAlles.add(tabbedPaneMenu, BorderLayout.CENTER);
