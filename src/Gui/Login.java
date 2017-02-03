@@ -31,7 +31,7 @@ public class Login extends BasisLayout {
 
 		// Passwort
 		JPanel panelPasswort = new JPanel(new FlowLayout());
-		JTextField textFieldPasswort = new JTextField(20);
+		JPasswordField textFieldPasswort = new JPasswordField(20);
 		JLabel labelPasswort = new JLabel("Passwort:");
 		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));
 
