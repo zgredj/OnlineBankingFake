@@ -10,7 +10,6 @@ public class Login extends BasisLayout {
 
 		JPanel panelSeite = new JPanel();
 		panelSeite.setLayout(new BorderLayout());
-		//panelSeite.setLayout(new GridLayout(7, 1));
 		
 		// Titel
 		JPanel panelTitel = new JPanel(new BorderLayout());
@@ -39,7 +38,7 @@ public class Login extends BasisLayout {
 		// Login
 		JPanel panelButtonLogin = new JPanel(new BorderLayout());
 		JButton buttonLogin = new JButton("Login");
-		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(0,0,5,90));
+		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5,90,0,0));
 		panelButtonLogin.add(buttonLogin);
 
 		// Text
@@ -55,12 +54,14 @@ public class Login extends BasisLayout {
 		JPanel panelTitelLogin = new JPanel(new BorderLayout());
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);
 		panelTitelLogin.add(panelLogin, BorderLayout.SOUTH);
+		JPanel panelPlatzhalter = new JPanel();
 		JPanel panelKartennummerPasswortLogin = new JPanel();
 		panelKartennummerPasswortLogin.setLayout(new GridLayout(4, 2));
 		panelKartennummerPasswortLogin.add(labelKartennummer);
 		panelKartennummerPasswortLogin.add(textFieldKartennummer);
 		panelKartennummerPasswortLogin.add(labelPasswort);
 		panelKartennummerPasswortLogin.add(textFieldPasswort);
+		panelKartennummerPasswortLogin.add(panelPlatzhalter);
 		panelKartennummerPasswortLogin.add(panelButtonLogin);
 		panelKartennummerPasswortLogin.setBorder(BorderFactory.createEmptyBorder(40,0,370,600));
 		JPanel panelTextRegistrieren = new JPanel();
