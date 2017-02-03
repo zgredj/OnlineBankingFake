@@ -1,6 +1,6 @@
 package Gui;
 
-public class Tester {
+public class AnmeldenTester {
 
 	public static void main(String[] args) {
 		Login l = new Login();

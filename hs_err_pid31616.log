@@ -1,0 +1,150 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=31616, tid=0x0000000000007b98
+#
+# JRE version:  (8.0_112-b15) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.112-b15 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000001b7e000):  JavaThread "Unknown thread" [_thread_in_vm, id=31640, stack(0x0000000001d50000,0x0000000001e50000)]
+
+Stack: [0x0000000001d50000,0x0000000001e50000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000001b7e000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=31640, stack(0x0000000001d50000,0x0000000001e50000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 76288K, used 1310K [0x000000076b400000, 0x0000000770900000, 0x00000007c0000000)
+  eden space 65536K, 2% used [0x000000076b400000,0x000000076b547af0,0x000000076f400000)
+  from space 10752K, 0% used [0x000000076fe80000,0x000000076fe80000,0x0000000770900000)
+  to   space 10752K, 0% used [0x000000076f400000,0x000000076f400000,0x000000076fe80000)
+ ParOldGen       total 175104K, used 0K [0x00000006c1c00000, 0x00000006cc700000, 0x000000076b400000)
+  object space 175104K, 0% used [0x00000006c1c00000,0x00000006c1c00000,0x00000006cc700000)
+ Metaspace       used 770K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 75K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x00000000114e0000,0x0000000011ce0000] byte_map_base: 0x000000000ded2000
+
+Marking Bits: (ParMarkBitMap*) 0x00000000571fa6d0
+ Begin Bits: [0x0000000012d20000, 0x0000000016cb0000)
+ End Bits:   [0x0000000016cb0000, 0x000000001ac40000)
+
+Polling page: 0x0000000000120000
+
+CodeCache: size=245760Kb used=328Kb max_used=328Kb free=245431Kb
+ bounds [0x0000000002120000, 0x0000000002390000, 0x0000000011120000]
+ total_blobs=58 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.066 loading class java/lang/Short
+Event: 0.066 loading class java/lang/Short done
+Event: 0.066 loading class java/lang/Integer
+Event: 0.066 loading class java/lang/Integer done
+Event: 0.066 loading class java/lang/Long
+Event: 0.067 loading class java/lang/Long done
+Event: 0.067 loading class java/lang/NullPointerException
+Event: 0.067 loading class java/lang/NullPointerException done
+Event: 0.067 loading class java/lang/ArithmeticException
+Event: 0.067 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x000000013f140000 - 0x000000013f177000 	C:\Program Files\Java\jdk1.8.0_112\jre\bin\javaw.exe
+0x0000000076fa0000 - 0x000000007714a000 	C:\windows\SYSTEM32\ntdll.dll
+0x0000000076d80000 - 0x0000000076e9f000 	C:\windows\system32\kernel32.dll
+0x000007fefcfa0000 - 0x000007fefd00a000 	C:\windows\system32\KERNELBASE.dll
+0x000007fefdc00000 - 0x000007fefdcdb000 	C:\windows\system32\ADVAPI32.dll
+0x000007feff210000 - 0x000007feff2af000 	C:\windows\system32\msvcrt.dll
+0x000007fefd6a0000 - 0x000007fefd6bf000 	C:\windows\SYSTEM32\sechost.dll
+0x000007feff060000 - 0x000007feff18d000 	C:\windows\system32\RPCRT4.dll
+0x0000000076ea0000 - 0x0000000076f9a000 	C:\windows\system32\USER32.dll
+0x000007fefed10000 - 0x000007fefed77000 	C:\windows\system32\GDI32.dll
+0x000007fefece0000 - 0x000007fefecee000 	C:\windows\system32\LPK.dll
+0x000007fefd3c0000 - 0x000007fefd48a000 	C:\windows\system32\USP10.dll
+0x000007fefb290000 - 0x000007fefb484000 	C:\windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.23403_none_e36ad4593102f066\COMCTL32.dll
+0x000007fefd310000 - 0x000007fefd381000 	C:\windows\system32\SHLWAPI.dll
+0x000007fefd390000 - 0x000007fefd3be000 	C:\windows\system32\IMM32.DLL
+0x000007fefda40000 - 0x000007fefdb49000 	C:\windows\system32\MSCTF.dll
+0x0000000062680000 - 0x0000000062752000 	C:\Program Files\Java\jdk1.8.0_112\jre\bin\msvcr100.dll
+0x00000000569e0000 - 0x000000005727a000 	C:\Program Files\Java\jdk1.8.0_112\jre\bin\server\jvm.dll
+0x000007fef44f0000 - 0x000007fef44f9000 	C:\windows\system32\WSOCK32.dll
+0x000007fefd9f0000 - 0x000007fefda3d000 	C:\windows\system32\WS2_32.dll
+0x000007fefdb50000 - 0x000007fefdb58000 	C:\windows\system32\NSI.dll
+0x000007fefb4a0000 - 0x000007fefb4db000 	C:\windows\system32\WINMM.dll
+0x000007fefbe40000 - 0x000007fefbe4c000 	C:\windows\system32\VERSION.dll
+0x0000000077170000 - 0x0000000077177000 	C:\windows\system32\PSAPI.DLL
+0x0000000066e50000 - 0x0000000066e5f000 	C:\Program Files\Java\jdk1.8.0_112\jre\bin\verify.dll
+0x00000000658f0000 - 0x0000000065919000 	C:\Program Files\Java\jdk1.8.0_112\jre\bin\java.dll
+0x00000000658d0000 - 0x00000000658e6000 	C:\Program Files\Java\jdk1.8.0_112\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 
+java_command: Gui.RegistrierenTester
+java_class_path (initial): D:\Users\zgredj\workspace\Java Abschlussprojekt\bin
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:/Program Files/Java/jre1.8.0_121/bin/server;C:/Program Files/Java/jre1.8.0_121/bin;C:/Program Files/Java/jre1.8.0_121/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\HashiCorp\Vagrant\bin;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 & MySQL Utilities 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 & MySQL Utilities 1.5\Doctrine extensions for PHP\;C:\Program Files\Java\jdk1.8.0_112\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Gource\cmd;C:\windows\system32;
+USERNAME=zgredj
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 94 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 (6.1.7601.23572)
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 94 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 16659136k(7317784k free), swap 66598908k(20564k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.112-b15) for windows-amd64 JRE (1.8.0_112-b15), built on Sep 22 2016 21:31:56 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Fri Feb 03 13:07:30 2017
+elapsed time: 0 seconds (0d 0h 0m 0s)
+

@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Registrieren extends BasisLayout {
@@ -17,8 +18,8 @@ public class Registrieren extends BasisLayout {
 	public Registrieren() {
 
 		JTextField textFieldKartennummer = new JTextField();
-		JTextField textFieldPassword = new JTextField();
-		JTextField textFieldPasswordWiederholen = new JTextField();
+		JPasswordField textFieldPassword = new JPasswordField();
+		JPasswordField textFieldPasswordWiederholen = new JPasswordField();
 		JTextField textFieldVorname = new JTextField();
 		JTextField textFieldNachname = new JTextField();
 		JTextField textFieldGeburtsdatum = new JTextField();
@@ -98,7 +99,7 @@ public class Registrieren extends BasisLayout {
 		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
 		
 		add(alles);
-		setSize(1200, 800);
+		setSize(800, 800);
 		setResizable(true);
 	}
 }
