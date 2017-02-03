@@ -63,7 +63,7 @@ public class Login extends BasisLayout {
 		panelKartennummerPasswortLogin.add(textFieldPasswort);
 		panelKartennummerPasswortLogin.add(panelPlatzhalter);
 		panelKartennummerPasswortLogin.add(panelButtonLogin);
-		panelKartennummerPasswortLogin.setBorder(BorderFactory.createEmptyBorder(40,0,370,600));
+		panelKartennummerPasswortLogin.setBorder(BorderFactory.createEmptyBorder(40,0,370,100));
 		JPanel panelTextRegistrieren = new JPanel();
 		panelTextRegistrieren.add(panelText, BorderLayout.NORTH);
 		panelTextRegistrieren.add(panelButtonRegistrieren, BorderLayout.SOUTH);
@@ -77,7 +77,7 @@ public class Login extends BasisLayout {
 		Container contentPane = getContentPane();
 		contentPane.add(alles);
 
-		setSize(1200, 800);
+		setSize(700, 800);
 		setResizable(false);
 	}
 }
