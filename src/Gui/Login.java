@@ -28,19 +28,16 @@ public class Login extends BasisLayout {
 		JPanel panelKartennummer = new JPanel();
 		JTextField textFieldKartennummer = new JTextField(17);
 		JLabel labelKartennummer = new JLabel("Kartennummer:");
-		panelKartennummer.add(labelKartennummer);
-		panelKartennummer.add(textFieldKartennummer);
 
 		// Passwort
 		JPanel panelPasswort = new JPanel(new FlowLayout());
 		JTextField textFieldPasswort = new JTextField(20);
 		JLabel labelPasswort = new JLabel("Passwort:");
-		panelPasswort.add(labelPasswort);
-		panelPasswort.add(textFieldPasswort);
 
 		// Login
-		JPanel panelButtonLogin = new JPanel();
+		JPanel panelButtonLogin = new JPanel(new BorderLayout());
 		JButton buttonLogin = new JButton("Login");
+		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(0,0,5,90));
 		panelButtonLogin.add(buttonLogin);
 
 		// Text
@@ -52,6 +49,25 @@ public class Login extends BasisLayout {
 		JPanel panelButtonRegistrieren = new JPanel(new BorderLayout());
 		JButton buttonRegistrieren = new JButton("Registrieren");
 		panelButtonRegistrieren.add(buttonRegistrieren);
+
+		JPanel panelTitelLogin = new JPanel(new BorderLayout());
+		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);
+		panelTitelLogin.add(panelLogin, BorderLayout.SOUTH);
+		JPanel panelKartennummerPasswortLogin = new JPanel();
+		panelKartennummerPasswortLogin.setLayout(new GridLayout(4, 2));
+		panelKartennummerPasswortLogin.add(labelKartennummer);
+		panelKartennummerPasswortLogin.add(textFieldKartennummer);
+		panelKartennummerPasswortLogin.add(labelPasswort);
+		panelKartennummerPasswortLogin.add(textFieldPasswort);
+		panelKartennummerPasswortLogin.add(panelButtonLogin);
+		panelKartennummerPasswortLogin.setBorder(BorderFactory.createEmptyBorder(40,0,370,600));
+		JPanel panelTextRegistrieren = new JPanel();
+		panelTextRegistrieren.add(panelText, BorderLayout.NORTH);
+		panelTextRegistrieren.add(panelButtonRegistrieren, BorderLayout.SOUTH);
+		
+		panelSeite.add(panelTitelLogin, BorderLayout.NORTH);
+		panelSeite.add(panelKartennummerPasswortLogin, BorderLayout.CENTER);
+		panelSeite.add(panelTextRegistrieren,BorderLayout.SOUTH);
 		
 		alles.add(panelSeite);
 
