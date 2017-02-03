@@ -28,11 +28,13 @@ public class Login extends BasisLayout {
 		JPanel panelKartennummer = new JPanel();
 		JTextField textFieldKartennummer = new JTextField(17);
 		JLabel labelKartennummer = new JLabel("Kartennummer:");
+		labelKartennummer.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		// Passwort
 		JPanel panelPasswort = new JPanel(new FlowLayout());
 		JTextField textFieldPasswort = new JTextField(20);
 		JLabel labelPasswort = new JLabel("Passwort:");
+		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		// Login
 		JPanel panelButtonLogin = new JPanel(new BorderLayout());
