@@ -1,8 +1,17 @@
 package Gui;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class Login extends BasisLayout {
 
@@ -10,7 +19,7 @@ public class Login extends BasisLayout {
 
 		JPanel panelSeite = new JPanel();
 		panelSeite.setLayout(new BorderLayout());
-		
+
 		// Titel
 		JPanel panelTitel = new JPanel(new BorderLayout());
 		JLabel labelBbcBank = new JLabel("BBC BANK");
@@ -38,7 +47,7 @@ public class Login extends BasisLayout {
 		// Login
 		JPanel panelButtonLogin = new JPanel(new BorderLayout());
 		JButton buttonLogin = new JButton("Login");
-		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5,90,0,0));
+		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
 
 		// Text
@@ -63,21 +72,21 @@ public class Login extends BasisLayout {
 		panelKartennummerPasswortLogin.add(textFieldPasswort);
 		panelKartennummerPasswortLogin.add(panelPlatzhalter);
 		panelKartennummerPasswortLogin.add(panelButtonLogin);
-		panelKartennummerPasswortLogin.setBorder(BorderFactory.createEmptyBorder(40,0,370,600));
+		panelKartennummerPasswortLogin.setBorder(BorderFactory.createEmptyBorder(40, 0, 370, 200));
 		JPanel panelTextRegistrieren = new JPanel();
 		panelTextRegistrieren.add(panelText, BorderLayout.NORTH);
 		panelTextRegistrieren.add(panelButtonRegistrieren, BorderLayout.SOUTH);
-		
+
 		panelSeite.add(panelTitelLogin, BorderLayout.NORTH);
 		panelSeite.add(panelKartennummerPasswortLogin, BorderLayout.CENTER);
-		panelSeite.add(panelTextRegistrieren,BorderLayout.SOUTH);
-		
+		panelSeite.add(panelTextRegistrieren, BorderLayout.SOUTH);
+
 		alles.add(panelSeite);
 
 		Container contentPane = getContentPane();
 		contentPane.add(alles);
 
-		setSize(1200, 800);
+		setSize(800, 800);
 		setResizable(false);
 	}
 }
