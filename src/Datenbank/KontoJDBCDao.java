@@ -34,11 +34,9 @@ public class KontoJDBCDao implements KontoDao {
 
 	public Konto findKontoById(int id) {
 		
-		Konto k = null;
-		
 		try {
+			Konto k = null;
 			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto WHERE id = ?";
-
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -59,9 +57,9 @@ public class KontoJDBCDao implements KontoDao {
 		}
 	}
 
-	public ArrayList<Konto> getAllKontos() {
+	public ArrayList<Konto> getAllKonten() {
 		try {
-			ArrayList<Konto> kontos = new ArrayList<Konto>();
+			ArrayList<Konto> konten = new ArrayList<Konto>();
 
 			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto";
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -75,12 +73,11 @@ public class KontoJDBCDao implements KontoDao {
 				k.setKartennummer(rs.getInt("kartennummer"));
 				k.setPasswort(rs.getString("passwort"));
 				k.setKontostand(rs.getDouble("kontostand"));
-				kontos.add(k);
+				konten.add(k);
 			}
-			return kontos;
+			return konten;
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
 	}
-
 }

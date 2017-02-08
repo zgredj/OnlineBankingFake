@@ -15,7 +15,7 @@ public class DatabaseOnlineBanking {
 
 			Konto k = new Konto();
 			for (int i = 0; i < 10; i++) {
-				k.setName("Konto");
+				k.setName("Kappeler");
 				k.setVorname("Andrin");
 				k.setGeburtsdatum("06.03.2000");
 				k.setKartennummer(324);
@@ -25,22 +25,16 @@ public class DatabaseOnlineBanking {
 
 			kd.insertKonto(k);
 
-			for (Konto konto : kd.getAllKontos()) {
+			for (Konto konto : kd.getAllKonten()) {
 				System.out.println(konto.toString());
 			}
 		} catch (Exception exc) {
 			exc.printStackTrace();
-		} finally {
-			try {
-				con.close();
-			} catch (SQLException sqlexc) {
-				sqlexc.printStackTrace();
-			}
-		}
+		} 
 
 		try {
 
-			AdresseJDBCDao ad = new AdresseJDBCDao();
+			AdresseJDBCDao ad = new AdresseJDBCDao(con);
 			Adresse a = new Adresse();
 			for (int i = 0; i < 10; i++) {
 				a.setStrasse("Schulhausstrasse");

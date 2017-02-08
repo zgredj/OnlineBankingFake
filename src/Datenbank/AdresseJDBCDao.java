@@ -1,15 +1,16 @@
 package Datenbank;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 
 public class AdresseJDBCDao {
 
 	private Connection con = null;
 
-	public void AdresseJBCDao(Connection connection) {
+	public AdresseJDBCDao(Connection connection) {
 		con = connection;
 	}
 
@@ -22,8 +23,9 @@ public class AdresseJDBCDao {
 			ps.setString(3, a.getWohnort());
 			ps.setInt(4, a.getPlz());
 			ps.setString(5, a.getEmail());
-
+ 
 			ps.executeUpdate();
+
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
@@ -41,6 +43,7 @@ public class AdresseJDBCDao {
 				a.setId(rs.getInt("id"));
 				a.setStrasse(rs.getString("strasse"));
 				a.setHausnummer(rs.getInt("hausnummer"));
+				a.setWohnort(rs.getString("wohnort"));
 				a.setPlz(rs.getInt("plz"));
 				a.setEmail(rs.getString("email"));
 				break;
@@ -60,7 +63,6 @@ public class AdresseJDBCDao {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Adresse a = new Adresse();
-				Konto k = new Konto();
 				a.setId(rs.getInt("id"));
 				a.setStrasse(rs.getString("strasse"));
 				a.setHausnummer(rs.getInt("hausnummer"));
