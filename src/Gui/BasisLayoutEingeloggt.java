@@ -55,24 +55,23 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 		tabbedPaneMenu.addTab("Rechnugnen", panelRechnungen);
 
 		// TabbedPane Home
-		
+
 		JLabel labelKartennummerHome = new JLabel("Kartenummer");
 		JLabel labelKontostandHome = new JLabel("Kontostand");
 		JLabel labelOffeneRechnungenHome = new JLabel("Offene Rechnungen");
-		
+
 		JScrollPane scrollPaneOffeneRechnungenHome = new JScrollPane();
 		JPanel westBoxHome = new JPanel();
-		
+
 		westBoxHome.setLayout(new BoxLayout(westBoxHome, BoxLayout.PAGE_AXIS));
-		
+
 		panelHome.add(westBoxHome, BorderLayout.WEST);
 		panelHome.add(scrollPaneOffeneRechnungenHome, BorderLayout.EAST);
-		
+
 		westBoxHome.add(labelKartennummerHome);
 		westBoxHome.add(labelKontostandHome);
-		
+
 		panelHome.setBorder(BorderFactory.createEmptyBorder(10, 70, 0, 0));
-		
 
 		// TabbedPane Zahlungen
 		JLabel labelEinzahlung = new JLabel("Einzahlung");
@@ -109,7 +108,7 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 		JButton buttonEinzahlen = new JButton("einzahlen");
 		JButton buttonAuszahlen = new JButton("auszahlen");
 
-		panelZahlungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 300, 200));
+		panelZahlungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 370, 200));
 		panelButtonEinzahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		panelButtonAuszahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		labelAuszahlung.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -144,15 +143,15 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 		panelXAchseOsten.add(panelPasswortFieldAuszahlen);
 		panelXAchseOsten.add(panelButtonAuszahlen);
 
-		panelTextFieldBetragEinzahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 40, 0));
-		panelTextFieldBetragAuszahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 40, 0));
-		panelPasswortFieldEinzahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
-		panelPasswortFieldAuszahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+		panelTextFieldBetragEinzahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+		panelTextFieldBetragAuszahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+		panelPasswortFieldEinzahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+		panelPasswortFieldAuszahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 
 		// TabbedPane Rechnungen
 
 		JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
-		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empängers");
+		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empf�ngers");
 		JLabel labelBetragRechnungen = new JLabel("Betrag ");
 		JLabel labelPasswordRechnungen = new JLabel("Password ");
 
