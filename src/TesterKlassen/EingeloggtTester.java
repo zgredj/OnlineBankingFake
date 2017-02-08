@@ -1,4 +1,6 @@
-package Gui;
+package TesterKlassen;
+
+import Gui.BasisLayoutEingeloggt;
 
 public class EingeloggtTester {
 

@@ -150,7 +150,7 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 		// TabbedPane Rechnungen
 
 		JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
-		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empf�ngers");
+		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empfaengers");
 		JLabel labelBetragRechnungen = new JLabel("Betrag ");
 		JLabel labelPasswordRechnungen = new JLabel("Password ");
 
