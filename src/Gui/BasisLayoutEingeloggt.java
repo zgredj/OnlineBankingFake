@@ -13,9 +13,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import com.sun.xml.internal.ws.org.objectweb.asm.Label;
+
+import javafx.scene.control.Cell;
+
 public class BasisLayoutEingeloggt extends BasisLayout {
 
-	private String titel = "Titel";
+	private String titel = "Willkommen";
 	private String vorname = "Vorname";
 	private String nachname = "Nachname";
 
@@ -52,6 +56,8 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 		tabbedPaneMenu.addTab("Home", panelHome);
 		tabbedPaneMenu.addTab("Zahlungen", panelZahlungen);
 		tabbedPaneMenu.addTab("Rechnugnen", panelRechnungen);
+		
+		//panelHome.add(labelTitel);
 		
 		// TabbedPane Zahlungen 
 		JLabel labelEinzahlung = new JLabel("Einzahlung");
@@ -128,8 +134,62 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 		panelPasswortFieldEinzahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 		panelPasswortFieldAuszahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 		
-		//panelHome.add(labelTitel);
-		//panelRechnungen.add(labelAngemeldet);
+		
+		// panel Rechnungen
+		
+		JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
+		JLabel labelKartennummerDesEmpfängers  = new JLabel("Kartennummer des Empängers");
+		JLabel labelBetragRechnungen = new JLabel("Betrag ");
+		JLabel labelPasswordRechnungen = new JLabel("Password ");
+		
+		JTextField textFieldKartennummerRechnungen = new JTextField();
+		JTextField textFieldBetragRechnungen = new JTextField(7);
+		JPasswordField textFieldPasswordRechnungen = new JPasswordField();
+		
+		JButton buttonAbsendenRechnungen = new JButton("absenden");
+		
+		JPanel panelCenterMenuRechnungen = new JPanel(new BorderLayout());
+		JPanel panelNorthMenuRechnungen = new JPanel(new BorderLayout());
+		JPanel panelKartennummerRechnungen = new JPanel();
+		JPanel panelBetragRechnungen = new JPanel();
+		JPanel panelPasswordRechnungen = new JPanel();
+		JPanel panelRechnungenErstellen = new JPanel(new BorderLayout());
+		JPanel panelBoxRechnungen = new JPanel();
+		
+		labelRechnungenerstellen.setFont(new Font("Arial", Font.PLAIN, 30));
+		
+		panelKartennummerRechnungen.setLayout(new BoxLayout(panelKartennummerRechnungen, BoxLayout.PAGE_AXIS));
+		panelBetragRechnungen.setLayout(new BoxLayout(panelBetragRechnungen, BoxLayout.PAGE_AXIS));
+		panelPasswordRechnungen.setLayout(new BoxLayout(panelPasswordRechnungen, BoxLayout.PAGE_AXIS));
+		panelBoxRechnungen.setLayout(new BoxLayout(panelBoxRechnungen, BoxLayout.PAGE_AXIS));
+		
+		panelRechnungenErstellen.add(labelRechnungenerstellen);
+		
+		panelRechnungen.add(panelBoxRechnungen);
+		
+		panelBoxRechnungen.add(panelRechnungenErstellen);
+		panelBoxRechnungen.add(panelCenterMenuRechnungen);
+		
+		panelCenterMenuRechnungen.add(panelKartennummerRechnungen, BorderLayout.NORTH);
+		panelCenterMenuRechnungen.add(panelNorthMenuRechnungen, BorderLayout.CENTER);
+		panelCenterMenuRechnungen.add(buttonAbsendenRechnungen, BorderLayout.SOUTH);
+		
+		panelNorthMenuRechnungen.add(panelBetragRechnungen, BorderLayout.WEST);
+		panelNorthMenuRechnungen.add(panelPasswordRechnungen, BorderLayout.EAST);
+		
+		panelKartennummerRechnungen.add(labelKartennummerDesEmpfängers);
+		panelKartennummerRechnungen.add(textFieldKartennummerRechnungen);
+		
+		panelBetragRechnungen.add(labelBetragRechnungen);
+		panelBetragRechnungen.add(textFieldBetragRechnungen);
+		
+		panelPasswordRechnungen.add(labelPasswordRechnungen);
+		panelPasswordRechnungen.add(textFieldPasswordRechnungen);
+		
+		panelRechnungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 300, 200));
+		panelCenterMenuRechnungen.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 250));
+		panelBetragRechnungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 50, 0));
+		panelPasswordRechnungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 50, 0));
 
 		// Footer
 		JPanel panelAusloggen = new JPanel(new FlowLayout());
@@ -142,7 +202,7 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 
 		add(panelAlles);
 		setSize(800, 800);
-		setResizable(true);
+		setResizable(false);
 	}
 
 	public String getTitel() {
