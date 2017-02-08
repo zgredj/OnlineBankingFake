@@ -30,7 +30,7 @@ public class DatabaseOnlineBanking {
 			}
 		} catch (Exception exc) {
 			exc.printStackTrace();
-		} 
+		}
 
 		try {
 
@@ -48,6 +48,24 @@ public class DatabaseOnlineBanking {
 
 			for (Adresse adresse : ad.getAllAdressen()) {
 				System.out.println(adresse.toString());
+			}
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		}
+
+		try {
+
+			RechnungJDBCDao rd = new RechnungJDBCDao(con);
+			Rechnung r = new Rechnung();
+			for (int i = 0; i < 10; i++) {
+				r.setKartennummer(123);
+				r.setBetrag(100.50);
+			}
+
+			rd.insertRechnung(r);
+
+			for (Rechnung rechnung : rd.getAllRechnungen()) {
+				System.out.println(rechnung.toString());
 			}
 		} catch (Exception exc) {
 			exc.printStackTrace();
