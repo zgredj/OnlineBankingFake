@@ -58,7 +58,6 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 
 		JLabel labelKartennummerHome = new JLabel("Kartenummer");
 		JLabel labelKontostandHome = new JLabel("Kontostand");
-		JLabel labelOffeneRechnungenHome = new JLabel("Offene Rechnungen");
 
 		JScrollPane scrollPaneOffeneRechnungenHome = new JScrollPane();
 		JPanel westBoxHome = new JPanel();
@@ -151,7 +150,7 @@ public class BasisLayoutEingeloggt extends BasisLayout {
 		// TabbedPane Rechnungen
 
 		JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
-		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empf�ngers");
+		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empf�ngers");
 		JLabel labelBetragRechnungen = new JLabel("Betrag ");
 		JLabel labelPasswordRechnungen = new JLabel("Password ");
 
