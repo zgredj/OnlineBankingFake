@@ -33,8 +33,10 @@ public class KontoJDBCDao implements KontoDao {
 	}
 
 	public Konto findKontoById(int id) {
+		
+		Konto k = null;
+		
 		try {
-			Konto k = null;
 			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto WHERE id = ?";
 
 			PreparedStatement ps = con.prepareStatement(sql);
