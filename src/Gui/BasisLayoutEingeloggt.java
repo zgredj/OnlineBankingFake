@@ -14,10 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Label;
-
-import javafx.scene.control.Cell;
-
 public class BasisLayoutEingeloggt extends BasisLayout {
 
 	private String titel = "Willkommen";
