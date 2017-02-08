@@ -16,7 +16,7 @@ public class KontoJDBCDao implements KontoDao {
 
 	public void insertKonto(Konto k) {
 		try {
-			String sql = "INSERT INTO projekt.konto (name, vorname, geburtsdatum, kartennummer, passwort, kontostand) VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO databaseonlinebanking.konto (name, vorname, geburtsdatum, kartennummer, passwort, kontostand) VALUES (?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, k.getName());
 			ps.setString(2, k.getVorname());
@@ -35,7 +35,7 @@ public class KontoJDBCDao implements KontoDao {
 	public Konto findKontoById(int id) {
 		try {
 			Konto k = null;
-			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM projekt.konto WHERE id = ?";
+			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto WHERE id = ?";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
@@ -61,7 +61,7 @@ public class KontoJDBCDao implements KontoDao {
 		try {
 			ArrayList<Konto> kontos = new ArrayList<Konto>();
 
-			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM projekt.konto";
+			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {

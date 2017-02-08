@@ -3,11 +3,10 @@ package Datenbank;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Projekt {
+public class DatabaseOnlineBanking {
 
 	public static void main(String[] args) {
 
-		
 		Connection con = ConnectionFactory.getInstance().getConnection();
 
 		try {
@@ -23,9 +22,8 @@ public class Projekt {
 				k.setPasswort("DiesIstEinPasswort");
 				k.setKontostand(5000.50);
 			}
-			
+
 			kd.insertKonto(k);
-			
 
 			for (Konto konto : kd.getAllKontos()) {
 				System.out.println(konto.toString());
