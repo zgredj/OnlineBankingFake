@@ -37,5 +37,32 @@ public class DatabaseOnlineBanking {
 				sqlexc.printStackTrace();
 			}
 		}
+
+		try {
+
+			AdresseJDBCDao ad = new AdresseJDBCDao();
+			Adresse a = new Adresse();
+			for (int i = 0; i < 10; i++) {
+				a.setStrasse("Schulhausstrasse");
+				a.setHausnummer(5);
+				a.setWohnort("KP");
+				a.setPlz(8182);
+				a.setEmail("meine.email@hier.com");
+			}
+
+			ad.insertAdresse(a);
+
+			for (Adresse adresse : ad.getAllAdressen()) {
+				System.out.println(adresse.toString());
+			}
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException sqlexc) {
+				sqlexc.printStackTrace();
+			}
+		}
 	}
 }

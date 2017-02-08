@@ -3,7 +3,7 @@ package Datenbank;
 public class Adresse {
 	int id;
 	String strasse;
-	String hausnummer;
+	int hausnummer;
 	String wohnort;
 	int plz;
 	String email;
@@ -24,11 +24,11 @@ public class Adresse {
 		this.strasse = strasse;
 	}
 
-	public String getHausnummer() {
+	public int getHausnummer() {
 		return hausnummer;
 	}
 
-	public void setHausnummer(String hausnummer) {
+	public void setHausnummer(int hausnummer) {
 		this.hausnummer = hausnummer;
 	}
 

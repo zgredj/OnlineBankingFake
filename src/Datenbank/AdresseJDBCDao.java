@@ -20,9 +20,10 @@ public class AdresseJDBCDao {
 			String sql = "INSERT INTO databaseonlinebanking.adresse (strasse, hausnummer, wohnort, plz, email) VALUES (?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, a.getStrasse());
-			ps.setString(2, a.getWohnort());
-			ps.setInt(3, a.getPlz());
-			ps.setString(4, a.getEmail());
+			ps.setInt(2, a.getHausnummer());
+			ps.setString(3, a.getWohnort());
+			ps.setInt(4, a.getPlz());
+			ps.setString(5, a.getEmail());
 
 			ps.executeUpdate();
 		} catch (SQLException sqlexc) {
@@ -41,7 +42,7 @@ public class AdresseJDBCDao {
 				a = new Adresse();
 				a.setId(rs.getInt("id"));
 				a.setStrasse(rs.getString("strasse"));
-				a.setHausnummer(rs.getString("hausnummer"));
+				a.setHausnummer(rs.getInt("hausnummer"));
 				a.setPlz(rs.getInt("plz"));
 				a.setEmail(rs.getString("email"));
 				break;
@@ -52,7 +53,7 @@ public class AdresseJDBCDao {
 		}
 	}
 
-	public ArrayList<Adresse> getAlleAdressen() {
+	public ArrayList<Adresse> getAllAdressen() {
 		try {
 			ArrayList<Adresse> adressen = new ArrayList<Adresse>();
 
@@ -64,7 +65,7 @@ public class AdresseJDBCDao {
 				Konto k = new Konto();
 				a.setId(rs.getInt("id"));
 				a.setStrasse(rs.getString("strasse"));
-				a.setHausnummer(rs.getString("hausnummer"));
+				a.setHausnummer(rs.getInt("hausnummer"));
 				a.setWohnort(rs.getString("wohnort"));
 				a.setPlz(rs.getInt("plz"));
 				a.setEmail(rs.getString("email"));
