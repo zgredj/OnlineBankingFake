@@ -18,53 +18,49 @@ public class Login extends JPanel {
 	public Login() {
 
 		JPanel panelSeite = new JPanel();
-		panelSeite.setLayout(new BorderLayout());
-
-		// Titel
+		JPanel panelLogin = new JPanel(new BorderLayout());
 		JPanel panelTitel = new JPanel(new BorderLayout());
+		JPanel panelKartennummer = new JPanel();
+		JPanel panelPasswort = new JPanel(new FlowLayout());
+		JPanel panelButtonLogin = new JPanel(new BorderLayout());
+		JPanel panelText = new JPanel(new BorderLayout());
+		JPanel panelButtonRegistrieren = new JPanel(new BorderLayout());
+		JPanel panelTitelLogin = new JPanel(new BorderLayout());
+		JPanel panelPlatzhalter = new JPanel();
+		JPanel panelKartennummerPasswortLogin = new JPanel();
+		JPanel panelTextRegistrieren = new JPanel();
+
+		JLabel labelLogin = new JLabel("Login");
 		JLabel labelBbcBank = new JLabel("BBC BANK");
+		JLabel labelKartennummer = new JLabel("Kartennummer:");
+		JLabel labelPasswort = new JLabel("Passwort:");
+		JLabel labelText = new JLabel("Noch kein Benutzerkonto?");
+
+		JButton buttonLogin = new JButton("Login");
+		JButton buttonRegistrieren = new JButton("Registrieren");
+
+		JTextField textFieldKartennummer = new JTextField(17);
+		JPasswordField textFieldPasswort = new JPasswordField(20);
+
 		labelBbcBank.setFont(new Font("Arial", Font.PLAIN, 80));
+
 		panelTitel.add(labelBbcBank, BorderLayout.CENTER);
 
-		// Login
-		JPanel panelLogin = new JPanel(new BorderLayout());
-		JLabel labelLogin = new JLabel("Login");
+		panelSeite.setLayout(new BorderLayout());
+
 		labelLogin.setFont(new Font("Arial", Font.PLAIN, 50));
 		panelLogin.add(labelLogin, BorderLayout.CENTER);
-
-		// Kartennummer
-		JPanel panelKartennummer = new JPanel();
-		JTextField textFieldKartennummer = new JTextField(17);
-		JLabel labelKartennummer = new JLabel("Kartennummer:");
 		labelKartennummer.setFont(new Font("Arial", Font.PLAIN, 16));
-
-		// Passwort
-		JPanel panelPasswort = new JPanel(new FlowLayout());
-		JPasswordField textFieldPasswort = new JPasswordField(20);
-		JLabel labelPasswort = new JLabel("Passwort:");
 		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		// Login
-		JPanel panelButtonLogin = new JPanel(new BorderLayout());
-		JButton buttonLogin = new JButton("Login");
 		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
 
-		// Text
-		JPanel panelText = new JPanel(new BorderLayout());
-		JLabel labelText = new JLabel("Noch kein Benutzerkonto?");
 		panelText.add(labelText);
-
-		// Registrieren
-		JPanel panelButtonRegistrieren = new JPanel(new BorderLayout());
-		JButton buttonRegistrieren = new JButton("Registrieren");
 		panelButtonRegistrieren.add(buttonRegistrieren);
-
-		JPanel panelTitelLogin = new JPanel(new BorderLayout());
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);
 		panelTitelLogin.add(panelLogin, BorderLayout.SOUTH);
-		JPanel panelPlatzhalter = new JPanel();
-		JPanel panelKartennummerPasswortLogin = new JPanel();
+
 		panelKartennummerPasswortLogin.setLayout(new GridLayout(4, 2));
 		panelKartennummerPasswortLogin.add(labelKartennummer);
 		panelKartennummerPasswortLogin.add(textFieldKartennummer);
@@ -73,7 +69,6 @@ public class Login extends JPanel {
 		panelKartennummerPasswortLogin.add(panelPlatzhalter);
 		panelKartennummerPasswortLogin.add(panelButtonLogin);
 		panelKartennummerPasswortLogin.setBorder(BorderFactory.createEmptyBorder(40, 0, 370, 200));
-		JPanel panelTextRegistrieren = new JPanel();
 		panelTextRegistrieren.add(panelText, BorderLayout.NORTH);
 		panelTextRegistrieren.add(panelButtonRegistrieren, BorderLayout.SOUTH);
 
