@@ -6,6 +6,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import datenbank.ConnectionFactory;
 
 public class Login extends JPanel {
 
@@ -54,6 +60,58 @@ public class Login extends JPanel {
 		labelKartennummer.setFont(new Font("Arial", Font.PLAIN, 16));
 		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));
 
+		buttonLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Connection con = ConnectionFactory.getInstance().getConnection();
+				
+				String kartennummerAlsText = textFieldKartennummer.getText();
+				int tryKartennummer = 0;
+				try {
+					tryKartennummer = Integer.parseInt(kartennummerAlsText);
+				} catch (NumberFormatException nfe) {
+					//*************
+					//Fehlermeldung
+					System.err.println("Keine Zahl eingegeben!");
+					//*************
+				}
+				int kartennummer = tryKartennummer;
+				
+				String passwort = new String(textFieldPasswort.getPassword());
+
+				String passwortVonDatenbank = null;
+				try {
+					String sql = "SELECT passwort FROM databaseonlinebanking.konto WHERE kartennummer = ?";
+					PreparedStatement ps = con.prepareStatement(sql);
+					ps.setInt(1, kartennummer);
+					ResultSet rs = ps.executeQuery();
+					while (rs.next()) {
+						passwortVonDatenbank = rs.getString("passwort");
+					}
+					if (passwortVonDatenbank == null) {
+						// *************
+						// Fehlermeldung
+						System.err.println("Falsche Kartennummer oder Passwort!");
+						// *************
+					}
+				} catch (SQLException sqlexc) {
+					throw new RuntimeException(sqlexc);
+				}
+				if (passwort.equals(passwortVonDatenbank)) {
+					mainFrame.getContentPane().removeAll();
+					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
+					mainFrame.getContentPane().revalidate();
+				} else {
+					// *************
+					// Fehlermeldung
+					System.err.println("Falsche Kartennummer oder Passwort!");
+					// *************
+				}
+			}
+		});
+
 		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
 
@@ -62,7 +120,7 @@ public class Login extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new Registrieren());
+				mainFrame.getContentPane().add(new Registrieren(mainFrame));
 				mainFrame.getContentPane().revalidate();
 			}
 		});

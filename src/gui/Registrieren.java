@@ -22,7 +22,7 @@ import datenbank.KontoJDBCDao;
 
 public class Registrieren extends JPanel {
 
-	public Registrieren() {
+	public Registrieren(MainFrame mainFrame) {
 
 		JTextField textFieldKartennummer = new JTextField();
 		JPasswordField textFieldPassword = new JPasswordField();
@@ -79,6 +79,10 @@ public class Registrieren extends JPanel {
 				adresse.setStrasse(textFieldStrasse.getText());
 				adresse.setHausnummer(Integer.parseInt(textFieldHausNr.getText()));
 				adresseJDBCDao.insertAdresse(adresse);
+				
+				mainFrame.getContentPane().removeAll();
+				mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
+				mainFrame.getContentPane().revalidate();
 			}
 		});
 
