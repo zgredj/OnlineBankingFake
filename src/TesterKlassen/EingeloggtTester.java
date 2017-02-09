@@ -1,12 +1,12 @@
 package TesterKlassen;
 
-import Gui.BasisLayoutEingeloggt;
+import Gui.LayoutEingeloggt;
 
 public class EingeloggtTester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		BasisLayoutEingeloggt ble1 = new BasisLayoutEingeloggt();
+		LayoutEingeloggt ble1 = new LayoutEingeloggt();
 
 	}
 

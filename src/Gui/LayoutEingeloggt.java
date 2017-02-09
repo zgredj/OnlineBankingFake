@@ -14,13 +14,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class BasisLayoutEingeloggt extends BasisLayout {
+public class LayoutEingeloggt extends BasisLayout {
 
 	private String titel = "Willkommen";
 	private String vorname = "Vorname";
 	private String nachname = "Nachname";
 
-	public BasisLayoutEingeloggt() {
+	public LayoutEingeloggt() {
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
