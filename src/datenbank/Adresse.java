@@ -6,6 +6,7 @@ public class Adresse {
 	int hausnummer;
 	String wohnort;
 	int plz;
+	String email;
 	
 	public int getId() {
 		return id;
@@ -47,6 +48,14 @@ public class Adresse {
 		this.plz = plz;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String toString() {
 		String result = "";
 		result += this.id + " ";
@@ -54,6 +63,7 @@ public class Adresse {
 		result += this.hausnummer + " ";
 		result += this.wohnort + " ";
 		result += this.plz + " ";
+		result += this.email + " ";
 		return result;
 	}
 }

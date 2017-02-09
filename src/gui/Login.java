@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 public class Login extends JPanel {
 
-	public Login(MainFrame mainFrame) {
+	public Login(final MainFrame mainFrame) {
 
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
@@ -58,15 +58,14 @@ public class Login extends JPanel {
 		panelButtonLogin.add(buttonLogin);
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
-
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getContentPane().removeAll();
 				mainFrame.getContentPane().add(new Registrieren());
 				mainFrame.getContentPane().revalidate();
 			}
 		});
-
+		
 		panelText.add(labelText);
 		panelButtonRegistrieren.add(buttonRegistrieren);
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);

@@ -1,11 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,12 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import datenbank.Adresse;
-import datenbank.AdresseJDBCDao;
-import datenbank.ConnectionFactory;
-import datenbank.Konto;
-import datenbank.KontoJDBCDao;
 
 public class Registrieren extends JPanel {
 
@@ -56,31 +49,6 @@ public class Registrieren extends JPanel {
 		JPanel panelOsten = new JPanel(new BorderLayout());
 
 		JButton buttonRegistrieren = new JButton("registrieren");
-		
-		buttonRegistrieren.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Connection connection = ConnectionFactory.getInstance().getConnection();
-				
-				KontoJDBCDao kontoJDBCDao = new KontoJDBCDao(connection);
-				Konto konto = new Konto();
-				konto.setKartennummer(Integer.parseInt(textFieldKartennummer.getText()));
-				konto.setPasswort(new String(textFieldPassword.getPassword()));
-				konto.setVorname(textFieldVorname.getText());
-				konto.setName(textFieldNachname.getText());
-				konto.setGeburtsdatum(textFieldGeburtsdatum.getText());
-				kontoJDBCDao.insertKonto(konto);
-				
-				AdresseJDBCDao adresseJDBCDao = new AdresseJDBCDao(connection);
-				Adresse adresse = new Adresse();
-				adresse.setWohnort(textFieldWohnort.getText());
-				adresse.setPlz(Integer.parseInt(textFieldPlz.getText()));
-				adresse.setStrasse(textFieldStrasse.getText());
-				adresse.setHausnummer(Integer.parseInt(textFieldHausNr.getText()));
-				adresseJDBCDao.insertAdresse(adresse);
-			}
-		});
 
 		panelInhalt.add(labelKartennummer);
 		panelInhalt.add(textFieldKartennummer);
