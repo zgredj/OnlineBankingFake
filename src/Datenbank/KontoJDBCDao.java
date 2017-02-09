@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class KontoJDBCDao implements KontoDao {
+public class KontoJDBCDao {
 
 	private Connection con = null;
 
@@ -41,14 +41,7 @@ public class KontoJDBCDao implements KontoDao {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				k = new Konto();
-				k.setId(rs.getInt("id"));
-				k.setName(rs.getString("name"));
-				k.setVorname(rs.getString("vorname"));
-				k.setGeburtsdatum(rs.getString("geburtsdatum"));
-				k.setKartennummer(rs.getInt("kartennummer"));
-				k.setPasswort(rs.getString("passwort"));
-				k.setKontostand(rs.getDouble("kontostand"));
+				
 				break;
 			}
 			return k;
@@ -79,5 +72,17 @@ public class KontoJDBCDao implements KontoDao {
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
+	}
+	
+	public Konto getKontoFromResultSet(ResultSet rs) throws SQLException {
+		Konto k = new Konto();
+		k.setId(rs.getInt("id"));
+		k.setName(rs.getString("name"));
+		k.setVorname(rs.getString("vorname"));
+		k.setGeburtsdatum(rs.getString("geburtsdatum"));
+		k.setKartennummer(rs.getInt("kartennummer"));
+		k.setPasswort(rs.getString("passwort"));
+		k.setKontostand(rs.getDouble("kontostand"));
+		return k;
 	}
 }

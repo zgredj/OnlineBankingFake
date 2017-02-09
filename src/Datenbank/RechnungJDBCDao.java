@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RechnungJDBCDao implements RechnungDao {
+public class RechnungJDBCDao {
 
 	private Connection con = null;
 
