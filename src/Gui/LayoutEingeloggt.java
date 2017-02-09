@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class LayoutEingeloggt extends BasisPanel {
+public class LayoutEingeloggt extends BasisLayout {
 
 	private String titel = "Willkommen";
 	private String vorname = "Vorname";
@@ -212,6 +212,9 @@ public class LayoutEingeloggt extends BasisPanel {
 
 		panelAlles.add(tabbedPaneMenu, BorderLayout.CENTER);
 
+		add(panelAlles);
+		setSize(800, 800);
+		setResizable(false);
 	}
 
 	public String getTitel() {

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Registrieren extends BasisPanel {
+public class Registrieren extends BasisLayout {
 
 	public Registrieren() {
 
@@ -99,5 +99,7 @@ public class Registrieren extends BasisPanel {
 		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
 		
 		add(alles);
+		setSize(800, 800);
+		setResizable(true);
 	}
 }

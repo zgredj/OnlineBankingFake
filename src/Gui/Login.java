@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Login extends BasisPanel {
+public class Login extends BasisLayout {
 
 	public Login() {
 
