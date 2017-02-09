@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class KontoJDBCDao implements KontoDao {
+public class KontoJDBCDao {
 
 	private Connection con = null;
 
