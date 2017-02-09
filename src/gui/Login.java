@@ -66,18 +66,12 @@ public class Login extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				Connection con = ConnectionFactory.getInstance().getConnection();
-				
-				String kartennummerAlsText = textFieldKartennummer.getText();
-				int tryKartennummer = 0;
-				try {
-					tryKartennummer = Integer.parseInt(kartennummerAlsText);
-				} catch (NumberFormatException nfe) {
-					//*************
-					//Fehlermeldung
-					System.err.println("Keine Zahl eingegeben!");
-					//*************
+	
+				int kartennummer = mainFrame.checkIfDigitAndReturnIntegerOrErrorAsNegativ(textFieldKartennummer.getText()); 
+				if (kartennummer < 0) {
+					System.err.println("Kartennummer ist keine Zahl!");
 				}
-				int kartennummer = tryKartennummer;
+				
 				
 				String passwort = new String(textFieldPasswort.getPassword());
 

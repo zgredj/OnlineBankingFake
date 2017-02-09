@@ -16,4 +16,14 @@ public class MainFrame extends JFrame {
 
 		setVisible(true);
 	}
+
+	public int checkIfDigitAndReturnIntegerOrErrorAsNegativ(String uncheckedString) {
+		int checkedInteger = -1;
+		try {
+			checkedInteger = Integer.parseInt(uncheckedString);
+		} catch (NumberFormatException nfe) {
+			return -1;
+		}
+		return checkedInteger;
+	}
 }

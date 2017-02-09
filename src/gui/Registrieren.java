@@ -56,22 +56,33 @@ public class Registrieren extends JPanel {
 		JPanel panelOsten = new JPanel(new BorderLayout());
 
 		JButton buttonRegistrieren = new JButton("registrieren");
-		
+
 		buttonRegistrieren.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Connection connection = ConnectionFactory.getInstance().getConnection();
-				
 				KontoJDBCDao kontoJDBCDao = new KontoJDBCDao(connection);
 				Konto konto = new Konto();
-				konto.setKartennummer(Integer.parseInt(textFieldKartennummer.getText()));
-				konto.setPasswort(new String(textFieldPassword.getPassword()));
+
+				int kartennummer = mainFrame
+						.checkIfDigitAndReturnIntegerOrErrorAsNegativ(textFieldKartennummer.getText());
+				if (kartennummer < 0) {
+					System.err.println("Kartennummer keine Zahl!");
+				}
+
+				String passwort1 = new String(textFieldPassword.getPassword());
+				String passwort2 = new String(textFieldPasswordWiederholen.getPassword());
+				if (passwort1.equals(passwort2)) {
+					konto.setPasswort(passwort1);
+				} else {
+					System.err.println("Passwörter stimmen nicht überein!");
+				}
 				konto.setVorname(textFieldVorname.getText());
 				konto.setName(textFieldNachname.getText());
 				konto.setGeburtsdatum(textFieldGeburtsdatum.getText());
 				kontoJDBCDao.insertKonto(konto);
-				
+
 				AdresseJDBCDao adresseJDBCDao = new AdresseJDBCDao(connection);
 				Adresse adresse = new Adresse();
 				adresse.setWohnort(textFieldWohnort.getText());
@@ -79,7 +90,7 @@ public class Registrieren extends JPanel {
 				adresse.setStrasse(textFieldStrasse.getText());
 				adresse.setHausnummer(Integer.parseInt(textFieldHausNr.getText()));
 				adresseJDBCDao.insertAdresse(adresse);
-				
+
 				mainFrame.getContentPane().removeAll();
 				mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
 				mainFrame.getContentPane().revalidate();
