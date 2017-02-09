@@ -1,6 +1,6 @@
-package TesterKlassen;
+package testerKlassen;
 
-import Gui.Login;
+import gui.Login;
 
 public class AnmeldenTester {
 

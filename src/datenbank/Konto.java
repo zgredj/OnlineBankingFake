@@ -1,4 +1,4 @@
-package Datenbank;
+package datenbank;
 
 public class Konto {
 
