@@ -1,10 +1,10 @@
 package datenbank;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Connection;
 
 public class AdresseJDBCDao {
 
@@ -23,7 +23,7 @@ public class AdresseJDBCDao {
 			ps.setString(3, a.getWohnort());
 			ps.setInt(4, a.getPlz());
 			ps.setString(5, a.getEmail());
- 
+
 			ps.executeUpdate();
 
 		} catch (SQLException sqlexc) {
@@ -39,13 +39,7 @@ public class AdresseJDBCDao {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				a = new Adresse();
-				a.setId(rs.getInt("id"));
-				a.setStrasse(rs.getString("strasse"));
-				a.setHausnummer(rs.getInt("hausnummer"));
-				a.setWohnort(rs.getString("wohnort"));
-				a.setPlz(rs.getInt("plz"));
-				a.setEmail(rs.getString("email"));
+				a = getAdresseFromResultSet(rs);
 				break;
 			}
 			return a;
@@ -57,23 +51,27 @@ public class AdresseJDBCDao {
 	public ArrayList<Adresse> getAllAdressen() {
 		try {
 			ArrayList<Adresse> adressen = new ArrayList<Adresse>();
-
 			String sql = "SELECT id, strasse, hausnummer, wohnort, plz, email FROM databaseonlinebanking.adresse";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Adresse a = new Adresse();
-				a.setId(rs.getInt("id"));
-				a.setStrasse(rs.getString("strasse"));
-				a.setHausnummer(rs.getInt("hausnummer"));
-				a.setWohnort(rs.getString("wohnort"));
-				a.setPlz(rs.getInt("plz"));
-				a.setEmail(rs.getString("email"));
+				Adresse a = getAdresseFromResultSet(rs);
 				adressen.add(a);
 			}
 			return adressen;
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
+	}
+
+	public Adresse getAdresseFromResultSet(ResultSet rs) throws SQLException {
+		Adresse a = new Adresse();
+		a.setId(rs.getInt("id"));
+		a.setStrasse(rs.getString("strasse"));
+		a.setHausnummer(rs.getInt("hausnummer"));
+		a.setWohnort(rs.getString("wohnort"));
+		a.setPlz(rs.getInt("plz"));
+		a.setEmail(rs.getString("email"));
+		return a;
 	}
 }
