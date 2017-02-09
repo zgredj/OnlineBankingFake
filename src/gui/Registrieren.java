@@ -1,10 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.ComponentOrientation;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,6 +13,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import datenbank.Adresse;
+import datenbank.AdresseJDBCDao;
+import datenbank.ConnectionFactory;
+import datenbank.Konto;
+import datenbank.KontoJDBCDao;
 
 public class Registrieren extends JPanel {
 
@@ -49,7 +56,6 @@ public class Registrieren extends JPanel {
 		JPanel panelOsten = new JPanel(new BorderLayout());
 
 		JButton buttonRegistrieren = new JButton("registrieren");
-<<<<<<< HEAD
 		
 		buttonRegistrieren.addActionListener(new ActionListener() {
 			
@@ -79,8 +85,6 @@ public class Registrieren extends JPanel {
 				mainFrame.getContentPane().revalidate();
 			}
 		});
-=======
->>>>>>> branch 'master' of https://github.com/zgredj/OnlineBankingFake.git
 
 		panelInhalt.add(labelKartennummer);
 		panelInhalt.add(textFieldKartennummer);

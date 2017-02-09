@@ -22,7 +22,7 @@ import datenbank.ConnectionFactory;
 
 public class Login extends JPanel {
 
-	public Login(final MainFrame mainFrame) {
+	public Login(MainFrame mainFrame) {
 
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
@@ -116,14 +116,15 @@ public class Login extends JPanel {
 		panelButtonLogin.add(buttonLogin);
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
-			
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getContentPane().removeAll();
 				mainFrame.getContentPane().add(new Registrieren(mainFrame));
 				mainFrame.getContentPane().revalidate();
 			}
 		});
-		
+
 		panelText.add(labelText);
 		panelButtonRegistrieren.add(buttonRegistrieren);
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);

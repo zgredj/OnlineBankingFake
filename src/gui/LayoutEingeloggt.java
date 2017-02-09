@@ -16,15 +16,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import eventlistener.ListenerButtonAusloggen;
-
 public class LayoutEingeloggt extends JPanel {
 
 	private String titel = "Willkommen";
 	private String vorname = "Vorname";
 	private String nachname = "Nachname";
 
-	public LayoutEingeloggt(final MainFrame mainFrame) {
+	public LayoutEingeloggt(MainFrame mainFrame) {
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelKopfzeileEAST = new JPanel();
@@ -61,35 +59,19 @@ public class LayoutEingeloggt extends JPanel {
 		tabbedPaneMenu.addTab("Rechnugnen", panelRechnungen);
 
 		// TabbedPane Home
-		JLabel labelKartennummerHome = new JLabel("KarteNr: ");
-		JLabel labelKontostandHome = new JLabel("Kontostand: ");
-		JLabel labelKartennummerZahlHome = new JLabel("  PLATZHALTER"); // TODO Mit DatenBank Werte eifügen.
-		JLabel labelKontostandZahlHome = new JLabel("  PLATZHALTER"); //TODO Mit Datenbank Werte einfügen.
+		JLabel labelKartennummerHome = new JLabel("Kartenummer");
+		JLabel labelKontostandHome = new JLabel("Kontostand");
 
-		
-		JPanel panelWestBoxHome = new JPanel();
-		JPanel panelOstBoxHome = new JPanel();
-		JPanel panelKartennummerBoxHome = new JPanel();
-		JPanel panelKontostandBoxHome = new JPanel();
-		
-		panelWestBoxHome.setLayout(new BoxLayout(panelWestBoxHome, BoxLayout.PAGE_AXIS));
-		panelOstBoxHome.setLayout(new BoxLayout(panelOstBoxHome, BoxLayout.PAGE_AXIS));
-		panelKartennummerBoxHome.setLayout(new BoxLayout(panelKartennummerBoxHome, BoxLayout.LINE_AXIS));
-		panelKontostandBoxHome.setLayout(new BoxLayout(panelKontostandBoxHome, BoxLayout.LINE_AXIS));
+		JScrollPane scrollPaneOffeneRechnungenHome = new JScrollPane();
+		JPanel westBoxHome = new JPanel();
 
-		panelHome.add(panelWestBoxHome, BorderLayout.WEST);
-		panelHome.add(panelOstBoxHome, BorderLayout.EAST);
-		
-		
+		westBoxHome.setLayout(new BoxLayout(westBoxHome, BoxLayout.PAGE_AXIS));
 
-		panelWestBoxHome.add(panelKartennummerBoxHome);
-		panelWestBoxHome.add(panelKontostandBoxHome);
-		
-		panelKartennummerBoxHome.add(labelKartennummerHome);
-		panelKartennummerBoxHome.add(labelKartennummerZahlHome);
-		
-		panelKontostandBoxHome.add(labelKontostandHome);
-		panelKontostandBoxHome.add(labelKontostandZahlHome);
+		panelHome.add(westBoxHome, BorderLayout.WEST);
+		panelHome.add(scrollPaneOffeneRechnungenHome, BorderLayout.EAST);
+
+		westBoxHome.add(labelKartennummerHome);
+		westBoxHome.add(labelKontostandHome);
 
 		panelHome.setBorder(BorderFactory.createEmptyBorder(10, 70, 0, 0));
 
@@ -226,9 +208,9 @@ public class LayoutEingeloggt extends JPanel {
 		// Footer
 		JPanel panelAusloggen = new JPanel(new FlowLayout());
 		JButton buttonAusloggen = new JButton("Ausloggen");
-		buttonAusloggen.addActionListener(new ListenerButtonAusloggen(mainFrame));
 		buttonAusloggen.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getContentPane().removeAll();
 				mainFrame.getContentPane().add(new Login(mainFrame));

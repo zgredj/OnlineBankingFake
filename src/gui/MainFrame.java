@@ -10,9 +10,9 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		add(new LayoutEingeloggt(this));
+		// add(new LayoutEingeloggt(this));
 		// add(new Registrieren());
-		// add(new Login());
+		add(new Login(this));
 
 		setVisible(true);
 	}
