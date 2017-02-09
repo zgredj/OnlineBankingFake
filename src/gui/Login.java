@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -14,8 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import eventlistener.ListenerButtonAusloggen;
 
 public class Login extends JPanel {
 
@@ -61,7 +58,7 @@ public class Login extends JPanel {
 		panelButtonLogin.add(buttonLogin);
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getContentPane().removeAll();
@@ -69,7 +66,7 @@ public class Login extends JPanel {
 				mainFrame.getContentPane().revalidate();
 			}
 		});
-		
+
 		panelText.add(labelText);
 		panelButtonRegistrieren.add(buttonRegistrieren);
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);

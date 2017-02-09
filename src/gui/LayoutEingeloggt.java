@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -14,10 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import eventlistener.ListenerButtonAusloggen;
-
 public class LayoutEingeloggt extends JPanel {
-	
+
 	private String titel = "Willkommen";
 	private String vorname = "Vorname";
 	private String nachname = "Nachname";
@@ -208,7 +208,15 @@ public class LayoutEingeloggt extends JPanel {
 		// Footer
 		JPanel panelAusloggen = new JPanel(new FlowLayout());
 		JButton buttonAusloggen = new JButton("Ausloggen");
-		buttonAusloggen.addActionListener(new ListenerButtonAusloggen(mainFrame));
+		buttonAusloggen.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.getContentPane().removeAll();
+				mainFrame.getContentPane().add(new Login(mainFrame));
+				mainFrame.getContentPane().revalidate();
+			}
+		});
 		panelAusloggen.add(buttonAusloggen);
 		panelAusloggen.setBorder(BorderFactory.createEmptyBorder(10, 670, 0, 0));
 		panelAlles.add(panelAusloggen, BorderLayout.SOUTH);
