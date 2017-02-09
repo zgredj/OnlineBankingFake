@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -10,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import datenbank.Adresse;
+import datenbank.Konto;
 
 public class Registrieren extends JPanel {
 
@@ -47,6 +52,24 @@ public class Registrieren extends JPanel {
 		JPanel panelOsten = new JPanel(new BorderLayout());
 
 		JButton buttonRegistrieren = new JButton("registrieren");
+		
+		buttonRegistrieren.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Konto konto = new Konto();
+				konto.setKartennummer(Integer.parseInt(textFieldKartennummer.getText()));
+				konto.setPasswort(new String(textFieldPassword.getPassword()));
+				konto.setVorname(textFieldVorname.getText());
+				konto.setName(textFieldNachname.getText());
+				konto.setGeburtsdatum(textFieldGeburtsdatum.getText());
+				Adresse adresse = new Adresse();
+				adresse.setWohnort(textFieldWohnort.getText());
+				adresse.setPlz(Integer.parseInt(textFieldPlz.getText()));
+				adresse.setStrasse(textFieldStrasse.getText());
+				adresse.setHausnummer(Integer.parseInt(textFieldHausNr.getText()));
+			}
+		});
 
 		panelInhalt.add(labelKartennummer);
 		panelInhalt.add(textFieldKartennummer);

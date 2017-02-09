@@ -16,13 +16,12 @@ public class AdresseJDBCDao {
 
 	public void insertAdresse(Adresse a) {
 		try {
-			String sql = "INSERT INTO databaseonlinebanking.adresse (strasse, hausnummer, wohnort, plz, email) VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO databaseonlinebanking.adresse (strasse, hausnummer, wohnort, plz, email) VALUES (?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, a.getStrasse());
 			ps.setInt(2, a.getHausnummer());
 			ps.setString(3, a.getWohnort());
 			ps.setInt(4, a.getPlz());
-			ps.setString(5, a.getEmail());
 
 			ps.executeUpdate();
 
@@ -70,7 +69,6 @@ public class AdresseJDBCDao {
 		a.setHausnummer(rs.getInt("hausnummer"));
 		a.setWohnort(rs.getString("wohnort"));
 		a.setPlz(rs.getInt("plz"));
-		a.setEmail(rs.getString("email"));
 		return a;
 	}
 }
