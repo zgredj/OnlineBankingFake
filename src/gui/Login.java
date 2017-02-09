@@ -5,6 +5,8 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,9 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import eventlistener.ListenerButtonAusloggen;
+
 public class Login extends JPanel {
 
-	public Login() {
+	public Login(MainFrame mainFrame) {
 
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
@@ -56,6 +60,16 @@ public class Login extends JPanel {
 		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
 
+		buttonRegistrieren.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.getContentPane().removeAll();
+				mainFrame.getContentPane().add(new Registrieren());
+				mainFrame.getContentPane().revalidate();
+			}
+		});
+		
 		panelText.add(labelText);
 		panelButtonRegistrieren.add(buttonRegistrieren);
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);
