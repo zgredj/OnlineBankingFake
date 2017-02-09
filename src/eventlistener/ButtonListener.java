@@ -1,4 +1,4 @@
-package EventListener;
+package eventlistener;
 
 public class ButtonListener implements ActionListener {
 	

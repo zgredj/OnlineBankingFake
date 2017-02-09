@@ -1,6 +1,6 @@
-package TesterKlassen;
+package testerKlassen;
 
-import Gui.LayoutEingeloggt;
+import gui.LayoutEingeloggt;
 
 public class EingeloggtTester {
 

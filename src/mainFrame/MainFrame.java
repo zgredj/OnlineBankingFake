@@ -1,4 +1,4 @@
-package Gui;
+package mainFrame;
 
 import java.awt.*;
 

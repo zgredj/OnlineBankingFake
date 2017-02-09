@@ -1,6 +1,6 @@
-package TesterKlassen;
+package testerKlassen;
 
-import Gui.Registrieren;
+import gui.Registrieren;
 
 public class RegistrierenTester {
 
