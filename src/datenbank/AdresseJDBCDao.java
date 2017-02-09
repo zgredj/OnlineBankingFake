@@ -16,7 +16,7 @@ public class AdresseJDBCDao {
 
 	public void insertAdresse(Adresse a) {
 		try {
-			String sql = "INSERT INTO databaseonlinebanking.adresse (strasse, hausnummer, wohnort, plz, email) VALUES (?,?,?,?)";
+			String sql = "INSERT INTO databaseonlinebanking.adresse (strasse, hausnummer, wohnort, plz) VALUES (?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, a.getStrasse());
 			ps.setInt(2, a.getHausnummer());
@@ -32,7 +32,7 @@ public class AdresseJDBCDao {
 	
 	public Adresse findAdresseById(int id) {
 		try {
-			String sql = "SELECT id, strasse, hausnummer, wohnort, plz, email from databaseonlinebanking.adresse where id = ?";
+			String sql = "SELECT id, strasse, hausnummer, wohnort, plz from databaseonlinebanking.adresse where id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -49,7 +49,7 @@ public class AdresseJDBCDao {
 	public ArrayList<Adresse> getAllAdressen() {
 		try {
 			ArrayList<Adresse> adressen = new ArrayList<Adresse>();
-			String sql = "SELECT id, strasse, hausnummer, wohnort, plz, email FROM databaseonlinebanking.adresse";
+			String sql = "SELECT id, strasse, hausnummer, wohnort, plz FROM databaseonlinebanking.adresse";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {

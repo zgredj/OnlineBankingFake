@@ -28,7 +28,7 @@ public class ConnectionFactory {
 		return connection;
 	}
 
-	static ConnectionFactory getInstance() {
+	public static ConnectionFactory getInstance() {
 		if (connectionFactory == null) {
 			connectionFactory = new ConnectionFactory();
 		}
