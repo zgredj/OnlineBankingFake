@@ -1,10 +1,10 @@
-package Datenbank;
+package datenbank;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Connection;
 
 public class AdresseJDBCDao {
 
@@ -47,7 +47,7 @@ public class AdresseJDBCDao {
 			throw new RuntimeException(sqlexc);
 		}
 	}
-	
+
 	public ArrayList<Adresse> getAllAdressen() {
 		try {
 			ArrayList<Adresse> adressen = new ArrayList<Adresse>();
@@ -63,7 +63,7 @@ public class AdresseJDBCDao {
 			throw new RuntimeException(sqlexc);
 		}
 	}
-	
+
 	public Adresse getAdresseFromResultSet(ResultSet rs) throws SQLException {
 		Adresse a = new Adresse();
 		a.setId(rs.getInt("id"));
