@@ -14,13 +14,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class LayoutEingeloggt extends JPanel {
+import eventlistener.ListenerButtonAusloggen;
 
+public class LayoutEingeloggt extends JPanel {
+	
 	private String titel = "Willkommen";
 	private String vorname = "Vorname";
 	private String nachname = "Nachname";
 
-	public LayoutEingeloggt() {
+	public LayoutEingeloggt(MainFrame mainFrame) {
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelKopfzeileEAST = new JPanel();
@@ -206,6 +208,7 @@ public class LayoutEingeloggt extends JPanel {
 		// Footer
 		JPanel panelAusloggen = new JPanel(new FlowLayout());
 		JButton buttonAusloggen = new JButton("Ausloggen");
+		buttonAusloggen.addActionListener(new ListenerButtonAusloggen(mainFrame));
 		panelAusloggen.add(buttonAusloggen);
 		panelAusloggen.setBorder(BorderFactory.createEmptyBorder(10, 670, 0, 0));
 		panelAlles.add(panelAusloggen, BorderLayout.SOUTH);
