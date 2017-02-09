@@ -22,11 +22,20 @@ public class LayoutEingeloggt extends JPanel {
 
 	public LayoutEingeloggt() {
 		JPanel panelAlles = new JPanel(new BorderLayout());
-		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		JPanel panelKopfzeile = new JPanel(new BorderLayout());
+		JPanel panelKopfzeileEAST = new JPanel();
 
 		JLabel labelTitel = new JLabel();
 		JLabel labelName = new JLabel();
 		JLabel labelAngemeldet = new JLabel();
+
+		JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
+		JPanel panelHome = new JPanel(new BorderLayout());
+		JPanel panelZahlungen = new JPanel(new BorderLayout());
+		JPanel panelRechnungen = new JPanel(new BorderLayout());
+
+		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
 		labelTitel.setText(titel);
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 		labelName.setText(vorname + "  " + nachname);
@@ -34,8 +43,6 @@ public class LayoutEingeloggt extends JPanel {
 		labelAngemeldet.setText("Angemeldet");
 		labelAngemeldet.setFont(new Font("Arial", Font.PLAIN, 14));
 
-		JPanel panelKopfzeile = new JPanel(new BorderLayout());
-		JPanel panelKopfzeileEAST = new JPanel();
 		panelKopfzeileEAST.setLayout(new BoxLayout(panelKopfzeileEAST, BoxLayout.Y_AXIS));
 		panelKopfzeileEAST.add(labelName);
 		panelKopfzeileEAST.add(labelAngemeldet);
@@ -45,17 +52,11 @@ public class LayoutEingeloggt extends JPanel {
 
 		panelAlles.add(panelKopfzeile, BorderLayout.NORTH);
 
-		JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
-		JPanel panelHome = new JPanel(new BorderLayout());
-		JPanel panelZahlungen = new JPanel(new BorderLayout());
-		JPanel panelRechnungen = new JPanel(new BorderLayout());
-
 		tabbedPaneMenu.addTab("Home", panelHome);
 		tabbedPaneMenu.addTab("Zahlungen", panelZahlungen);
 		tabbedPaneMenu.addTab("Rechnugnen", panelRechnungen);
 
 		// TabbedPane Home
-
 		JLabel labelKartennummerHome = new JLabel("Kartenummer");
 		JLabel labelKontostandHome = new JLabel("Kontostand");
 
@@ -95,6 +96,9 @@ public class LayoutEingeloggt extends JPanel {
 		JPanel panelPasswortFieldEinzahlen = new JPanel();
 		JPanel panelPasswortFieldAuszahlen = new JPanel();
 
+		JButton buttonEinzahlen = new JButton("einzahlen");
+		JButton buttonAuszahlen = new JButton("auszahlen");
+
 		panelXAchseWesten.setLayout(new BoxLayout(panelXAchseWesten, BoxLayout.PAGE_AXIS));
 		panelXAchseOsten.setLayout(new BoxLayout(panelXAchseOsten, BoxLayout.PAGE_AXIS));
 		panelButtonEinzahlen.setLayout(new BoxLayout(panelButtonEinzahlen, BoxLayout.PAGE_AXIS));
@@ -103,9 +107,6 @@ public class LayoutEingeloggt extends JPanel {
 		panelTextFieldBetragAuszahlen.setLayout(new BoxLayout(panelTextFieldBetragAuszahlen, BoxLayout.PAGE_AXIS));
 		panelPasswortFieldEinzahlen.setLayout(new BoxLayout(panelPasswortFieldEinzahlen, BoxLayout.PAGE_AXIS));
 		panelPasswortFieldAuszahlen.setLayout(new BoxLayout(panelPasswortFieldAuszahlen, BoxLayout.PAGE_AXIS));
-
-		JButton buttonEinzahlen = new JButton("einzahlen");
-		JButton buttonAuszahlen = new JButton("auszahlen");
 
 		panelZahlungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 370, 200));
 		panelButtonEinzahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
@@ -148,7 +149,6 @@ public class LayoutEingeloggt extends JPanel {
 		panelPasswortFieldAuszahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 
 		// TabbedPane Rechnungen
-
 		JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
 		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empfaengers");
 		JLabel labelBetragRechnungen = new JLabel("Betrag ");
@@ -212,7 +212,7 @@ public class LayoutEingeloggt extends JPanel {
 
 		panelAlles.add(tabbedPaneMenu, BorderLayout.CENTER);
 		add(panelAlles);
-		
+
 	}
 
 	public String getTitel() {
