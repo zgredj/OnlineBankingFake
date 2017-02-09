@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Login extends BasisLayout {
+public class Login extends JPanel {
 
 	public Login() {
 
@@ -81,12 +81,7 @@ public class Login extends BasisLayout {
 		panelSeite.add(panelKartennummerPasswortLogin, BorderLayout.CENTER);
 		panelSeite.add(panelTextRegistrieren, BorderLayout.SOUTH);
 
-		alles.add(panelSeite);
+		add(panelSeite);
 
-		Container contentPane = getContentPane();
-		contentPane.add(alles);
-
-		setSize(800, 800);
-		setResizable(false);
 	}
 }

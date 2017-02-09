@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Registrieren extends BasisLayout {
+public class Registrieren extends JPanel {
 
 	public Registrieren() {
 
@@ -88,8 +88,8 @@ public class Registrieren extends BasisLayout {
 		
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 		
-		alles.add(panelInhalt, BorderLayout.CENTER);
-		alles.add(panelKopfzeile, BorderLayout.NORTH);
+		add(panelInhalt, BorderLayout.CENTER);
+		add(panelKopfzeile, BorderLayout.NORTH);
 		
 		
 		
@@ -98,8 +98,5 @@ public class Registrieren extends BasisLayout {
 		panelKopfzeile.add(panelOsten, BorderLayout.EAST);
 		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
 		
-		add(alles);
-		setSize(800, 800);
-		setResizable(true);
 	}
 }

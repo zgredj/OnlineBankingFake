@@ -10,12 +10,17 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame() {
 		setTitle("BBC BANK - Online Banking");
-		setVisible(true);
+		
+		setSize(800, 800);
+		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		//"alles" setzt einen Abstand von Aussen zu allem Inhalt.
-		alles.setBorder(BorderFactory.createEmptyBorder(40, 120, 10, 100));
 		
-		alles.add(new Login());
 		
+		add(new LayoutEingeloggt());
+		//add(new Registrieren());
+		//add(new Login());
+		
+		setVisible(true);
 	}
 }
