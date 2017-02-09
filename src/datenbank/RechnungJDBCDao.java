@@ -20,7 +20,6 @@ public class RechnungJDBCDao {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, r.getKartennummer());
 			ps.setDouble(2, r.getBetrag());
-
 			ps.executeUpdate();
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
@@ -35,10 +34,7 @@ public class RechnungJDBCDao {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				r = new Rechnung();
-				r.setId(rs.getInt("id"));
-				r.setKartennummer(rs.getInt("kartennummer"));
-				r.setBetrag(rs.getDouble("betrag"));
+				r = getRechnungFromResultSet(rs);
 				break;
 			}
 			return r;
@@ -55,15 +51,20 @@ public class RechnungJDBCDao {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Rechnung r = new Rechnung();
-				r.setId(rs.getInt("id"));
-				r.setKartennummer(rs.getInt("kartennummer"));
-				r.setBetrag(rs.getDouble("betrag"));
+				Rechnung r = getRechnungFromResultSet(rs);
 				rechnungen.add(r);
 			}
 			return rechnungen;
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
+	}
+
+	public Rechnung getRechnungFromResultSet(ResultSet rs) throws SQLException {
+		Rechnung r = new Rechnung();
+		r.setId(rs.getInt("id"));
+		r.setKartennummer(rs.getInt("kartennummer"));
+		r.setBetrag(rs.getDouble("betrag"));
+		return r;
 	}
 }

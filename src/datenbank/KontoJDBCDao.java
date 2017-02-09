@@ -41,7 +41,7 @@ public class KontoJDBCDao {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				
+				k = getKontoFromResultSet(rs);
 				break;
 			}
 			return k;
@@ -58,14 +58,7 @@ public class KontoJDBCDao {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Konto k = new Konto();
-				k.setId(rs.getInt("id"));
-				k.setName(rs.getString("name"));
-				k.setVorname(rs.getString("vorname"));
-				k.setGeburtsdatum(rs.getString("geburtsdatum"));
-				k.setKartennummer(rs.getInt("kartennummer"));
-				k.setPasswort(rs.getString("passwort"));
-				k.setKontostand(rs.getDouble("kontostand"));
+				Konto k = getKontoFromResultSet(rs);
 				konten.add(k);
 			}
 			return konten;
