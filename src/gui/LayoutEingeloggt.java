@@ -110,7 +110,7 @@ public class LayoutEingeloggt extends JPanel {
 		panelPasswortFieldEinzahlen.setLayout(new BoxLayout(panelPasswortFieldEinzahlen, BoxLayout.PAGE_AXIS));
 		panelPasswortFieldAuszahlen.setLayout(new BoxLayout(panelPasswortFieldAuszahlen, BoxLayout.PAGE_AXIS));
 
-		panelZahlungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 370, 200));
+		panelZahlungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 320, 200));
 		panelButtonEinzahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		panelButtonAuszahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		labelAuszahlung.setFont(new Font("Arial", Font.PLAIN, 30));

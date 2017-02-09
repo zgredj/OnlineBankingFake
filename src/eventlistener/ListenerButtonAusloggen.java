@@ -15,8 +15,8 @@ public class ListenerButtonAusloggen implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		mainFrame.removeAll();
-		mainFrame.add(new Login());
-		mainFrame.repaint();
+		mainFrame.getContentPane().removeAll();
+		mainFrame.getContentPane().add(new Login());
+		mainFrame.getContentPane().revalidate();
 	}
 }
