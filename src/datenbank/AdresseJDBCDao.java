@@ -30,19 +30,18 @@ public class AdresseJDBCDao {
 			throw new RuntimeException(sqlexc);
 		}
 	}
-
+	
 	public Adresse findAdresseById(int id) {
 		try {
-			Adresse a = null;
 			String sql = "SELECT id, strasse, hausnummer, wohnort, plz, email from databaseonlinebanking.adresse where id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				a = getAdresseFromResultSet(rs);
-				break;
+			if (rs.next()) {
+				return getAdresseFromResultSet(rs);
 			}
-			return a;
+
+			throw new RuntimeException("Adress id not found on database! Id: " + id);
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
@@ -64,7 +63,7 @@ public class AdresseJDBCDao {
 		}
 	}
 
-	public Adresse getAdresseFromResultSet(ResultSet rs) throws SQLException {
+	private Adresse getAdresseFromResultSet(ResultSet rs) throws SQLException {
 		Adresse a = new Adresse();
 		a.setId(rs.getInt("id"));
 		a.setStrasse(rs.getString("strasse"));
