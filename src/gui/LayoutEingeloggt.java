@@ -1,8 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -61,18 +64,52 @@ public class LayoutEingeloggt extends JPanel {
 		// TabbedPane Home
 		JLabel labelKartennummerHome = new JLabel("Kartenummer");
 		JLabel labelKontostandHome = new JLabel("Kontostand");
+		JLabel labelOffeneRechnungenHome = new JLabel("Offene Rechnungen");
+		
+		JLabel labelTest1 = new JLabel("Test 1");
+		JLabel labelTest2 = new JLabel("Test 2");
+		JLabel labelTest3 = new JLabel("Test 3");
+		JLabel labelTest4 = new JLabel("Test 4");
+		JLabel labelTest5 = new JLabel("Test 5");
+		JLabel labelTest6 = new JLabel("Test 6");
 
-		JScrollPane scrollPaneOffeneRechnungenHome = new JScrollPane();
+		
+		JPanel panelRechnungenListeHome = new JPanel();
 		JPanel westBoxHome = new JPanel();
+		JPanel rechnungenBezahlenHome = new JPanel(new BorderLayout());
+		JPanel panelRechnungenListeRandHome = new JPanel(new BorderLayout());
+		
+		JButton buttonRechnungenBezahlenHome = new JButton("bezahlen");
+		
+		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
+		
+		rechnungenBezahlenHome.add(labelOffeneRechnungenHome, BorderLayout.NORTH);
+		rechnungenBezahlenHome.add(panelRechnungenListeRandHome, BorderLayout.CENTER);
+		rechnungenBezahlenHome.add(buttonRechnungenBezahlenHome, BorderLayout.SOUTH);
+		
+		panelRechnungenListeRandHome.add(panelRechnungenListeHome);
 
 		westBoxHome.setLayout(new BoxLayout(westBoxHome, BoxLayout.PAGE_AXIS));
+		panelRechnungenListeHome.setLayout(new BoxLayout(panelRechnungenListeHome, BoxLayout.Y_AXIS));
 
+		panelHome.add(rechnungenBezahlenHome, BorderLayout.EAST);
 		panelHome.add(westBoxHome, BorderLayout.WEST);
-		panelHome.add(scrollPaneOffeneRechnungenHome, BorderLayout.EAST);
+		
 
 		westBoxHome.add(labelKartennummerHome);
 		westBoxHome.add(labelKontostandHome);
-
+		
+		panelRechnungenListeHome.add(labelTest1);
+		panelRechnungenListeHome.add(labelTest2);
+		panelRechnungenListeHome.add(labelTest3);
+		panelRechnungenListeHome.add(labelTest4);
+		panelRechnungenListeHome.add(labelTest5);
+		panelRechnungenListeHome.add(labelTest6);
+		
+		
+		panelRechnungenListeRandHome.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+		panelRechnungenListeHome.setBorder(BorderFactory.createEtchedBorder(5, Color.BLACK, Color.BLACK));
+		rechnungenBezahlenHome.setBorder(BorderFactory.createEmptyBorder(30, 150, 200, 100));
 		panelHome.setBorder(BorderFactory.createEmptyBorder(10, 70, 0, 0));
 
 		// TabbedPane Zahlungen
