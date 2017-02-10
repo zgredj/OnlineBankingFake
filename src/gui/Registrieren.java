@@ -85,9 +85,19 @@ public class Registrieren extends JPanel {
 				AdresseJDBCDao adresseJDBCDao = new AdresseJDBCDao(connection);
 				Adresse adresse = new Adresse();
 				adresse.setWohnort(textFieldWohnort.getText());
-				adresse.setPlz(Integer.parseInt(textFieldPlz.getText()));
+				int plz = mainFrame.checkDigitReturnIntOrNegativError(textFieldPlz.getText());
+				if(plz < 0) {
+					System.err.println("PLZ keine Zahl!");
+				} else {
+					adresse.setPlz(plz);
+				}
 				adresse.setStrasse(textFieldStrasse.getText());
-				adresse.setHausnummer(Integer.parseInt(textFieldHausNr.getText()));
+				int hausnummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldHausNr.getText());
+				if (hausnummer < 0) {
+					System.err.println("Hausnummer keine Zahl!");
+				} else {
+					adresse.setHausnummer(hausnummer);
+				}
 				adresseJDBCDao.insertAdresse(adresse);
 
 				mainFrame.getContentPane().removeAll();

@@ -71,28 +71,9 @@ public class Login extends JPanel {
 				if (kartennummer < 0) {
 					System.err.println("Kartennummer ist keine Zahl!");
 				}
-				
-				
-				String passwort = new String(textFieldPasswort.getPassword());
 
-				String passwortVonDatenbank = null;
-				try {
-					String sql = "SELECT passwort FROM databaseonlinebanking.konto WHERE kartennummer = ?";
-					PreparedStatement ps = con.prepareStatement(sql);
-					ps.setInt(1, kartennummer);
-					ResultSet rs = ps.executeQuery();
-					while (rs.next()) {
-						passwortVonDatenbank = rs.getString("passwort");
-					}
-					if (passwortVonDatenbank == null) {
-						// *************
-						// Fehlermeldung
-						System.err.println("Falsche Kartennummer oder Passwort!");
-						// *************
-					}
-				} catch (SQLException sqlexc) {
-					throw new RuntimeException(sqlexc);
-				}
+				String passwort = new String(textFieldPasswort.getPassword());
+				//String passwortVonDatenbank = mainFrame.getPasswortVonDatenbank();
 				if (passwort.equals(passwortVonDatenbank)) {
 					mainFrame.getContentPane().removeAll();
 					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
