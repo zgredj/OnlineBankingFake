@@ -74,16 +74,17 @@ public class Login extends JPanel {
 
 				String passwort = new String(textFieldPasswort.getPassword());
 				//String passwortVonDatenbank = mainFrame.getPasswortVonDatenbank();
-				if (passwort.equals(passwortVonDatenbank)) {
-					mainFrame.getContentPane().removeAll();
-					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
-					mainFrame.getContentPane().revalidate();
-				} else {
-					// *************
-					// Fehlermeldung
-					System.err.println("Falsche Kartennummer oder Passwort!");
-					// *************
-				}
+				// if (passwort.equals(passwortVonDatenbank)) {
+				// mainFrame.getContentPane().removeAll();
+				// mainFrame.getContentPane().add(new
+				// LayoutEingeloggt(mainFrame));
+				// mainFrame.getContentPane().revalidate();
+				// } else {
+				// // *************
+				// // Fehlermeldung
+				// System.err.println("Falsche Kartennummer oder Passwort!");
+				// // *************
+				// }
 			}
 		});
 
