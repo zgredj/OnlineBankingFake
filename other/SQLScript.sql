@@ -1,9 +1,7 @@
-Use projekt;
+DROP DATABASE IF EXISTS databaseonlinebanking;
+CREATE DATABASE databaseonlinebanking;
 
-DROP DATABASE IF EXISTS projekt;
-CREATE DATABASE projekt;
-
-USE projekt;
+USE databaseonlinebanking;
 
 drop table if exists adresse;
 create table adresse (
@@ -11,8 +9,7 @@ create table adresse (
     strasse varchar(45) not null,
     hausnummer int not null,
     wohnort varchar(45),
-    plz int not null,
-    email varchar(45) not null
+    plz int not null
 );
 
 drop table if exists rechnung;
