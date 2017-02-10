@@ -13,12 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Fehlermeldung.Fehlermeldung;
 import datenbank.DatenbankCode;
 
 public class Login extends JPanel {
 
 	public Login(MainFrame mainFrame) {
 
+		Fehlermeldung fehlermeldung = new Fehlermeldung();
 		DatenbankCode datenbankCode = new DatenbankCode();
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
@@ -54,42 +56,8 @@ public class Login extends JPanel {
 		labelKartennummer.setFont(new Font("Arial", Font.PLAIN, 16));
 		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		buttonLogin.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
-				if (kartennummer < 0) {
-					System.err.println("Kartennummer ist keine Zahl!");
-				}
-
-				String passwort = new String(textFieldPasswort.getPassword());
-				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
-				System.out.println(passwortVonDatenbank);
-
-				if (passwort.equals(passwortVonDatenbank)) {
-					mainFrame.getContentPane().removeAll();
-					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
-					mainFrame.getContentPane().revalidate();
-				} else {
-					System.err.println("Falsche Kartennummer oder Passwort!");
-				}
-			}
-		});
-
 		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
-
-		buttonRegistrieren.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new Registrieren(mainFrame));
-				mainFrame.getContentPane().revalidate();
-			}
-		});
 
 		panelText.add(labelText);
 		panelButtonRegistrieren.add(buttonRegistrieren);
@@ -110,6 +78,42 @@ public class Login extends JPanel {
 		panelSeite.add(panelTitelLogin, BorderLayout.NORTH);
 		panelSeite.add(panelKartennummerPasswortLogin, BorderLayout.CENTER);
 		panelSeite.add(panelTextRegistrieren, BorderLayout.SOUTH);
+
+		buttonLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
+				if (kartennummer < 0) {
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
+					textFieldKartennummer.setText("");
+					return;
+				} 
+
+				String passwort = new String(textFieldPasswort.getPassword());
+				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+
+				if (passwort.equals(passwortVonDatenbank)) {
+					mainFrame.getContentPane().removeAll();
+					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
+					mainFrame.getContentPane().revalidate();
+				} else {
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!", mainFrame);
+					textFieldPasswort.setText("");
+				}
+			}
+		});
+
+		buttonRegistrieren.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.getContentPane().removeAll();
+				mainFrame.getContentPane().add(new Registrieren(mainFrame));
+				mainFrame.getContentPane().revalidate();
+			}
+		});
 
 		add(panelSeite);
 
