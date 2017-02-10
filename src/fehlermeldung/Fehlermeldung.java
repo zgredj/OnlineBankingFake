@@ -1,4 +1,4 @@
-package Fehlermeldung;
+package fehlermeldung;
 import javax.swing.JOptionPane;
 
 import gui.MainFrame;
