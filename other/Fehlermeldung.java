@@ -6,6 +6,6 @@ public class Fehlermeldung {
 
 	public void fehlermeldung(String fehlermeldung, MainFrame mainFrame) {
 		JOptionPane fehlerFenster = new JOptionPane();
-		fehlerFenster.showMessageDialog(mainFrame, fehlermeldung, JOptionPane.ERROR_MESSAGE);
+		fehlerFenster.showMessageDialog(mainFrame, fehlermeldung, "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 }
