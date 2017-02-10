@@ -89,7 +89,7 @@ public class Login extends JPanel {
 					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
 					textFieldKartennummer.setText("");
 					return;
-				} 
+				}
 
 				String passwort = new String(textFieldPasswort.getPassword());
 				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
