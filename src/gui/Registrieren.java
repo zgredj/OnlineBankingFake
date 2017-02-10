@@ -57,8 +57,6 @@ public class Registrieren extends JPanel {
 
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelInhalt = new JPanel(new GridLayout(11, 2, 30, 15));
-		JPanel panelInhaltOrt = new JPanel(new BorderLayout());
-		JPanel panelInhaltStrasse = new JPanel(new BorderLayout());
 		JPanel panelOsten = new JPanel(new BorderLayout());
 
 		JButton buttonRegistrieren = new JButton("registrieren");
@@ -79,12 +77,16 @@ public class Registrieren extends JPanel {
 					ArrayList<Integer> listeKartennummernVonDatenbank = dbcode.getAlleKartennummernVonDatenbank();
 					boolean istNichtVorhanden = true;
 					for (Integer kartennummerVonDatenbank : listeKartennummernVonDatenbank) {
-						if(kartennummer == kartennummerVonDatenbank) {
+						if (kartennummer == kartennummerVonDatenbank) {
 							istNichtVorhanden = false;
 						}
 					}
-					if(istNichtVorhanden){
+					if (istNichtVorhanden) {
 						konto.setKartennummer(kartennummer);
+					} else {
+						fehlermeldung.openFehlermeldungDialog("Die Kartennummer ist schon Vorhanden!", mainFrame);
+						textFieldKartennummer.setText("");
+						return;
 					}
 				}
 
