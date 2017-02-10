@@ -19,10 +19,13 @@ import datenbank.AdresseJDBCDao;
 import datenbank.ConnectionFactory;
 import datenbank.Konto;
 import datenbank.KontoJDBCDao;
+import fehlermeldung.Fehlermeldung;
 
 public class Registrieren extends JPanel {
 
 	public Registrieren(final MainFrame mainFrame) {
+
+		Fehlermeldung fehlermeldung = new Fehlermeldung();
 
 		final JTextField textFieldKartennummer = new JTextField();
 		final JPasswordField textFieldPassword = new JPasswordField();
@@ -66,39 +69,95 @@ public class Registrieren extends JPanel {
 
 				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
-					System.err.println("Kartennummer keine Zahl!");
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
+					textFieldKartennummer.setText("");
+					return;
 				} else {
 					konto.setKartennummer(kartennummer);
 				}
 
-				String passwort1 = new String(textFieldPassword.getPassword());
+				String passwort1 = "";
+				String passwort = new String(textFieldPassword.getPassword());
+				if (!passwort.equals("")) {
+					passwort1 = passwort;
+				} else {
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Passwort eingegeben werden!", mainFrame);
+					textFieldPasswordWiederholen.setText("");
+					return;
+				}
 				String passwort2 = new String(textFieldPasswordWiederholen.getPassword());
 				if (passwort1.equals(passwort2)) {
 					konto.setPasswort(passwort1);
 				} else {
-					System.err.println("Passwï¿½rter stimmen nicht ï¿½berein!");
+					fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passwörter stimmen nicht überein!",
+							mainFrame);
+					textFieldPassword.setText("");
+					textFieldPasswordWiederholen.setText("");
+					return;
 				}
-				konto.setVorname(textFieldVorname.getText());
-				konto.setName(textFieldNachname.getText());
-				konto.setGeburtsdatum(textFieldGeburtsdatum.getText());
-				kontoJDBCDao.insertKonto(konto);
+
+				String vorname = textFieldVorname.getText();
+				if (!vorname.equals("")) {
+					konto.setVorname(vorname);
+				} else {
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Vorname eingegeben werden!", mainFrame);
+					return;
+				}
+
+				String nachname = textFieldNachname.getText();
+				if (!nachname.equals("")) {
+					konto.setName(nachname);
+				} else {
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Nachname eingegeben werden!", mainFrame);
+					return;
+				}
+
+				String geburtsdatum = textFieldGeburtsdatum.getText();
+				if (!geburtsdatum.equals("")) {
+					konto.setGeburtsdatum(geburtsdatum);
+				} else {
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Geburtsdatum eingegeben werden!", mainFrame);
+					return;
+				}
 
 				AdresseJDBCDao adresseJDBCDao = new AdresseJDBCDao(connection);
 				Adresse adresse = new Adresse();
-				adresse.setWohnort(textFieldWohnort.getText());
+
+				String wohnort = textFieldWohnort.getText();
+				if (!wohnort.equals("")) {
+					adresse.setWohnort(wohnort);
+				} else {
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Wohnort eingegeben werden!", mainFrame);
+					return;
+				}
+
 				int plz = mainFrame.checkDigitReturnIntOrNegativError(textFieldPlz.getText());
-				if(plz < 0) {
-					System.err.println("PLZ keine Zahl!");
+				if (plz < 0) {
+					fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl sein!", mainFrame);
+					textFieldPlz.setText("");
+					return;
 				} else {
 					adresse.setPlz(plz);
 				}
-				adresse.setStrasse(textFieldStrasse.getText());
+
+				String strasse = textFieldStrasse.getText();
+				if (!strasse.equals("")) {
+					adresse.setStrasse(strasse);
+				} else {
+					fehlermeldung.openFehlermeldungDialog("Es muss eine Strasse eingegeben werden!", mainFrame);
+					return;
+				}
+
 				int hausnummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldHausNr.getText());
 				if (hausnummer < 0) {
-					System.err.println("Hausnummer keine Zahl!");
+					fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl sein!", mainFrame);
+					textFieldHausNr.setText("");
+					return;
 				} else {
 					adresse.setHausnummer(hausnummer);
 				}
+
+				kontoJDBCDao.insertKonto(konto);
 				adresseJDBCDao.insertAdresse(adresse);
 
 				mainFrame.getContentPane().removeAll();
