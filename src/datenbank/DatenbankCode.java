@@ -24,17 +24,14 @@ public class DatenbankCode {
 		return null;
 	}
 
-	public ArrayList<Integer> getAlleKartennummernVonDatenbank() {
+	public boolean istKartennummerVorhanden(int kartennummer) {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
-			String sql = "SELECT kartennummer FROM databaseonlinebanking.konto";
+			String sql = "SELECT kartennummer FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, kartennummer);
 			ResultSet rs = ps.executeQuery();
-			ArrayList<Integer> listeKartennummer = new ArrayList<Integer>();
-			while (rs.next()) {
-				listeKartennummer.add(rs.getInt("kartennummer"));
-			}
-			return listeKartennummer;
+			return rs.next();
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}

@@ -74,14 +74,7 @@ public class Registrieren extends JPanel {
 					textFieldKartennummer.setText("");
 					return;
 				} else {
-					ArrayList<Integer> listeKartennummernVonDatenbank = dbcode.getAlleKartennummernVonDatenbank();
-					boolean istNichtVorhanden = true;
-					for (Integer kartennummerVonDatenbank : listeKartennummernVonDatenbank) {
-						if (kartennummer == kartennummerVonDatenbank) {
-							istNichtVorhanden = false;
-						}
-					}
-					if (istNichtVorhanden) {
+					if (!dbcode.istKartennummerVorhanden(kartennummer)) {
 						konto.setKartennummer(kartennummer);
 					} else {
 						fehlermeldung.openFehlermeldungDialog("Die Kartennummer ist schon Vorhanden!", mainFrame);
