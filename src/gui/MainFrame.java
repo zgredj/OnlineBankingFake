@@ -17,12 +17,14 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 	}
 
-	public int checkIfDigitAndReturnIntegerOrErrorAsNegativ(String uncheckedString) {
+	public int checkDigitReturnIntOrNegativError(String uncheckedString) {
 		int checkedInteger = -1;
 		try {
 			checkedInteger = Integer.parseInt(uncheckedString);
 		} catch (NumberFormatException nfe) {
+			//Error
 			return -1;
+			//Error
 		}
 		return checkedInteger;
 	}

@@ -65,8 +65,7 @@ public class Registrieren extends JPanel {
 				KontoJDBCDao kontoJDBCDao = new KontoJDBCDao(connection);
 				Konto konto = new Konto();
 
-				int kartennummer = mainFrame
-						.checkIfDigitAndReturnIntegerOrErrorAsNegativ(textFieldKartennummer.getText());
+				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
 					System.err.println("Kartennummer keine Zahl!");
 				}

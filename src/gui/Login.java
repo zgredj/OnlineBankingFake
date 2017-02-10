@@ -67,7 +67,7 @@ public class Login extends JPanel {
 
 				Connection con = ConnectionFactory.getInstance().getConnection();
 	
-				int kartennummer = mainFrame.checkIfDigitAndReturnIntegerOrErrorAsNegativ(textFieldKartennummer.getText()); 
+				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText()); 
 				if (kartennummer < 0) {
 					System.err.println("Kartennummer ist keine Zahl!");
 				}
