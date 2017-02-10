@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
 import datenbank.Adresse;
 import datenbank.AdresseJDBCDao;
 import datenbank.ConnectionFactory;
+import datenbank.DatenbankCode;
 import datenbank.Konto;
 import datenbank.KontoJDBCDao;
 import fehlermeldung.Fehlermeldung;
@@ -26,6 +28,7 @@ public class Registrieren extends JPanel {
 	public Registrieren(final MainFrame mainFrame) {
 
 		Fehlermeldung fehlermeldung = new Fehlermeldung();
+		DatenbankCode dbcode = new DatenbankCode();
 
 		final JTextField textFieldKartennummer = new JTextField();
 		final JPasswordField textFieldPassword = new JPasswordField();
@@ -73,7 +76,16 @@ public class Registrieren extends JPanel {
 					textFieldKartennummer.setText("");
 					return;
 				} else {
-					konto.setKartennummer(kartennummer);
+					ArrayList<Integer> listeKartennummernVonDatenbank = dbcode.getAlleKartennummernVonDatenbank();
+					boolean istNichtVorhanden = true;
+					for (Integer kartennummerVonDatenbank : listeKartennummernVonDatenbank) {
+						if(kartennummer == kartennummerVonDatenbank) {
+							istNichtVorhanden = false;
+						}
+					}
+					if(istNichtVorhanden){
+						konto.setKartennummer(kartennummer);
+					}
 				}
 
 				String passwort1 = "";
