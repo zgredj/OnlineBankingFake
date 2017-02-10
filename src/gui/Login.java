@@ -13,18 +13,15 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Fehlermeldung.Fehlermeldung;
-import datenbank.DatenbankCode;
-
 public class Login extends JPanel {
 
-	public Login(MainFrame mainFrame) {
+	public Login(final MainFrame mainFrame) {
 
-		Fehlermeldung fehlermeldung = new Fehlermeldung();
-		DatenbankCode datenbankCode = new DatenbankCode();
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
 		JPanel panelTitel = new JPanel(new BorderLayout());
+		JPanel panelKartennummer = new JPanel();
+		JPanel panelPasswort = new JPanel(new FlowLayout());
 		JPanel panelButtonLogin = new JPanel(new BorderLayout());
 		JPanel panelText = new JPanel(new BorderLayout());
 		JPanel panelButtonRegistrieren = new JPanel(new BorderLayout());
@@ -59,6 +56,15 @@ public class Login extends JPanel {
 		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
 
+		buttonRegistrieren.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.getContentPane().removeAll();
+				mainFrame.getContentPane().add(new Registrieren());
+				mainFrame.getContentPane().revalidate();
+			}
+		});
+
 		panelText.add(labelText);
 		panelButtonRegistrieren.add(buttonRegistrieren);
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);
@@ -78,42 +84,6 @@ public class Login extends JPanel {
 		panelSeite.add(panelTitelLogin, BorderLayout.NORTH);
 		panelSeite.add(panelKartennummerPasswortLogin, BorderLayout.CENTER);
 		panelSeite.add(panelTextRegistrieren, BorderLayout.SOUTH);
-
-		buttonLogin.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
-				if (kartennummer < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
-					textFieldKartennummer.setText("");
-					return;
-				}
-
-				String passwort = new String(textFieldPasswort.getPassword());
-				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
-
-				if (passwort.equals(passwortVonDatenbank)) {
-					mainFrame.getContentPane().removeAll();
-					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
-					mainFrame.getContentPane().revalidate();
-				} else {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!", mainFrame);
-					textFieldPasswort.setText("");
-				}
-			}
-		});
-
-		buttonRegistrieren.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new Registrieren(mainFrame));
-				mainFrame.getContentPane().revalidate();
-			}
-		});
 
 		add(panelSeite);
 

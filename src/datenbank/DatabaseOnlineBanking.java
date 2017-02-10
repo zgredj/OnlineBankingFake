@@ -41,6 +41,7 @@ public class DatabaseOnlineBanking {
 				a.setHausnummer(5);
 				a.setWohnort("KP");
 				a.setPlz(8182);
+				a.setEmail("meine.email@hier.com");
 			}
 
 			ad.insertAdresse(a);
