@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Fehlermeldung.Fehlermeldung;
+import fehlermeldung.Fehlermeldung;
 import datenbank.DatenbankCode;
 
 public class Login extends JPanel {
