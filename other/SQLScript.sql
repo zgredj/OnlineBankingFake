@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS databaseonlinebanking;
+
 CREATE DATABASE databaseonlinebanking;
 
 USE databaseonlinebanking;
