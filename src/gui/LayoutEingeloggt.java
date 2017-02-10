@@ -22,7 +22,7 @@ public class LayoutEingeloggt extends JPanel {
 	private String vorname = "Vorname";
 	private String nachname = "Nachname";
 
-	public LayoutEingeloggt(MainFrame mainFrame) {
+	public LayoutEingeloggt(final MainFrame mainFrame) {
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelKopfzeileEAST = new JPanel();
@@ -210,7 +210,6 @@ public class LayoutEingeloggt extends JPanel {
 		JButton buttonAusloggen = new JButton("Ausloggen");
 		buttonAusloggen.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getContentPane().removeAll();
 				mainFrame.getContentPane().add(new Login(mainFrame));

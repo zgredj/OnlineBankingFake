@@ -18,10 +18,10 @@ import datenbank.DatenbankCode;
 
 public class Login extends JPanel {
 
-	public Login(MainFrame mainFrame) {
+	public Login(final MainFrame mainFrame) {
 
-		Fehlermeldung fehlermeldung = new Fehlermeldung();
-		DatenbankCode datenbankCode = new DatenbankCode();
+		final Fehlermeldung fehlermeldung = new Fehlermeldung();
+		final DatenbankCode datenbankCode = new DatenbankCode();
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
 		JPanel panelTitel = new JPanel(new BorderLayout());
@@ -42,8 +42,8 @@ public class Login extends JPanel {
 		JButton buttonLogin = new JButton("Login");
 		JButton buttonRegistrieren = new JButton("Registrieren");
 
-		JTextField textFieldKartennummer = new JTextField(17);
-		JPasswordField textFieldPasswort = new JPasswordField(20);
+		final JTextField textFieldKartennummer = new JTextField(17);
+		final JPasswordField textFieldPasswort = new JPasswordField(20);
 
 		labelBbcBank.setFont(new Font("Arial", Font.PLAIN, 80));
 
@@ -81,7 +81,6 @@ public class Login extends JPanel {
 
 		buttonLogin.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
@@ -107,7 +106,6 @@ public class Login extends JPanel {
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getContentPane().removeAll();
 				mainFrame.getContentPane().add(new Registrieren(mainFrame));

@@ -22,18 +22,18 @@ import datenbank.KontoJDBCDao;
 
 public class Registrieren extends JPanel {
 
-	public Registrieren(MainFrame mainFrame) {
+	public Registrieren(final MainFrame mainFrame) {
 
-		JTextField textFieldKartennummer = new JTextField();
-		JPasswordField textFieldPassword = new JPasswordField();
-		JPasswordField textFieldPasswordWiederholen = new JPasswordField();
-		JTextField textFieldVorname = new JTextField();
-		JTextField textFieldNachname = new JTextField();
-		JTextField textFieldGeburtsdatum = new JTextField();
-		JTextField textFieldWohnort = new JTextField();
-		JTextField textFieldPlz = new JTextField();
-		JTextField textFieldStrasse = new JTextField();
-		JTextField textFieldHausNr = new JTextField();
+		final JTextField textFieldKartennummer = new JTextField();
+		final JPasswordField textFieldPassword = new JPasswordField();
+		final JPasswordField textFieldPasswordWiederholen = new JPasswordField();
+		final JTextField textFieldVorname = new JTextField();
+		final JTextField textFieldNachname = new JTextField();
+		final JTextField textFieldGeburtsdatum = new JTextField();
+		final JTextField textFieldWohnort = new JTextField();
+		final JTextField textFieldPlz = new JTextField();
+		final JTextField textFieldStrasse = new JTextField();
+		final JTextField textFieldHausNr = new JTextField();
 
 		JLabel labelTitel = new JLabel("Neues Benutzerkonto");
 
@@ -59,7 +59,6 @@ public class Registrieren extends JPanel {
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				Connection connection = ConnectionFactory.getInstance().getConnection();
 				KontoJDBCDao kontoJDBCDao = new KontoJDBCDao(connection);
@@ -77,7 +76,7 @@ public class Registrieren extends JPanel {
 				if (passwort1.equals(passwort2)) {
 					konto.setPasswort(passwort1);
 				} else {
-					System.err.println("Passwörter stimmen nicht überein!");
+					System.err.println("Passwï¿½rter stimmen nicht ï¿½berein!");
 				}
 				konto.setVorname(textFieldVorname.getText());
 				konto.setName(textFieldNachname.getText());
