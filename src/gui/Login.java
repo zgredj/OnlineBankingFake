@@ -6,6 +6,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,9 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import datenbank.ConnectionFactory;
+
 public class Login extends JPanel {
 
-	public Login(final MainFrame mainFrame) {
+	public Login(MainFrame mainFrame) {
 
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
@@ -54,18 +60,47 @@ public class Login extends JPanel {
 		labelKartennummer.setFont(new Font("Arial", Font.PLAIN, 16));
 		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));
 
+		buttonLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Connection con = ConnectionFactory.getInstance().getConnection();
+	
+				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText()); 
+				if (kartennummer < 0) {
+					System.err.println("Kartennummer ist keine Zahl!");
+				}
+
+				String passwort = new String(textFieldPasswort.getPassword());
+				//String passwortVonDatenbank = mainFrame.getPasswortVonDatenbank();
+				// if (passwort.equals(passwortVonDatenbank)) {
+				// mainFrame.getContentPane().removeAll();
+				// mainFrame.getContentPane().add(new
+				// LayoutEingeloggt(mainFrame));
+				// mainFrame.getContentPane().revalidate();
+				// } else {
+				// // *************
+				// // Fehlermeldung
+				// System.err.println("Falsche Kartennummer oder Passwort!");
+				// // *************
+				// }
+			}
+		});
+
 		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
-			
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new Registrieren());
+				mainFrame.getContentPane().add(new Registrieren(mainFrame));
 				mainFrame.getContentPane().revalidate();
 			}
 		});
-		
+
 		panelText.add(labelText);
 		panelButtonRegistrieren.add(buttonRegistrieren);
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);
