@@ -1,15 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,17 +13,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import datenbank.ConnectionFactory;
+import datenbank.DatenbankCode;
 
 public class Login extends JPanel {
 
 	public Login(MainFrame mainFrame) {
 
+		DatenbankCode datenbankCode = new DatenbankCode();
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
 		JPanel panelTitel = new JPanel(new BorderLayout());
-		JPanel panelKartennummer = new JPanel();
-		JPanel panelPasswort = new JPanel(new FlowLayout());
 		JPanel panelButtonLogin = new JPanel(new BorderLayout());
 		JPanel panelText = new JPanel(new BorderLayout());
 		JPanel panelButtonRegistrieren = new JPanel(new BorderLayout());
@@ -65,26 +59,22 @@ public class Login extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Connection con = ConnectionFactory.getInstance().getConnection();
-	
-				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText()); 
+				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
 					System.err.println("Kartennummer ist keine Zahl!");
 				}
 
 				String passwort = new String(textFieldPasswort.getPassword());
-				//String passwortVonDatenbank = mainFrame.getPasswortVonDatenbank();
-				// if (passwort.equals(passwortVonDatenbank)) {
-				// mainFrame.getContentPane().removeAll();
-				// mainFrame.getContentPane().add(new
-				// LayoutEingeloggt(mainFrame));
-				// mainFrame.getContentPane().revalidate();
-				// } else {
-				// // *************
-				// // Fehlermeldung
-				// System.err.println("Falsche Kartennummer oder Passwort!");
-				// // *************
-				// }
+				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+				System.out.println(passwortVonDatenbank);
+
+				if (passwort.equals(passwortVonDatenbank)) {
+					mainFrame.getContentPane().removeAll();
+					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
+					mainFrame.getContentPane().revalidate();
+				} else {
+					System.err.println("Falsche Kartennummer oder Passwort!");
+				}
 			}
 		});
 

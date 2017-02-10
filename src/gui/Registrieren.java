@@ -68,6 +68,8 @@ public class Registrieren extends JPanel {
 				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
 					System.err.println("Kartennummer keine Zahl!");
+				} else {
+					konto.setKartennummer(kartennummer);
 				}
 
 				String passwort1 = new String(textFieldPassword.getPassword());
