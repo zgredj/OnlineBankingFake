@@ -154,11 +154,11 @@ public class LayoutEingeloggt extends JPanel {
 		JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
 		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empfaengers");
 		JLabel labelBetragRechnungen = new JLabel("Betrag ");
-		JLabel labelPasswordRechnungen = new JLabel("Password ");
+		JLabel labelPasswordRechnungen = new JLabel("Passwort ");
 
-		JTextField textFieldKartennummerRechnungen = new JTextField();
-		JTextField textFieldBetragRechnungen = new JTextField(7);
-		JPasswordField textFieldPasswordRechnungen = new JPasswordField();
+		JTextField textFieldKartennummerRechnungen = new JTextField(10);
+		JTextField textFieldBetragRechnungen = new JTextField(10);
+		JPasswordField textFieldPasswordRechnungen = new JPasswordField(10);
 
 		JButton buttonAbsendenRechnungen = new JButton("absenden");
 
@@ -188,8 +188,8 @@ public class LayoutEingeloggt extends JPanel {
 		panelCenterMenuRechnungen.add(panelNorthMenuRechnungen, BorderLayout.CENTER);
 		panelCenterMenuRechnungen.add(buttonAbsendenRechnungen, BorderLayout.SOUTH);
 
-		panelNorthMenuRechnungen.add(panelBetragRechnungen, BorderLayout.WEST);
-		panelNorthMenuRechnungen.add(panelPasswordRechnungen, BorderLayout.EAST);
+		panelNorthMenuRechnungen.add(panelBetragRechnungen, BorderLayout.EAST);
+		panelNorthMenuRechnungen.add(panelPasswordRechnungen, BorderLayout.WEST);
 
 		panelKartennummerRechnungen.add(labelKartennummerDesEmpfängers);
 		panelKartennummerRechnungen.add(textFieldKartennummerRechnungen);
@@ -201,7 +201,7 @@ public class LayoutEingeloggt extends JPanel {
 		panelPasswordRechnungen.add(textFieldPasswordRechnungen);
 
 		panelRechnungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 300, 200));
-		panelCenterMenuRechnungen.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 250));
+		panelCenterMenuRechnungen.setBorder(BorderFactory.createEmptyBorder(15, 0, 40, 250));
 		panelBetragRechnungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 50, 0));
 		panelPasswordRechnungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 50, 0));
 
