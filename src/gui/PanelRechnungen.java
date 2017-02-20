@@ -19,7 +19,7 @@ import fehlermeldung.Fehlermeldung;
 public class PanelRechnungen extends JPanel {
 
 	DatenbankCode datenbankCode = new DatenbankCode();
-	
+
 	JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
 	JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfaengers");
 	JLabel labelBetragRechnungen = new JLabel("Betrag ");
@@ -70,7 +70,7 @@ public class PanelRechnungen extends JPanel {
 					Fehlermeldung.openFehlermeldungDialog("Sie können sich nicht selbst eine Rechnung stellen!", mainFrame);
 					return;
 				}
-				
+
 				String passwortUnchecked = new String(textFieldPasswordRechnungen.getPassword());
 				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
 				if (!passwortUnchecked.equals(passwortVonDatenbank)) {
@@ -78,23 +78,22 @@ public class PanelRechnungen extends JPanel {
 					textFieldPasswordRechnungen.setText("");
 					return;
 				}
-				
-				int betrag = -1;
-				int betragUnchecked = mainFrame.checkDigitReturnIntOrNegativError(textFieldBetragRechnungen.getText());
-				if (betragUnchecked > 0) {
-					betrag = betragUnchecked;
-				} else {
-					Fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag ist keine Zahl!", mainFrame);
+
+				double betrag;
+				try {
+					betrag = Double.parseDouble(textFieldBetragRechnungen.getText());
+				} catch (NumberFormatException nfexc) {
+					Fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag muss eine Zahl sein!", mainFrame);
 					textFieldBetragRechnungen.setText("");
 					return;
 				}
-				
+
 				try {
 					datenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, kartennummer, betrag, mainFrame);
 				} catch (Exception exc) {
 					Fehlermeldung.openFehlermeldungDialog(exc.getMessage(), mainFrame);
 				}
-				
+
 				textFieldBetragRechnungen.setText("");
 				textFieldKartennummerRechnungen.setText("");
 				textFieldPasswordRechnungen.setText("");
