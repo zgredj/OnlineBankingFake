@@ -20,7 +20,6 @@ import fehlermeldung.Fehlermeldung;
 public class PanelZahlungen extends JPanel {
 
 	DatenbankCode datenbankCode = new DatenbankCode();
-	JOptionPane optionPane = new JOptionPane();
 
 	JLabel labelEinzahlung = new JLabel("Einzahlung");
 	JLabel labelAuszahlung = new JLabel("Auszahlung");
@@ -87,7 +86,7 @@ public class PanelZahlungen extends JPanel {
 				textFieldBetragAuszahlen.setText("");
 				textFieldPasswortAuszahlen.setText("");
 
-				optionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich ausgezahlt!", "Betrag ausgezahlt!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich ausgezahlt!", "Betrag ausgezahlt!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
@@ -125,7 +124,7 @@ public class PanelZahlungen extends JPanel {
 				textFieldBetragEinzahlen.setText("");
 				textFieldPasswortEinzahlen.setText("");
 
-				optionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich eingezahlt!", "Betrag eingezahlt!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich eingezahlt!", "Betrag eingezahlt!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
