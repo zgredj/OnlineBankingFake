@@ -25,7 +25,6 @@ public class Login extends JPanel {
 
 	public Login(final MainFrame mainFrame) {
 
-		final Fehlermeldung fehlermeldung = new Fehlermeldung();
  		final DatenbankCode datenbankCode = new DatenbankCode();
 		
 		JPanel panelSeite = new JPanel();
@@ -91,7 +90,7 @@ public class Login extends JPanel {
 
 				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
 					textFieldKartennummer.setText("");
 					return;
 				}
@@ -122,7 +121,7 @@ public class Login extends JPanel {
 					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame, vorname, nachname, kartennummer));
 					mainFrame.getContentPane().revalidate();
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!", mainFrame);
 					textFieldPasswort.setText("");
 				}
 			}

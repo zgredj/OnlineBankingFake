@@ -19,7 +19,6 @@ import fehlermeldung.Fehlermeldung;
 public class PanelRechnungen extends JPanel {
 
 	DatenbankCode datenbankCode = new DatenbankCode();
-	Fehlermeldung fehlermeldung = new Fehlermeldung();
 	
 	JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
 	JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfaengers");
@@ -62,15 +61,20 @@ public class PanelRechnungen extends JPanel {
 				if (kartennummerEmpfaengerUnchecked > 0) {
 					kartennummerEmpfaenger = kartennummerEmpfaengerUnchecked;
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Die eingegebene Kartennummer ist keine Zahl!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Die eingegebene Kartennummer ist keine Zahl!", mainFrame);
 					textFieldKartennummerRechnungen.setText("");
 					return;
 				}
 
+				if (kartennummerEmpfaenger == kartennummer) {
+					Fehlermeldung.openFehlermeldungDialog("Sie können sich nicht selbst eine Rechnung stellen!", mainFrame);
+					return;
+				}
+				
 				String passwortUnchecked = new String(textFieldPasswordRechnungen.getPassword());
 				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
 				if (!passwortUnchecked.equals(passwortVonDatenbank)) {
-					fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!", mainFrame);
 					textFieldPasswordRechnungen.setText("");
 					return;
 				}
@@ -80,7 +84,7 @@ public class PanelRechnungen extends JPanel {
 				if (betragUnchecked > 0) {
 					betrag = betragUnchecked;
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag ist keine Zahl!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag ist keine Zahl!", mainFrame);
 					textFieldBetragRechnungen.setText("");
 					return;
 				}
@@ -88,7 +92,7 @@ public class PanelRechnungen extends JPanel {
 				try {
 					datenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, kartennummer, betrag, mainFrame);
 				} catch (Exception exc) {
-					fehlermeldung.openFehlermeldungDialog(exc.getMessage(), mainFrame);
+					Fehlermeldung.openFehlermeldungDialog(exc.getMessage(), mainFrame);
 				}
 				
 				textFieldBetragRechnungen.setText("");
