@@ -29,9 +29,6 @@ public class DatenbankCode {
 	}
 
 	public void setRechnungVonDatenbank(int kartennummerEmpfaenger, int kartennummer, int betrag, MainFrame mainFrame) throws Exception {
-		if (kartennummerEmpfaenger == kartennummer) {
-			throw new Exception("Sie können sich nicht selbst eine Rechnung stellen!");
-		}
 		try {
 			int kontoIdEmpfaenger = -1;
 			int kontoIdEmpfaengerUnchecked = getKontoIdByKartennummerOrNegativeError(kartennummer);

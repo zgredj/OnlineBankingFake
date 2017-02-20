@@ -27,7 +27,6 @@ public class Registrieren extends JPanel {
 
 	public Registrieren(final MainFrame mainFrame) {
 
-		final Fehlermeldung fehlermeldung = new Fehlermeldung();
 		final DatenbankCode dbcode = new DatenbankCode();
 
 		final JTextField textFieldKartennummer = new JTextField();
@@ -70,14 +69,14 @@ public class Registrieren extends JPanel {
 
 				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
 					textFieldKartennummer.setText("");
 					return;
 				} else {
 					if (!dbcode.istKartennummerVorhanden(kartennummer)) {
 						konto.setKartennummer(kartennummer);
 					} else {
-						fehlermeldung.openFehlermeldungDialog("Die Kartennummer ist schon Vorhanden!", mainFrame);
+						Fehlermeldung.openFehlermeldungDialog("Die Kartennummer ist schon Vorhanden!", mainFrame);
 						textFieldKartennummer.setText("");
 						return;
 					}
@@ -88,7 +87,7 @@ public class Registrieren extends JPanel {
 				if (!passwort.equals("")) {
 					passwort1 = passwort;
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Es muss ein Passwort eingegeben werden!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Es muss ein Passwort eingegeben werden!", mainFrame);
 					textFieldPasswordWiederholen.setText("");
 					return;
 				}
@@ -96,7 +95,7 @@ public class Registrieren extends JPanel {
 				if (passwort1.equals(passwort2)) {
 					konto.setPasswort(passwort1);
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passw�rter stimmen nicht �berein!",
+					Fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passw�rter stimmen nicht �berein!",
 							mainFrame);
 					textFieldPassword.setText("");
 					textFieldPasswordWiederholen.setText("");
@@ -107,7 +106,7 @@ public class Registrieren extends JPanel {
 				if (!vorname.equals("")) {
 					konto.setVorname(vorname);
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Es muss ein Vorname eingegeben werden!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Es muss ein Vorname eingegeben werden!", mainFrame);
 					return;
 				}
 
@@ -115,7 +114,7 @@ public class Registrieren extends JPanel {
 				if (!nachname.equals("")) {
 					konto.setName(nachname);
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Es muss ein Nachname eingegeben werden!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Es muss ein Nachname eingegeben werden!", mainFrame);
 					return;
 				}
 
@@ -123,7 +122,7 @@ public class Registrieren extends JPanel {
 				if (!geburtsdatum.equals("")) {
 					konto.setGeburtsdatum(geburtsdatum);
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Es muss ein Geburtsdatum eingegeben werden!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Es muss ein Geburtsdatum eingegeben werden!", mainFrame);
 					return;
 				}
 
@@ -134,13 +133,13 @@ public class Registrieren extends JPanel {
 				if (!wohnort.equals("")) {
 					adresse.setWohnort(wohnort);
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Es muss ein Wohnort eingegeben werden!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Es muss ein Wohnort eingegeben werden!", mainFrame);
 					return;
 				}
 
 				int plz = mainFrame.checkDigitReturnIntOrNegativError(textFieldPlz.getText());
 				if (plz < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl sein!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl sein!", mainFrame);
 					textFieldPlz.setText("");
 					return;
 				} else {
@@ -151,13 +150,13 @@ public class Registrieren extends JPanel {
 				if (!strasse.equals("")) {
 					adresse.setStrasse(strasse);
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Es muss eine Strasse eingegeben werden!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Es muss eine Strasse eingegeben werden!", mainFrame);
 					return;
 				}
 
 				int hausnummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldHausNr.getText());
 				if (hausnummer < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl sein!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl sein!", mainFrame);
 					textFieldHausNr.setText("");
 					return;
 				} else {
