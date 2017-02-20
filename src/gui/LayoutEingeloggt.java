@@ -70,7 +70,7 @@ public class LayoutEingeloggt extends JPanel {
 
 		// TabbedPane Rechnungen
 		PanelRechnungen panelRechnungenInstance = new PanelRechnungen();
-		panelZahlungen.add(panelZahlungenInstance);
+		panelRechnungen.add(panelRechnungenInstance);
 
 		// Footer
 		JPanel panelAusloggen = new JPanel(new FlowLayout());
