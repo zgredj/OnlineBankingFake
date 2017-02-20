@@ -4,10 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -18,14 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import datenbank.ConnectionFactory;
 import datenbank.DatenbankCode;
 import fehlermeldung.Fehlermeldung;
 
 public class PanelZahlungen extends JPanel {
-	
+
 	DatenbankCode datenbankCode = new DatenbankCode();
-	
+	JOptionPane optionPane = new JOptionPane();
+
 	JLabel labelEinzahlung = new JLabel("Einzahlung");
 	JLabel labelAuszahlung = new JLabel("Auszahlung");
 	JLabel labelBetragEinzahlen = new JLabel("Betrag");
@@ -50,42 +46,89 @@ public class PanelZahlungen extends JPanel {
 
 	JButton buttonEinzahlen = new JButton("einzahlen");
 	JButton buttonAuszahlen = new JButton("auszahlen");
-	
+
 	public PanelZahlungen(MainFrame mainFrame, int kartennummer) {
-		
+
+		buttonAuszahlen.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				double betrag;
+				try {
+					betrag = Double.parseDouble(textFieldBetragAuszahlen.getText());
+					if (betrag <= 0) {
+						throw new NumberFormatException();
+					}
+				} catch (NumberFormatException nfexc) {
+					Fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag muss eine positive Zahl sein!", mainFrame);
+					textFieldBetragAuszahlen.setText("");
+					return;
+				}
+
+				String passwort;
+				String passwortUnchecked = new String(textFieldPasswortAuszahlen.getPassword());
+				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+				if (passwortUnchecked.equals(passwortVonDatenbank)) {
+					passwort = passwortUnchecked;
+				} else {
+					Fehlermeldung.openFehlermeldungDialog("Die Passwörter stimmen nicht überein!", mainFrame);
+					textFieldPasswortAuszahlen.setText("");
+					return;
+				}
+
+				try {
+					datenbankCode.setKontostandByKartennummer(kartennummer, betrag, "auszahlen", mainFrame);
+				} catch (Exception exc) {
+					Fehlermeldung.openFehlermeldungDialog(exc.getMessage(), mainFrame);
+					textFieldBetragAuszahlen.setText("");
+					return;
+				}
+
+				textFieldBetragAuszahlen.setText("");
+				textFieldPasswortAuszahlen.setText("");
+
+				optionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich ausgezahlt!", "Betrag ausgezahlt!", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+
 		buttonEinzahlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				double betrag;
 				try {
 					betrag = Double.parseDouble(textFieldBetragEinzahlen.getText());
-				} catch(NumberFormatException nfexc) {
-					Fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag muss eine Zahl sein!", mainFrame);
+					if (betrag <= 0) {
+						throw new NumberFormatException();
+					}
+				} catch (NumberFormatException nfexc) {
+					Fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag muss eine positive Zahl sein!", mainFrame);
 					textFieldBetragEinzahlen.setText("");
 					return;
 				}
-				
+
 				String passwortUnchecked = new String(textFieldPasswortEinzahlen.getPassword());
 				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
 				String passwort;
-				if(passwortUnchecked.equals(passwortVonDatenbank)) {
+				if (passwortUnchecked.equals(passwortVonDatenbank)) {
 					passwort = passwortUnchecked;
 				} else {
 					Fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!", mainFrame);
 					textFieldPasswortEinzahlen.setText("");
 					return;
 				}
-				
-				datenbankCode.setKontostandByKartennummer(kartennummer, betrag);
-				
+				try {
+					datenbankCode.setKontostandByKartennummer(kartennummer, betrag, "einzahlen", mainFrame);
+				} catch (Exception exc) {
+
+				}
+
 				textFieldBetragEinzahlen.setText("");
 				textFieldPasswortEinzahlen.setText("");
-				
-				JOptionPane optionPane = new JOptionPane();
+
 				optionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich eingezahlt!", "Betrag eingezahlt!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		
+
 		panelXAchseWesten.setLayout(new BoxLayout(panelXAchseWesten, BoxLayout.PAGE_AXIS));
 		panelXAchseOsten.setLayout(new BoxLayout(panelXAchseOsten, BoxLayout.PAGE_AXIS));
 		panelButtonEinzahlen.setLayout(new BoxLayout(panelButtonEinzahlen, BoxLayout.PAGE_AXIS));
@@ -94,9 +137,9 @@ public class PanelZahlungen extends JPanel {
 		panelTextFieldBetragAuszahlen.setLayout(new BoxLayout(panelTextFieldBetragAuszahlen, BoxLayout.PAGE_AXIS));
 		panelPasswortFieldEinzahlen.setLayout(new BoxLayout(panelPasswortFieldEinzahlen, BoxLayout.PAGE_AXIS));
 		panelPasswortFieldAuszahlen.setLayout(new BoxLayout(panelPasswortFieldAuszahlen, BoxLayout.PAGE_AXIS));
-		
-		panelXAchseWesten.setBorder(BorderFactory.createEmptyBorder(0,100,0,0));
-		
+
+		panelXAchseWesten.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+
 		setBorder(BorderFactory.createEmptyBorder(40, 100, 320, 200));
 		panelButtonEinzahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		panelButtonAuszahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));

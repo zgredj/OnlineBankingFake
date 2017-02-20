@@ -5,12 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+import javax.swing.plaf.OptionPaneUI;
+
 import fehlermeldung.Fehlermeldung;
 import gui.MainFrame;
 
 public class DatenbankCode {
 
-	Fehlermeldung fehlermeldung = new Fehlermeldung();
+	JOptionPane optionPane = new JOptionPane();
 
 	public String getPasswortVonDatenbank(int kartennummer) {
 		try {
@@ -83,7 +86,8 @@ public class DatenbankCode {
 		}
 	}
 
-	public void setKontostandByKartennummer(int kartennummer, double betrag) {
+	public void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen,
+			MainFrame mainFrame) throws Exception {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
@@ -94,7 +98,19 @@ public class DatenbankCode {
 			while (rs.next()) {
 				kontostand = rs.getDouble("kontostand");
 			}
-			kontostand += betrag;
+
+			if (einOderAusZahlen.equals("einzahlen")) {
+				kontostand += betrag;
+			} else if (einOderAusZahlen.equals("auszahlen")) {
+				if((kontostand - betrag) >= 0) {
+					kontostand -= betrag;
+				} else {
+					throw new Exception("Der Betrag konnte nicht ausgezahlt werden, da Sie zu wenig Geld auf Ihrem Konto haben!");
+				}
+			} else {
+				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen + " --> einzahlen / auszahlen");
+			}
+
 			sql = "UPDATE databaseonlinebanking.konto SET kontostand = ? WHERE kartennummer = ?";
 			ps = con.prepareStatement(sql);
 			ps.setDouble(1, kontostand);
