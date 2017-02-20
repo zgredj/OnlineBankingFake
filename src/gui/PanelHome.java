@@ -28,10 +28,12 @@ public class PanelHome extends JPanel {
 	JPanel rechnungenBezahlenHome = new JPanel(new BorderLayout());
 	JPanel panelRechnungenListeRandHome = new JPanel(new BorderLayout());
 
-	JButton buttonRechnungenBezahlenHome = new JButton("bezahlen");
+	JButton buttonRechnungenBezahlenHome = new JButton("Bezahlen");
 
 	public PanelHome() {
+		setLayout(new BorderLayout());
 		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
+		
 		rechnungenBezahlenHome.add(labelOffeneRechnungenHome, BorderLayout.NORTH);
 		rechnungenBezahlenHome.add(panelRechnungenListeRandHome, BorderLayout.CENTER);
 		rechnungenBezahlenHome.add(buttonRechnungenBezahlenHome, BorderLayout.SOUTH);
@@ -46,7 +48,7 @@ public class PanelHome extends JPanel {
 
 		westBoxHome.add(labelKartennummerHome);
 		westBoxHome.add(labelKontostandHome);
-
+		
 		panelRechnungenListeHome.add(labelTest1);
 		panelRechnungenListeHome.add(labelTest2);
 		panelRechnungenListeHome.add(labelTest3);
