@@ -168,7 +168,7 @@ public class Registrieren extends JPanel {
 				adresseJDBCDao.insertAdresse(adresse);
 
 				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
+				mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame, vorname, nachname));
 				mainFrame.getContentPane().revalidate();
 			}
 		});
