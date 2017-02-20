@@ -24,7 +24,7 @@ public class LayoutEingeloggt extends JPanel {
 	private String vorname;
 	private String nachname;
 
-	public LayoutEingeloggt(final MainFrame mainFrame, String vorname, String nachname) {
+	public LayoutEingeloggt(final MainFrame mainFrame, String vorname, String nachname, int kartennummer) {
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelKopfzeileEAST = new JPanel();
@@ -63,13 +63,13 @@ public class LayoutEingeloggt extends JPanel {
 		// TabbedPane Home
 		PanelHome panelHomeInstance = new PanelHome();
 		panelHome.add(panelHomeInstance);
-		
+
 		// TabbedPane Zahlungen
 		PanelZahlungen panelZahlungenInstance = new PanelZahlungen();
 		panelZahlungen.add(panelZahlungenInstance);
 
 		// TabbedPane Rechnungen
-		PanelRechnungen panelRechnungenInstance = new PanelRechnungen();
+		PanelRechnungen panelRechnungenInstance = new PanelRechnungen(kartennummer);
 		panelRechnungen.add(panelRechnungenInstance);
 
 		// Footer

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class DatenbankCode {
 
@@ -18,6 +17,23 @@ public class DatenbankCode {
 			while (rs.next()) {
 				return rs.getString("passwort");
 			}
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException(sqlexc);
+		}
+		return null;
+	}
+	
+	public Rechnung setRechnungVonDatenbank(int kartennummerEmpfaenger, int kartennummer, int betrag) {
+		try {
+			Connection con = ConnectionFactory.getInstance().getConnection();
+			String sql = "INSERT INTO databaseonlinebanking.rechnung (versender, betrag) VALUES (?,?) WHERE kartennummer = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, kartennummer);
+			ps.setInt(2, betrag);
+			ps.setInt(3, kartennummerEmpfaenger);
+			
+			ps.executeUpdate();
+			
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}

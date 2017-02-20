@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -11,7 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import datenbank.DatenbankCode;
+
 public class PanelRechnungen extends JPanel {
+
+	MainFrame mainFrame = new MainFrame();
+	DatenbankCode datenbankCode = new DatenbankCode();
+
 	JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
 	JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfaengers");
 	JLabel labelBetragRechnungen = new JLabel("Betrag ");
@@ -31,7 +39,7 @@ public class PanelRechnungen extends JPanel {
 	JPanel panelRechnungenErstellen = new JPanel(new BorderLayout());
 	JPanel panelBoxRechnungen = new JPanel();
 
-	public PanelRechnungen() {
+	public PanelRechnungen(int kartennummer) {
 		labelRechnungenerstellen.setFont(new Font("Arial", Font.PLAIN, 30));
 
 		panelKartennummerRechnungen.setLayout(new BoxLayout(panelKartennummerRechnungen, BoxLayout.PAGE_AXIS));
@@ -45,6 +53,34 @@ public class PanelRechnungen extends JPanel {
 
 		panelBoxRechnungen.add(panelRechnungenErstellen);
 		panelBoxRechnungen.add(panelCenterMenuRechnungen);
+
+		buttonAbsendenRechnungen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int kartennummerEmpfaenger = -1;
+				int kartennummerEmpfaengerUnchecked = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
+				if (kartennummerEmpfaengerUnchecked > 0) {
+					kartennummerEmpfaenger = kartennummerEmpfaengerUnchecked;
+				} else {
+					// Error
+				}
+
+				String passwortUnchecked = new String(textFieldPasswordRechnungen.getPassword());
+				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+				if (!passwortUnchecked.equals(passwortVonDatenbank)) {
+					//Error
+				}
+				
+				int betrag = -1;
+				int betragUnchecked = mainFrame.checkDigitReturnIntOrNegativError(textFieldBetragRechnungen.getText());
+				if (betragUnchecked > 0) {
+					betrag = betragUnchecked;
+				} else {
+					// Error
+				}
+				
+				datenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, kartennummer, betrag);
+			}
+		});
 
 		panelCenterMenuRechnungen.add(panelKartennummerRechnungen, BorderLayout.NORTH);
 		panelCenterMenuRechnungen.add(panelNorthMenuRechnungen, BorderLayout.CENTER);

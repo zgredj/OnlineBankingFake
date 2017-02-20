@@ -118,7 +118,7 @@ public class Login extends JPanel {
 
 				if (passwort.equals(passwortVonDatenbank)) {
 					mainFrame.getContentPane().removeAll();
-					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame, vorname, nachname));
+					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame, vorname, nachname, kartennummer));
 					mainFrame.getContentPane().revalidate();
 				} else {
 					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!", mainFrame);
