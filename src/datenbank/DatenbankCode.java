@@ -5,17 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-import javax.swing.plaf.OptionPaneUI;
-
-import fehlermeldung.Fehlermeldung;
 import gui.MainFrame;
 
 public class DatenbankCode {
 
-	JOptionPane optionPane = new JOptionPane();
-
-	public String getPasswortVonDatenbank(int kartennummer) {
+	public static String getPasswortVonDatenbank(int kartennummer) {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT passwort FROM databaseonlinebanking.konto WHERE kartennummer = ?";
@@ -31,7 +25,7 @@ public class DatenbankCode {
 		return null;
 	}
 
-	public void setRechnungVonDatenbank(int kartennummerEmpfaenger, int kartennummer, double betrag,
+	public static void setRechnungVonDatenbank(int kartennummerEmpfaenger, int kartennummer, double betrag,
 			MainFrame mainFrame) throws Exception {
 
 		try {
@@ -57,7 +51,7 @@ public class DatenbankCode {
 		}
 	}
 
-	private int getKontoIdByKartennummerOrNull(int kartennummer) {
+	private static int getKontoIdByKartennummerOrNull(int kartennummer) {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT id FROM databaseonlinebanking.konto WHERE kartennummer = ?";
@@ -73,7 +67,7 @@ public class DatenbankCode {
 		return -1;
 	}
 
-	public boolean istKartennummerVorhanden(int kartennummer) {
+	public static boolean istKartennummerVorhanden(int kartennummer) {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT kartennummer FROM databaseonlinebanking.konto WHERE kartennummer = ?";
@@ -86,7 +80,7 @@ public class DatenbankCode {
 		}
 	}
 
-	public void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen,
+	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen,
 			MainFrame mainFrame) throws Exception {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
@@ -102,13 +96,15 @@ public class DatenbankCode {
 			if (einOderAusZahlen.equals("einzahlen")) {
 				kontostand += betrag;
 			} else if (einOderAusZahlen.equals("auszahlen")) {
-				if((kontostand - betrag) >= 0) {
+				if ((kontostand - betrag) >= 0) {
 					kontostand -= betrag;
 				} else {
-					throw new Exception("Der Betrag konnte nicht ausgezahlt werden, da Sie zu wenig Geld auf Ihrem Konto haben!");
+					throw new Exception(
+							"Der Betrag konnte nicht ausgezahlt werden, da Sie zu wenig Geld auf Ihrem Konto haben!");
 				}
 			} else {
-				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen + " --> einzahlen / auszahlen");
+				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen
+						+ " --> einzahlen / auszahlen");
 			}
 
 			sql = "UPDATE databaseonlinebanking.konto SET kontostand = ? WHERE kartennummer = ?";
@@ -120,5 +116,21 @@ public class DatenbankCode {
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
+	}
+
+	public static double getKontostandVonDatenbank(int kartennummer) {
+		try {
+			Connection con = ConnectionFactory.getInstance().getConnection();
+			String sql = "SELECT kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, kartennummer);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return rs.getDouble("kontostand");
+			}
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException();
+		}
+		return -1;
 	}
 }

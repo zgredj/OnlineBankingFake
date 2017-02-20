@@ -18,8 +18,6 @@ import fehlermeldung.Fehlermeldung;
 
 public class PanelRechnungen extends JPanel {
 
-	DatenbankCode datenbankCode = new DatenbankCode();
-
 	JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
 	JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfängers");
 	JLabel labelBetragRechnungen = new JLabel("Betrag ");
@@ -72,7 +70,7 @@ public class PanelRechnungen extends JPanel {
 				}
 
 				String passwortUnchecked = new String(textFieldPasswordRechnungen.getPassword());
-				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(kartennummer);
 				if (!passwortUnchecked.equals(passwortVonDatenbank)) {
 					Fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!", mainFrame);
 					textFieldPasswordRechnungen.setText("");
@@ -89,7 +87,7 @@ public class PanelRechnungen extends JPanel {
 				}
 
 				try {
-					datenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, kartennummer, betrag, mainFrame);
+					DatenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, kartennummer, betrag, mainFrame);
 				} catch (Exception exc) {
 					Fehlermeldung.openFehlermeldungDialog(exc.getMessage(), mainFrame);
 				}

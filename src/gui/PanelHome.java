@@ -10,10 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PanelHome extends JPanel {
+import datenbank.DatenbankCode;
 
-	JLabel labelKartennummerHome = new JLabel("Kartenummer");
-	JLabel labelKontostandHome = new JLabel("Kontostand");
+public class PanelHome extends JPanel {
+	
 	JLabel labelOffeneRechnungenHome = new JLabel("Offene Rechnungen");
 
 	JLabel labelTest1 = new JLabel("Test 1");
@@ -30,7 +30,11 @@ public class PanelHome extends JPanel {
 
 	JButton buttonRechnungenBezahlenHome = new JButton("Bezahlen");
 
-	public PanelHome() {
+	public PanelHome(int kartennummer) {
+		
+		JLabel labelKartennummerHome = new JLabel("Kartenummer:     " + kartennummer);
+		JLabel labelKontostandHome = new JLabel("Kontostand:         " + DatenbankCode.getKontostandVonDatenbank(kartennummer) + "CHF.");
+		
 		setLayout(new BorderLayout());
 		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
 		

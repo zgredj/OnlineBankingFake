@@ -61,7 +61,7 @@ public class LayoutEingeloggt extends JPanel {
 		tabbedPaneMenu.addTab("Rechnugen", panelRechnungen);
 
 		// TabbedPane Home
-		PanelHome panelHomeInstance = new PanelHome();
+		PanelHome panelHomeInstance = new PanelHome(kartennummer);
 		panelHome.add(panelHomeInstance);
 
 		// TabbedPane Zahlungen

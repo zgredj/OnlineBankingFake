@@ -19,8 +19,6 @@ import fehlermeldung.Fehlermeldung;
 
 public class PanelZahlungen extends JPanel {
 
-	DatenbankCode datenbankCode = new DatenbankCode();
-
 	JLabel labelEinzahlung = new JLabel("Einzahlung");
 	JLabel labelAuszahlung = new JLabel("Auszahlung");
 	JLabel labelBetragEinzahlen = new JLabel("Betrag");
@@ -66,7 +64,7 @@ public class PanelZahlungen extends JPanel {
 
 				String passwort;
 				String passwortUnchecked = new String(textFieldPasswortAuszahlen.getPassword());
-				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(kartennummer);
 				if (passwortUnchecked.equals(passwortVonDatenbank)) {
 					passwort = passwortUnchecked;
 				} else {
@@ -76,7 +74,7 @@ public class PanelZahlungen extends JPanel {
 				}
 
 				try {
-					datenbankCode.setKontostandByKartennummer(kartennummer, betrag, "auszahlen", mainFrame);
+					DatenbankCode.setKontostandByKartennummer(kartennummer, betrag, "auszahlen", mainFrame);
 				} catch (Exception exc) {
 					Fehlermeldung.openFehlermeldungDialog(exc.getMessage(), mainFrame);
 					textFieldBetragAuszahlen.setText("");
@@ -106,7 +104,7 @@ public class PanelZahlungen extends JPanel {
 				}
 
 				String passwortUnchecked = new String(textFieldPasswortEinzahlen.getPassword());
-				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(kartennummer);
 				String passwort;
 				if (passwortUnchecked.equals(passwortVonDatenbank)) {
 					passwort = passwortUnchecked;
@@ -116,7 +114,7 @@ public class PanelZahlungen extends JPanel {
 					return;
 				}
 				try {
-					datenbankCode.setKontostandByKartennummer(kartennummer, betrag, "einzahlen", mainFrame);
+					DatenbankCode.setKontostandByKartennummer(kartennummer, betrag, "einzahlen", mainFrame);
 				} catch (Exception exc) {
 
 				}

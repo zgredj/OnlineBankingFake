@@ -27,8 +27,6 @@ public class Registrieren extends JPanel {
 
 	public Registrieren(final MainFrame mainFrame) {
 
-		final DatenbankCode dbcode = new DatenbankCode();
-
 		final JTextField textFieldKartennummer = new JTextField();
 		final JPasswordField textFieldPassword = new JPasswordField();
 		final JPasswordField textFieldPasswordWiederholen = new JPasswordField();
@@ -73,7 +71,7 @@ public class Registrieren extends JPanel {
 					textFieldKartennummer.setText("");
 					return;
 				} else {
-					if (!dbcode.istKartennummerVorhanden(kartennummer)) {
+					if (!DatenbankCode.istKartennummerVorhanden(kartennummer)) {
 						konto.setKartennummer(kartennummer);
 					} else {
 						Fehlermeldung.openFehlermeldungDialog("Die Kartennummer ist schon Vorhanden!", mainFrame);

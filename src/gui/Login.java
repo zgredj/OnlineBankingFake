@@ -25,8 +25,6 @@ public class Login extends JPanel {
 
 	public Login(final MainFrame mainFrame) {
 
- 		final DatenbankCode datenbankCode = new DatenbankCode();
-		
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
 		JPanel panelTitel = new JPanel(new BorderLayout());
@@ -97,7 +95,7 @@ public class Login extends JPanel {
 
 				String passwort = new String(textFieldPasswort.getPassword());
 
-				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(kartennummer);
 
 				String vorname = "Vorname";
 				String nachname = "Nachname";
