@@ -32,9 +32,12 @@ public class PanelHome extends JPanel {
 
 	public PanelHome(int kartennummer) {
 		
-		JLabel labelKartennummerHome = new JLabel("Kartenummer:     " + kartennummer);
+		JLabel labelKartennummerHome = new JLabel("Kartenummer:      " + kartennummer);
 		JLabel labelKontostandHome = new JLabel("Kontostand:         " + DatenbankCode.getKontostandVonDatenbank(kartennummer) + " CHF.");
-	
+		
+		labelKartennummerHome.setFont(new Font("Arial", Font.PLAIN, 20));
+		labelKontostandHome.setFont(new Font("Arial", Font.PLAIN, 20));
+		
 		setLayout(new BorderLayout());
 		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
 		
