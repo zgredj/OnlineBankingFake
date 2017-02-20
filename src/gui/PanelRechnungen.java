@@ -14,12 +14,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import datenbank.DatenbankCode;
+import fehlermeldung.Fehlermeldung;
 
 public class PanelRechnungen extends JPanel {
 
 	MainFrame mainFrame = new MainFrame();
 	DatenbankCode datenbankCode = new DatenbankCode();
-
+	Fehlermeldung fehlermeldung = new Fehlermeldung();
+	
 	JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
 	JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfaengers");
 	JLabel labelBetragRechnungen = new JLabel("Betrag ");
@@ -61,13 +63,17 @@ public class PanelRechnungen extends JPanel {
 				if (kartennummerEmpfaengerUnchecked > 0) {
 					kartennummerEmpfaenger = kartennummerEmpfaengerUnchecked;
 				} else {
-					// Error
+					fehlermeldung.openFehlermeldungDialog("Die eingegebene Kartennummer ist keine Zahl!", mainFrame);
+					textFieldKartennummerRechnungen.setText("");
+					return;
 				}
 
 				String passwortUnchecked = new String(textFieldPasswordRechnungen.getPassword());
 				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
 				if (!passwortUnchecked.equals(passwortVonDatenbank)) {
-					//Error
+					fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!", mainFrame);
+					textFieldPasswordRechnungen.setText("");
+					return;
 				}
 				
 				int betrag = -1;
@@ -75,10 +81,20 @@ public class PanelRechnungen extends JPanel {
 				if (betragUnchecked > 0) {
 					betrag = betragUnchecked;
 				} else {
-					// Error
+					fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag ist keine Zahl!", mainFrame);
+					textFieldBetragRechnungen.setText("");
+					return;
 				}
 				
-				datenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, kartennummer, betrag);
+				try {
+					datenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, kartennummer, betrag, mainFrame);
+				} catch (Exception exc) {
+					fehlermeldung.openFehlermeldungDialog(exc.getMessage(), mainFrame);
+				}
+				
+				textFieldBetragRechnungen.setText("");
+				textFieldKartennummerRechnungen.setText("");
+				textFieldPasswordRechnungen.setText("");
 			}
 		});
 

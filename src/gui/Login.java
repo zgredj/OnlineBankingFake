@@ -26,7 +26,8 @@ public class Login extends JPanel {
 	public Login(final MainFrame mainFrame) {
 
 		final Fehlermeldung fehlermeldung = new Fehlermeldung();
-		final DatenbankCode datenbankCode = new DatenbankCode();
+ 		final DatenbankCode datenbankCode = new DatenbankCode();
+		
 		JPanel panelSeite = new JPanel();
 		JPanel panelLogin = new JPanel(new BorderLayout());
 		JPanel panelTitel = new JPanel(new BorderLayout());
