@@ -28,7 +28,8 @@ public class DatenbankCode {
 		return null;
 	}
 
-	public void setRechnungVonDatenbank(int kartennummerEmpfaenger, int kartennummer, double betrag, MainFrame mainFrame) throws Exception {
+	public void setRechnungVonDatenbank(int kartennummerEmpfaenger, int kartennummer, double betrag,
+			MainFrame mainFrame) throws Exception {
 
 		try {
 			int kontoIdEmpfaenger = -1;
@@ -52,7 +53,7 @@ public class DatenbankCode {
 			throw new RuntimeException(sqlexc);
 		}
 	}
-	
+
 	private int getKontoIdByKartennummerOrNull(int kartennummer) {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
@@ -68,7 +69,7 @@ public class DatenbankCode {
 		}
 		return -1;
 	}
-	
+
 	public boolean istKartennummerVorhanden(int kartennummer) {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
@@ -82,4 +83,26 @@ public class DatenbankCode {
 		}
 	}
 
+	public void setKontostandByKartennummer(int kartennummer, double betrag) {
+		try {
+			Connection con = ConnectionFactory.getInstance().getConnection();
+			String sql = "SELECT kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, kartennummer);
+			ResultSet rs = ps.executeQuery();
+			double kontostand = 0;
+			while (rs.next()) {
+				kontostand = rs.getDouble("kontostand");
+			}
+			kontostand += betrag;
+			sql = "UPDATE databaseonlinebanking.konto SET kontostand = ? WHERE kartennummer = ?";
+			ps = con.prepareStatement(sql);
+			ps.setDouble(1, kontostand);
+			ps.setInt(2, kartennummer);
+			ps.executeUpdate();
+
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException(sqlexc);
+		}
+	}
 }

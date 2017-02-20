@@ -21,7 +21,7 @@ CREATE TABLE konto (
   geburtsdatum varchar(10) not null,
   kartennummer long not null,
   passwort varchar(45) not null,
-  kontostand decimal not null
+  kontostand double not null
 );
 
 drop table if exists rechnung;

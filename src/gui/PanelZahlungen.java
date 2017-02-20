@@ -2,16 +2,30 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import datenbank.ConnectionFactory;
+import datenbank.DatenbankCode;
+import fehlermeldung.Fehlermeldung;
+
 public class PanelZahlungen extends JPanel {
+	
+	DatenbankCode datenbankCode = new DatenbankCode();
+	
 	JLabel labelEinzahlung = new JLabel("Einzahlung");
 	JLabel labelAuszahlung = new JLabel("Auszahlung");
 	JLabel labelBetragEinzahlen = new JLabel("Betrag");
@@ -36,8 +50,42 @@ public class PanelZahlungen extends JPanel {
 
 	JButton buttonEinzahlen = new JButton("einzahlen");
 	JButton buttonAuszahlen = new JButton("auszahlen");
-
-	public PanelZahlungen() {
+	
+	public PanelZahlungen(MainFrame mainFrame, int kartennummer) {
+		
+		buttonEinzahlen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				double betrag;
+				try {
+					betrag = Double.parseDouble(textFieldBetragEinzahlen.getText());
+				} catch(NumberFormatException nfexc) {
+					Fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag muss eine Zahl sein!", mainFrame);
+					textFieldBetragEinzahlen.setText("");
+					return;
+				}
+				
+				String passwortUnchecked = new String(textFieldPasswortEinzahlen.getPassword());
+				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+				String passwort;
+				if(passwortUnchecked.equals(passwortVonDatenbank)) {
+					passwort = passwortUnchecked;
+				} else {
+					Fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!", mainFrame);
+					textFieldPasswortEinzahlen.setText("");
+					return;
+				}
+				
+				datenbankCode.setKontostandByKartennummer(kartennummer, betrag);
+				
+				textFieldBetragEinzahlen.setText("");
+				textFieldPasswortEinzahlen.setText("");
+				
+				JOptionPane optionPane = new JOptionPane();
+				optionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich eingezahlt!", "Betrag eingezahlt!", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		
 		panelXAchseWesten.setLayout(new BoxLayout(panelXAchseWesten, BoxLayout.PAGE_AXIS));
 		panelXAchseOsten.setLayout(new BoxLayout(panelXAchseOsten, BoxLayout.PAGE_AXIS));
 		panelButtonEinzahlen.setLayout(new BoxLayout(panelButtonEinzahlen, BoxLayout.PAGE_AXIS));
