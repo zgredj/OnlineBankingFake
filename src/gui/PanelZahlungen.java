@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class PanelZahlungen extends JPanel{
+public class PanelZahlungen extends JPanel {
 	JLabel labelEinzahlung = new JLabel("Einzahlung");
 	JLabel labelAuszahlung = new JLabel("Auszahlung");
 	JLabel labelBetragEinzahlen = new JLabel("Betrag");
