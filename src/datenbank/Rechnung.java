@@ -5,6 +5,7 @@ public class Rechnung {
 	int id;
 	int kartennummer;
 	double betrag;
+	String password;
 
 	public int getId() {
 		return id;

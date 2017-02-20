@@ -27,8 +27,8 @@ public class Registrieren extends JPanel {
 
 	public Registrieren(final MainFrame mainFrame) {
 
-		Fehlermeldung fehlermeldung = new Fehlermeldung();
-		DatenbankCode dbcode = new DatenbankCode();
+		final Fehlermeldung fehlermeldung = new Fehlermeldung();
+		final DatenbankCode dbcode = new DatenbankCode();
 
 		final JTextField textFieldKartennummer = new JTextField();
 		final JPasswordField textFieldPassword = new JPasswordField();
@@ -96,7 +96,7 @@ public class Registrieren extends JPanel {
 				if (passwort1.equals(passwort2)) {
 					konto.setPasswort(passwort1);
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passwörter stimmen nicht überein!",
+					fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passwï¿½rter stimmen nicht ï¿½berein!",
 							mainFrame);
 					textFieldPassword.setText("");
 					textFieldPasswordWiederholen.setText("");
