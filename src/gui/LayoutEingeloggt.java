@@ -58,185 +58,19 @@ public class LayoutEingeloggt extends JPanel {
 
 		tabbedPaneMenu.addTab("Home", panelHome);
 		tabbedPaneMenu.addTab("Zahlungen", panelZahlungen);
-		tabbedPaneMenu.addTab("Rechnugnen", panelRechnungen);
+		tabbedPaneMenu.addTab("Rechnugen", panelRechnungen);
 
 		// TabbedPane Home
-		JLabel labelKartennummerHome = new JLabel("Kartenummer");
-		JLabel labelKontostandHome = new JLabel("Kontostand");
-		JLabel labelOffeneRechnungenHome = new JLabel("Offene Rechnungen");
-
-		JLabel labelTest1 = new JLabel("Test 1");
-		JLabel labelTest2 = new JLabel("Test 2");
-		JLabel labelTest3 = new JLabel("Test 3");
-		JLabel labelTest4 = new JLabel("Test 4");
-		JLabel labelTest5 = new JLabel("Test 5");
-		JLabel labelTest6 = new JLabel("Test 6");
-
-		JPanel panelRechnungenListeHome = new JPanel();
-		JPanel westBoxHome = new JPanel();
-		JPanel rechnungenBezahlenHome = new JPanel(new BorderLayout());
-		JPanel panelRechnungenListeRandHome = new JPanel(new BorderLayout());
-
-		JButton buttonRechnungenBezahlenHome = new JButton("bezahlen");
-
-		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
-
-		rechnungenBezahlenHome.add(labelOffeneRechnungenHome, BorderLayout.NORTH);
-		rechnungenBezahlenHome.add(panelRechnungenListeRandHome, BorderLayout.CENTER);
-		rechnungenBezahlenHome.add(buttonRechnungenBezahlenHome, BorderLayout.SOUTH);
-
-		panelRechnungenListeRandHome.add(panelRechnungenListeHome);
-
-		westBoxHome.setLayout(new BoxLayout(westBoxHome, BoxLayout.PAGE_AXIS));
-		panelRechnungenListeHome.setLayout(new BoxLayout(panelRechnungenListeHome, BoxLayout.Y_AXIS));
-
-		panelHome.add(rechnungenBezahlenHome, BorderLayout.EAST);
-		panelHome.add(westBoxHome, BorderLayout.WEST);
-
-		westBoxHome.add(labelKartennummerHome);
-		westBoxHome.add(labelKontostandHome);
-
-		panelRechnungenListeHome.add(labelTest1);
-		panelRechnungenListeHome.add(labelTest2);
-		panelRechnungenListeHome.add(labelTest3);
-		panelRechnungenListeHome.add(labelTest4);
-		panelRechnungenListeHome.add(labelTest5);
-		panelRechnungenListeHome.add(labelTest6);
-
-		panelRechnungenListeRandHome.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
-		panelRechnungenListeHome.setBorder(BorderFactory.createEtchedBorder(5, Color.BLACK, Color.BLACK));
-		rechnungenBezahlenHome.setBorder(BorderFactory.createEmptyBorder(30, 150, 200, 100));
-		panelHome.setBorder(BorderFactory.createEmptyBorder(10, 70, 0, 0));
-
+		PanelHome panelHomeInstance = new PanelHome();
+		panelHome.add(panelHomeInstance);
+		
 		// TabbedPane Zahlungen
-		JLabel labelEinzahlung = new JLabel("Einzahlung");
-		JLabel labelAuszahlung = new JLabel("Auszahlung");
-		JLabel labelBetragEinzahlen = new JLabel("Betrag");
-		JLabel labelBetragAuszahlen = new JLabel("Betrag");
-		JLabel labelPasswortEinzahlen = new JLabel("Passwort");
-		JLabel labelPasswortAuszahlen = new JLabel("Passwort");
-
-		JTextField textFieldBetragEinzahlen = new JTextField();
-		JTextField textFieldBetragAuszahlen = new JTextField();
-
-		JPasswordField textFieldPasswortAuszahlen = new JPasswordField();
-		JPasswordField textFieldPasswortEinzahlen = new JPasswordField();
-
-		JPanel panelXAchseWesten = new JPanel();
-		JPanel panelXAchseOsten = new JPanel();
-		JPanel panelButtonEinzahlen = new JPanel();
-		JPanel panelButtonAuszahlen = new JPanel();
-		JPanel panelTextFieldBetragEinzahlen = new JPanel();
-		JPanel panelTextFieldBetragAuszahlen = new JPanel();
-		JPanel panelPasswortFieldEinzahlen = new JPanel();
-		JPanel panelPasswortFieldAuszahlen = new JPanel();
-
-		JButton buttonEinzahlen = new JButton("einzahlen");
-		JButton buttonAuszahlen = new JButton("auszahlen");
-
-		panelXAchseWesten.setLayout(new BoxLayout(panelXAchseWesten, BoxLayout.PAGE_AXIS));
-		panelXAchseOsten.setLayout(new BoxLayout(panelXAchseOsten, BoxLayout.PAGE_AXIS));
-		panelButtonEinzahlen.setLayout(new BoxLayout(panelButtonEinzahlen, BoxLayout.PAGE_AXIS));
-		panelButtonAuszahlen.setLayout(new BoxLayout(panelButtonAuszahlen, BoxLayout.PAGE_AXIS));
-		panelTextFieldBetragEinzahlen.setLayout(new BoxLayout(panelTextFieldBetragEinzahlen, BoxLayout.PAGE_AXIS));
-		panelTextFieldBetragAuszahlen.setLayout(new BoxLayout(panelTextFieldBetragAuszahlen, BoxLayout.PAGE_AXIS));
-		panelPasswortFieldEinzahlen.setLayout(new BoxLayout(panelPasswortFieldEinzahlen, BoxLayout.PAGE_AXIS));
-		panelPasswortFieldAuszahlen.setLayout(new BoxLayout(panelPasswortFieldAuszahlen, BoxLayout.PAGE_AXIS));
-
-		panelZahlungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 320, 200));
-		panelButtonEinzahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-		panelButtonAuszahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-		labelAuszahlung.setFont(new Font("Arial", Font.PLAIN, 30));
-		labelEinzahlung.setFont(new Font("Arial", Font.PLAIN, 30));
-		labelBetragEinzahlen.setFont(new Font("Arial", Font.PLAIN, 14));
-		labelBetragAuszahlen.setFont(new Font("Arial", Font.PLAIN, 14));
-		labelPasswortEinzahlen.setFont(new Font("Arial", Font.PLAIN, 15));
-		labelPasswortAuszahlen.setFont(new Font("Arial", Font.PLAIN, 15));
-
-		panelZahlungen.add(panelXAchseOsten, BorderLayout.EAST);
-		panelZahlungen.add(panelXAchseWesten, BorderLayout.WEST);
-
-		panelTextFieldBetragEinzahlen.add(textFieldBetragEinzahlen);
-		panelTextFieldBetragAuszahlen.add(textFieldBetragAuszahlen);
-		panelPasswortFieldEinzahlen.add(textFieldPasswortEinzahlen);
-		panelPasswortFieldAuszahlen.add(textFieldPasswortAuszahlen);
-
-		panelButtonEinzahlen.add(buttonEinzahlen);
-		panelButtonAuszahlen.add(buttonAuszahlen);
-
-		panelXAchseWesten.add(labelEinzahlung);
-		panelXAchseWesten.add(labelBetragEinzahlen);
-		panelXAchseWesten.add(panelTextFieldBetragEinzahlen);
-		panelXAchseWesten.add(labelPasswortEinzahlen);
-		panelXAchseWesten.add(panelPasswortFieldEinzahlen);
-		panelXAchseWesten.add(panelButtonEinzahlen);
-
-		panelXAchseOsten.add(labelAuszahlung);
-		panelXAchseOsten.add(labelBetragAuszahlen);
-		panelXAchseOsten.add(panelTextFieldBetragAuszahlen);
-		panelXAchseOsten.add(labelPasswortAuszahlen);
-		panelXAchseOsten.add(panelPasswortFieldAuszahlen);
-		panelXAchseOsten.add(panelButtonAuszahlen);
-
-		panelTextFieldBetragEinzahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
-		panelTextFieldBetragAuszahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
-		panelPasswortFieldEinzahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-		panelPasswortFieldAuszahlen.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+		PanelZahlungen panelZahlungenInstance = new PanelZahlungen();
+		panelZahlungen.add(panelZahlungenInstance);
 
 		// TabbedPane Rechnungen
-		JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
-		JLabel labelKartennummerDesEmpfängers = new JLabel("Kartennummer des Empfaengers");
-		JLabel labelBetragRechnungen = new JLabel("Betrag ");
-		JLabel labelPasswordRechnungen = new JLabel("Passwort ");
-
-		JTextField textFieldKartennummerRechnungen = new JTextField(10);
-		JTextField textFieldBetragRechnungen = new JTextField(10);
-		JPasswordField textFieldPasswordRechnungen = new JPasswordField(10);
-
-		JButton buttonAbsendenRechnungen = new JButton("absenden");
-
-		JPanel panelCenterMenuRechnungen = new JPanel(new BorderLayout());
-		JPanel panelNorthMenuRechnungen = new JPanel(new BorderLayout());
-		JPanel panelKartennummerRechnungen = new JPanel();
-		JPanel panelBetragRechnungen = new JPanel();
-		JPanel panelPasswordRechnungen = new JPanel();
-		JPanel panelRechnungenErstellen = new JPanel(new BorderLayout());
-		JPanel panelBoxRechnungen = new JPanel();
-
-		labelRechnungenerstellen.setFont(new Font("Arial", Font.PLAIN, 30));
-
-		panelKartennummerRechnungen.setLayout(new BoxLayout(panelKartennummerRechnungen, BoxLayout.PAGE_AXIS));
-		panelBetragRechnungen.setLayout(new BoxLayout(panelBetragRechnungen, BoxLayout.PAGE_AXIS));
-		panelPasswordRechnungen.setLayout(new BoxLayout(panelPasswordRechnungen, BoxLayout.PAGE_AXIS));
-		panelBoxRechnungen.setLayout(new BoxLayout(panelBoxRechnungen, BoxLayout.PAGE_AXIS));
-
-		panelRechnungenErstellen.add(labelRechnungenerstellen);
-
-		panelRechnungen.add(panelBoxRechnungen);
-
-		panelBoxRechnungen.add(panelRechnungenErstellen);
-		panelBoxRechnungen.add(panelCenterMenuRechnungen);
-
-		panelCenterMenuRechnungen.add(panelKartennummerRechnungen, BorderLayout.NORTH);
-		panelCenterMenuRechnungen.add(panelNorthMenuRechnungen, BorderLayout.CENTER);
-		panelCenterMenuRechnungen.add(buttonAbsendenRechnungen, BorderLayout.SOUTH);
-
-		panelNorthMenuRechnungen.add(panelBetragRechnungen, BorderLayout.EAST);
-		panelNorthMenuRechnungen.add(panelPasswordRechnungen, BorderLayout.WEST);
-
-		panelKartennummerRechnungen.add(labelKartennummerDesEmpfängers);
-		panelKartennummerRechnungen.add(textFieldKartennummerRechnungen);
-
-		panelBetragRechnungen.add(labelBetragRechnungen);
-		panelBetragRechnungen.add(textFieldBetragRechnungen);
-
-		panelPasswordRechnungen.add(labelPasswordRechnungen);
-		panelPasswordRechnungen.add(textFieldPasswordRechnungen);
-
-		panelRechnungen.setBorder(BorderFactory.createEmptyBorder(40, 100, 300, 200));
-		panelCenterMenuRechnungen.setBorder(BorderFactory.createEmptyBorder(15, 0, 40, 250));
-		panelBetragRechnungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 50, 0));
-		panelPasswordRechnungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 50, 0));
+		PanelRechnungen panelRechnungenInstance = new PanelRechnungen();
+		panelZahlungen.add(panelZahlungenInstance);
 
 		// Footer
 		JPanel panelAusloggen = new JPanel(new FlowLayout());
