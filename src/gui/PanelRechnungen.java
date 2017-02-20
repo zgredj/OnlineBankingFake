@@ -39,7 +39,7 @@ public class PanelRechnungen extends JPanel {
 	JPanel panelRechnungenErstellen = new JPanel(new BorderLayout());
 	JPanel panelBoxRechnungen = new JPanel();
 
-	public PanelRechnungen(int kartennummer) {
+	public PanelRechnungen(final int kartennummer) {
 		labelRechnungenerstellen.setFont(new Font("Arial", Font.PLAIN, 30));
 
 		panelKartennummerRechnungen.setLayout(new BoxLayout(panelKartennummerRechnungen, BoxLayout.PAGE_AXIS));
