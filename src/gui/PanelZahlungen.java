@@ -46,7 +46,9 @@ public class PanelZahlungen extends JPanel {
 		panelTextFieldBetragAuszahlen.setLayout(new BoxLayout(panelTextFieldBetragAuszahlen, BoxLayout.PAGE_AXIS));
 		panelPasswortFieldEinzahlen.setLayout(new BoxLayout(panelPasswortFieldEinzahlen, BoxLayout.PAGE_AXIS));
 		panelPasswortFieldAuszahlen.setLayout(new BoxLayout(panelPasswortFieldAuszahlen, BoxLayout.PAGE_AXIS));
-
+		
+		panelXAchseWesten.setBorder(BorderFactory.createEmptyBorder(0,100,0,0));
+		
 		setBorder(BorderFactory.createEmptyBorder(40, 100, 320, 200));
 		panelButtonEinzahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		panelButtonAuszahlen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
