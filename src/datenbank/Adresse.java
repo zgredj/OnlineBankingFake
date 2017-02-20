@@ -6,7 +6,7 @@ public class Adresse {
 	int hausnummer;
 	String wohnort;
 	int plz;
-	
+
 	public int getId() {
 		return id;
 	}
