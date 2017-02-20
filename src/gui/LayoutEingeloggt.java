@@ -69,7 +69,7 @@ public class LayoutEingeloggt extends JPanel {
 		panelZahlungen.add(panelZahlungenInstance);
 
 		// TabbedPane Rechnungen
-		PanelRechnungen panelRechnungenInstance = new PanelRechnungen(kartennummer);
+		PanelRechnungen panelRechnungenInstance = new PanelRechnungen(mainFrame, kartennummer);
 		panelRechnungen.add(panelRechnungenInstance);
 
 		// Footer

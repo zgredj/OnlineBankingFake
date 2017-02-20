@@ -18,7 +18,6 @@ import fehlermeldung.Fehlermeldung;
 
 public class PanelRechnungen extends JPanel {
 
-	MainFrame mainFrame = new MainFrame();
 	DatenbankCode datenbankCode = new DatenbankCode();
 	Fehlermeldung fehlermeldung = new Fehlermeldung();
 	
@@ -41,7 +40,7 @@ public class PanelRechnungen extends JPanel {
 	JPanel panelRechnungenErstellen = new JPanel(new BorderLayout());
 	JPanel panelBoxRechnungen = new JPanel();
 
-	public PanelRechnungen(final int kartennummer) {
+	public PanelRechnungen(final MainFrame mainFrame, final int kartennummer) {
 		labelRechnungenerstellen.setFont(new Font("Arial", Font.PLAIN, 30));
 
 		panelKartennummerRechnungen.setLayout(new BoxLayout(panelKartennummerRechnungen, BoxLayout.PAGE_AXIS));
