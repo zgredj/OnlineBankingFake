@@ -5,6 +5,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,8 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import fehlermeldung.Fehlermeldung;
+import datenbank.ConnectionFactory;
 import datenbank.DatenbankCode;
+import fehlermeldung.Fehlermeldung;
 
 public class Login extends JPanel {
 
@@ -91,11 +96,29 @@ public class Login extends JPanel {
 				}
 
 				String passwort = new String(textFieldPasswort.getPassword());
+
 				String passwortVonDatenbank = datenbankCode.getPasswortVonDatenbank(kartennummer);
+
+				String vorname = "Vorname";
+				String nachname = "Nachname";
+
+				try {
+					Connection con = ConnectionFactory.getInstance().getConnection();
+					String sql = "SELECT name, vorname FROM databaseonlinebanking.konto WHERE kartennummer = ?";
+					PreparedStatement ps = con.prepareStatement(sql);
+					ps.setInt(1, kartennummer);
+					ResultSet rs = ps.executeQuery();
+					while (rs.next()) {
+						nachname = rs.getString("name");
+						vorname = rs.getString("vorname");
+					}
+				} catch (SQLException sqlexc) {
+					throw new RuntimeException(sqlexc);
+				}
 
 				if (passwort.equals(passwortVonDatenbank)) {
 					mainFrame.getContentPane().removeAll();
-					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame));
+					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame, vorname, nachname));
 					mainFrame.getContentPane().revalidate();
 				} else {
 					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!", mainFrame);

@@ -21,11 +21,10 @@ import javax.swing.JTextField;
 
 public class LayoutEingeloggt extends JPanel {
 
-	private String titel = "Willkommen";
-	private String vorname = "Vorname";
-	private String nachname = "Nachname";
+	private String vorname;
+	private String nachname;
 
-	public LayoutEingeloggt(final MainFrame mainFrame) {
+	public LayoutEingeloggt(final MainFrame mainFrame, String vorname, String nachname) {
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelKopfzeileEAST = new JPanel();
@@ -41,7 +40,7 @@ public class LayoutEingeloggt extends JPanel {
 
 		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		labelTitel.setText(titel);
+		labelTitel.setText("Willkommen");
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 		labelName.setText(vorname + "  " + nachname);
 		labelName.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -65,7 +64,7 @@ public class LayoutEingeloggt extends JPanel {
 		JLabel labelKartennummerHome = new JLabel("Kartenummer");
 		JLabel labelKontostandHome = new JLabel("Kontostand");
 		JLabel labelOffeneRechnungenHome = new JLabel("Offene Rechnungen");
-		
+
 		JLabel labelTest1 = new JLabel("Test 1");
 		JLabel labelTest2 = new JLabel("Test 2");
 		JLabel labelTest3 = new JLabel("Test 3");
@@ -73,20 +72,19 @@ public class LayoutEingeloggt extends JPanel {
 		JLabel labelTest5 = new JLabel("Test 5");
 		JLabel labelTest6 = new JLabel("Test 6");
 
-		
 		JPanel panelRechnungenListeHome = new JPanel();
 		JPanel westBoxHome = new JPanel();
 		JPanel rechnungenBezahlenHome = new JPanel(new BorderLayout());
 		JPanel panelRechnungenListeRandHome = new JPanel(new BorderLayout());
-		
+
 		JButton buttonRechnungenBezahlenHome = new JButton("bezahlen");
-		
+
 		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
-		
+
 		rechnungenBezahlenHome.add(labelOffeneRechnungenHome, BorderLayout.NORTH);
 		rechnungenBezahlenHome.add(panelRechnungenListeRandHome, BorderLayout.CENTER);
 		rechnungenBezahlenHome.add(buttonRechnungenBezahlenHome, BorderLayout.SOUTH);
-		
+
 		panelRechnungenListeRandHome.add(panelRechnungenListeHome);
 
 		westBoxHome.setLayout(new BoxLayout(westBoxHome, BoxLayout.PAGE_AXIS));
@@ -94,19 +92,17 @@ public class LayoutEingeloggt extends JPanel {
 
 		panelHome.add(rechnungenBezahlenHome, BorderLayout.EAST);
 		panelHome.add(westBoxHome, BorderLayout.WEST);
-		
 
 		westBoxHome.add(labelKartennummerHome);
 		westBoxHome.add(labelKontostandHome);
-		
+
 		panelRechnungenListeHome.add(labelTest1);
 		panelRechnungenListeHome.add(labelTest2);
 		panelRechnungenListeHome.add(labelTest3);
 		panelRechnungenListeHome.add(labelTest4);
 		panelRechnungenListeHome.add(labelTest5);
 		panelRechnungenListeHome.add(labelTest6);
-		
-		
+
 		panelRechnungenListeRandHome.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 		panelRechnungenListeHome.setBorder(BorderFactory.createEtchedBorder(5, Color.BLACK, Color.BLACK));
 		rechnungenBezahlenHome.setBorder(BorderFactory.createEmptyBorder(30, 150, 200, 100));
@@ -260,14 +256,6 @@ public class LayoutEingeloggt extends JPanel {
 		panelAlles.add(tabbedPaneMenu, BorderLayout.CENTER);
 		add(panelAlles);
 
-	}
-
-	public String getTitel() {
-		return titel;
-	}
-
-	public void setTitel(String titel) {
-		this.titel = titel;
 	}
 
 	public String getVorname() {
