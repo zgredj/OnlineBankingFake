@@ -44,7 +44,7 @@ public class PanelZahlungen extends JPanel {
 	JButton buttonEinzahlen = new JButton("einzahlen");
 	JButton buttonAuszahlen = new JButton("auszahlen");
 
-	public PanelZahlungen(MainFrame mainFrame, int kartennummer) {
+	public PanelZahlungen(MainFrame mainFrame, LayoutEingeloggt layoutEingeloggt, int kartennummer) {
 
 		buttonAuszahlen.addActionListener(new ActionListener() {
 
@@ -85,6 +85,7 @@ public class PanelZahlungen extends JPanel {
 				textFieldPasswortAuszahlen.setText("");
 
 				JOptionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich ausgezahlt!", "Betrag ausgezahlt!", JOptionPane.INFORMATION_MESSAGE);
+				mainFrame.refresh(DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(kartennummer).getVorname(), DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(kartennummer).getName(), kartennummer);
 			}
 		});
 
@@ -123,6 +124,8 @@ public class PanelZahlungen extends JPanel {
 				textFieldPasswortEinzahlen.setText("");
 
 				JOptionPane.showMessageDialog(mainFrame, "Der Betrag wurde erfolgreich eingezahlt!", "Betrag eingezahlt!", JOptionPane.INFORMATION_MESSAGE);
+				
+				mainFrame.refresh(DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(kartennummer).getVorname(), DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(kartennummer).getName(), kartennummer);
 			}
 		});
 

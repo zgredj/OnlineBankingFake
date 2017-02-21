@@ -22,10 +22,14 @@ public class MainFrame extends JFrame {
 		try {
 			checkedInteger = Integer.parseInt(uncheckedString);
 		} catch (NumberFormatException nfe) {
-			//Error
 			return -1;
-			//Error
 		}
 		return checkedInteger;
+	}
+
+	public void refresh(String vorname, String nachname, int kartennummer) {
+		getContentPane().removeAll();
+		getContentPane().add(new LayoutEingeloggt(this, vorname, nachname, kartennummer));
+		getContentPane().revalidate();
 	}
 }

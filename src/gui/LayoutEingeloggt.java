@@ -18,13 +18,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicTabbedPaneUI.TabbedPaneLayout;
 
 public class LayoutEingeloggt extends JPanel {
 
 	private String vorname;
 	private String nachname;
-
-	public LayoutEingeloggt(final MainFrame mainFrame, String vorname, String nachname, int kartennummer) {
+	JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
+	
+	public LayoutEingeloggt(MainFrame mainFrame, String vorname, String nachname, int kartennummer) {
 		JPanel panelAlles = new JPanel(new BorderLayout());
 		JPanel panelKopfzeile = new JPanel(new BorderLayout());
 		JPanel panelKopfzeileEAST = new JPanel();
@@ -33,7 +35,6 @@ public class LayoutEingeloggt extends JPanel {
 		JLabel labelName = new JLabel();
 		JLabel labelAngemeldet = new JLabel();
 
-		JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 		JPanel panelHome = new JPanel(new BorderLayout());
 		JPanel panelZahlungen = new JPanel(new BorderLayout());
 		JPanel panelRechnungen = new JPanel(new BorderLayout());
@@ -65,7 +66,7 @@ public class LayoutEingeloggt extends JPanel {
 		panelHome.add(panelHomeInstance);
 
 		// TabbedPane Zahlungen
-		PanelZahlungen panelZahlungenInstance = new PanelZahlungen(mainFrame, kartennummer);
+		PanelZahlungen panelZahlungenInstance = new PanelZahlungen(mainFrame, this, kartennummer);
 		panelZahlungen.add(panelZahlungenInstance);
 
 		// TabbedPane Rechnungen
@@ -91,7 +92,7 @@ public class LayoutEingeloggt extends JPanel {
 		add(panelAlles);
 
 	}
-
+	
 	public String getVorname() {
 		return vorname;
 	}
