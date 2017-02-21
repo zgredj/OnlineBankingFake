@@ -96,12 +96,7 @@ public class Registrieren extends JPanel {
 				}
 				String passwort2 = new String(textFieldPasswordWiederholen.getPassword());
 				if (passwort1.equals(passwort2)) {
-					if (passwort1.length() <= 45) {
-						konto.setPasswort(passwort1);
-					} else {
-						Fehlermeldung.openFehlermeldungDialog("Das Passwort ist zu lang!", mainFrame);
-						return;
-					}
+					konto.setPasswort(passwort1);
 				} else {
 					Fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passw�rter stimmen nicht �berein!",
 							mainFrame);
