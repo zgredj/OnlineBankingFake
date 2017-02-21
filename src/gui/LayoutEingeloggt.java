@@ -50,7 +50,7 @@ public class LayoutEingeloggt extends JPanel {
 		panelKopfzeileEAST.setLayout(new BoxLayout(panelKopfzeileEAST, BoxLayout.Y_AXIS));
 		panelKopfzeileEAST.add(labelName);
 		panelKopfzeileEAST.add(labelAngemeldet);
-		panelKopfzeile.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 10));
+		panelKopfzeile.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 30));
 		panelKopfzeile.add(labelTitel, BorderLayout.WEST);
 		panelKopfzeile.add(panelKopfzeileEAST, BorderLayout.EAST);
 
