@@ -54,14 +54,15 @@ public class PanelHome extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					DatenbankCode.setKontostandByKartennummer(kartennummer, summeRechnungen, "auszahlen", mainFrame);
-					JOptionPane.showMessageDialog(mainFrame, "Die Rechnung(en) wurden erfolgreich bezahlt!", "Rechnungen wurden bezahlt!", JOptionPane.INFORMATION_MESSAGE);
 					for (JCheckBox checkBox : allCheckBoxHome) {
-						
 						if (checkBox.isSelected()){
-							int checkBoxValue = (int) checkBox.getClientProperty("id");
-							DatenbankCode.deleteRechnungById(checkBoxValue);
+							int checkBoxId = (int) checkBox.getClientProperty("id");
+							double checkBoxBetrag = (double) checkBox.getClientProperty("betrag");
+							DatenbankCode.deleteRechnungById(checkBoxId);
+						DatenbankCode.ueberweiseBezahlteRechnungByKartennummer(kartennummer, checkBoxBetrag);
 						}
 					}
+					JOptionPane.showMessageDialog(mainFrame, "Die Rechnung(en) wurden erfolgreich bezahlt!", "Rechnungen wurden bezahlt!", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception exc) {
 					Fehlermeldung.openFehlermeldungDialog("Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!", mainFrame);
 				}
@@ -104,6 +105,7 @@ public class PanelHome extends JPanel {
 			konto = DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(rechnung.getKartennummer());
 			JCheckBox chbox = new JCheckBox(rechnung.getBetrag() + " CHF " + konto.getVorname() + " " + konto.getName());
 			chbox.putClientProperty("id", rechnung.getId());
+			chbox.putClientProperty("betrag", rechnung.getBetrag());
 			chbox.addItemListener(new ItemListener(){
 				
 				public void itemStateChanged(ItemEvent e) {

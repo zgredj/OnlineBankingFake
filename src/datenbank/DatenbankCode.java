@@ -201,6 +201,18 @@ public class DatenbankCode {
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException();
 		}
-
+	}
+	
+	public static void ueberweiseBezahlteRechnungByKartennummer(int kartennummer, double betrag) {
+		try {
+			Connection con = ConnectionFactory.getInstance().getConnection();
+			String sql = "INSERT INTO databaseonlinebanking.konto (kontostand) VALUES (?) WHERE kartennummer = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setDouble(1, betrag);
+			ps.setInt(2, kartennummer);
+			ps.executeUpdate();
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException();
+		}
 	}
 }
