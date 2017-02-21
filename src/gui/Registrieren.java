@@ -83,7 +83,12 @@ public class Registrieren extends JPanel {
 				String passwort1 = "";
 				String passwort = new String(textFieldPassword.getPassword());
 				if (!passwort.equals("")) {
-					passwort1 = passwort;
+					if (passwort.length() <= 45) {
+						passwort1 = passwort;
+					} else {
+						Fehlermeldung.openFehlermeldungDialog("Das Passwort ist zu lang!", mainFrame);
+						return;
+					}
 				} else {
 					Fehlermeldung.openFehlermeldungDialog("Es muss ein Passwort eingegeben werden!", mainFrame);
 					textFieldPasswordWiederholen.setText("");
@@ -102,7 +107,12 @@ public class Registrieren extends JPanel {
 
 				String vorname = textFieldVorname.getText();
 				if (!vorname.equals("")) {
-					konto.setVorname(vorname);
+					if (vorname.length() <= 45) {
+						konto.setVorname(vorname);
+					} else {
+						Fehlermeldung.openFehlermeldungDialog("Der Vorname ist zu lang!", mainFrame);
+						return;
+					}
 				} else {
 					Fehlermeldung.openFehlermeldungDialog("Es muss ein Vorname eingegeben werden!", mainFrame);
 					return;
@@ -110,15 +120,25 @@ public class Registrieren extends JPanel {
 
 				String nachname = textFieldNachname.getText();
 				if (!nachname.equals("")) {
-					konto.setName(nachname);
+					if (nachname.length() <= 45) {
+						konto.setName(nachname);
+					} else {
+						Fehlermeldung.openFehlermeldungDialog("Der Nachname ist zu lang!", mainFrame);
+						return;
+					}
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Es muss ein Nachname eingegeben werden!", mainFrame);
+					Fehlermeldung.openFehlermeldungDialog("Es muss ein Nachname eingegeben werden!", mainFrame); 
 					return;
 				}
 
 				String geburtsdatum = textFieldGeburtsdatum.getText();
 				if (!geburtsdatum.equals("")) {
-					konto.setGeburtsdatum(geburtsdatum);
+					if (geburtsdatum.length() <= 10) {
+						konto.setGeburtsdatum(geburtsdatum);
+					} else {
+						Fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!", mainFrame);
+						return;
+					}
 				} else {
 					Fehlermeldung.openFehlermeldungDialog("Es muss ein Geburtsdatum eingegeben werden!", mainFrame);
 					return;
@@ -129,7 +149,12 @@ public class Registrieren extends JPanel {
 
 				String wohnort = textFieldWohnort.getText();
 				if (!wohnort.equals("")) {
-					adresse.setWohnort(wohnort);
+					if (wohnort.length() <= 45) {
+						adresse.setWohnort(wohnort);
+					} else {
+						Fehlermeldung.openFehlermeldungDialog("Der Wohnort ist zu lang!", mainFrame);
+						return;
+					}
 				} else {
 					Fehlermeldung.openFehlermeldungDialog("Es muss ein Wohnort eingegeben werden!", mainFrame);
 					return;
@@ -146,7 +171,12 @@ public class Registrieren extends JPanel {
 
 				String strasse = textFieldStrasse.getText();
 				if (!strasse.equals("")) {
-					adresse.setStrasse(strasse);
+					if (strasse.length() <= 45) {
+						adresse.setStrasse(strasse);
+					} else {
+						Fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!", mainFrame);
+						return;
+					}
 				} else {
 					Fehlermeldung.openFehlermeldungDialog("Es muss eine Strasse eingegeben werden!", mainFrame);
 					return;
@@ -170,42 +200,31 @@ public class Registrieren extends JPanel {
 			}
 		});
 
-		panelInhalt.add(labelKartennummer);
-		panelInhalt.add(textFieldKartennummer);
+	panelInhalt.add(labelKartennummer);panelInhalt.add(textFieldKartennummer);
 
-		panelInhalt.add(labelPassword);
-		panelInhalt.add(textFieldPassword);
+	panelInhalt.add(labelPassword);panelInhalt.add(textFieldPassword);
 
-		panelInhalt.add(labelPasswordWiederholen);
-		panelInhalt.add(textFieldPasswordWiederholen);
+	panelInhalt.add(labelPasswordWiederholen);panelInhalt.add(textFieldPasswordWiederholen);
 
-		panelInhalt.add(labelVorname);
-		panelInhalt.add(textFieldVorname);
+	panelInhalt.add(labelVorname);panelInhalt.add(textFieldVorname);
 
-		panelInhalt.add(labelNachname);
-		panelInhalt.add(textFieldNachname);
+	panelInhalt.add(labelNachname);panelInhalt.add(textFieldNachname);
 
-		panelInhalt.add(labelGeburtsdatum);
-		panelInhalt.add(textFieldGeburtsdatum);
+	panelInhalt.add(labelGeburtsdatum);panelInhalt.add(textFieldGeburtsdatum);
 
-		panelInhalt.add(labelWohnort);
-		panelInhalt.add(textFieldWohnort);
+	panelInhalt.add(labelWohnort);panelInhalt.add(textFieldWohnort);
 
-		panelInhalt.add(labelPlz);
-		panelInhalt.add(textFieldPlz);
+	panelInhalt.add(labelPlz);panelInhalt.add(textFieldPlz);
 
-		panelInhalt.add(labelStrasse);
-		panelInhalt.add(textFieldStrasse);
+	panelInhalt.add(labelStrasse);panelInhalt.add(textFieldStrasse);
 
-		panelInhalt.add(labelHausNr);
-		panelInhalt.add(textFieldHausNr);
+	panelInhalt.add(labelHausNr);panelInhalt.add(textFieldHausNr);
 
-		panelInhalt.add(labelLeer);
-		panelInhalt.add(buttonRegistrieren);
+	panelInhalt.add(labelLeer);panelInhalt.add(buttonRegistrieren);
 
-		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
+	labelTitel.setFont(new Font("Arial",Font.PLAIN,55));
 
-		add(panelInhalt, BorderLayout.CENTER);
+	add(panelInhalt, BorderLayout.CENTER);
 		add(panelKopfzeile, BorderLayout.NORTH);
 
 		panelKopfzeile.add(labelTitel, BorderLayout.NORTH);
