@@ -7,7 +7,7 @@ import gui.PanelHome;
 public class MainFrameTester {
 
 	public static void main(String[] args) {
-		//MainFrame br1 = new MainFrame();
+		MainFrame br1 = new MainFrame();
 
 		// MainFrame br1 = new MainFrame();
 		// br1.getContentPane().removeAll();
@@ -15,8 +15,8 @@ public class MainFrameTester {
 		// "nachname", 1));
 		// br1.getContentPane().revalidate();
 
-		PanelHome ph = new PanelHome(1);
-		ph.createRechnungCheckBoxes(2);
+		// PanelHome ph = new PanelHome(1);
+		//	ph.createRechnungCheckBoxes(2);
 	}
 
 }
