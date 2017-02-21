@@ -55,9 +55,8 @@ public class PanelHome extends JPanel {
 		westBoxHome.add(labelKartennummerHome);
 		westBoxHome.add(labelKontostandHome);
 
-		panelRechnungenListeRandHome.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
-		panelRechnungenListeHome.setBorder(BorderFactory.createEtchedBorder(5, Color.BLACK, Color.BLACK));
 		panelRechnungenBezahlenHome.setBorder(BorderFactory.createEmptyBorder(30, 150, 200, 100));
+		panelRechnungenListeHome.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 		setBorder(BorderFactory.createEmptyBorder(10, 70, 0, 0));
 		
 		for (JCheckBox checkboxHome : this.createRechnungCheckBoxes(kartennummer)) {

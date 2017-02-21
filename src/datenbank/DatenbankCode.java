@@ -151,7 +151,7 @@ public class DatenbankCode {
 				arrayRechnungen.add(rechnung);
 			}
 		} catch (SQLException sqlexc) {
-			throw new RuntimeException();
+			throw new RuntimeException(sqlexc);
 		}
 		return arrayRechnungen;
 	}
