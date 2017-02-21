@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import gui.MainFrame;
 
@@ -51,7 +52,7 @@ public class DatenbankCode {
 		}
 	}
 
-	private static int getKontoIdByKartennummerOrNull(int kartennummer) {
+	public static int getKontoIdByKartennummerOrNull(int kartennummer) {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT id FROM databaseonlinebanking.konto WHERE kartennummer = ?";
@@ -132,5 +133,60 @@ public class DatenbankCode {
 			throw new RuntimeException();
 		}
 		return -1;
+	}
+
+	public static ArrayList<Rechnung> getRechnungVonDatenbank(int konto_id) {
+		ArrayList<Rechnung> arrayRechnungen = new ArrayList<Rechnung>();
+		try {
+			Connection con = ConnectionFactory.getInstance().getConnection();
+			String sql = "SELECT versender, betrag, konto_id FROM databaseonlinebanking.rechnung WHERE konto_id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, konto_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Rechnung rechnung = new Rechnung();
+				rechnung.setKartennummer(rs.getInt("versender"));
+				rechnung.setBetrag(rs.getDouble("betrag"));
+				rechnung.setKonto_id(rs.getInt("konto_id"));
+				arrayRechnungen.add(rechnung);
+			}
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException();
+		}
+		return arrayRechnungen;
+	}
+
+	public static Konto getVorUndNachnameVonDatenbankByKartennummer(int kartennummerVersender) {
+		Konto konto = new Konto();
+		try {
+			Connection con = ConnectionFactory.getInstance().getConnection();
+			String sql = "SELECT vorname, name FROM databaseonlinebanking.konto WHERE kartennummer = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, kartennummerVersender);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				konto.setVorname(rs.getString("vorname"));
+				konto.setName(rs.getString("name"));
+			}
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException();
+		}
+		return konto;
+	}
+	
+	public static int getAnzahlOfKontoIdVonRechnung(int myKonto_id) {
+	try {
+	Connection con = ConnectionFactory.getInstance().getConnection();
+	String sql = "SELECT COUNT(konto_id) AS anzahlKontoId FROM databaseonlinebanking.rechnung WHERE konto_id = ?";
+	PreparedStatement ps = con.prepareStatement(sql);
+	ps.setInt(1, myKonto_id);
+	ResultSet rs = ps.executeQuery();
+	while (rs.next()) {
+	return rs.getInt("anzahlKontoId");
+	}
+	} catch (SQLException sqlexc) {
+	throw new RuntimeException();
+	}
+	return -1;
 	}
 }

@@ -5,7 +5,7 @@ public class Rechnung {
 	int id;
 	int kartennummer;
 	double betrag;
-	String password;
+	int konto_id;
 
 	public int getId() {
 		return id;
@@ -31,11 +31,20 @@ public class Rechnung {
 		this.betrag = betrag;
 	}
 
+	public int getKonto_id() {
+		return konto_id;
+	}
+
+	public void setKonto_id(int konto_id) {
+		this.konto_id = konto_id;
+	}
+
 	public String toString(){
 		String result = "";
 		result += this.getId() + " ";
 		result += this.getKartennummer() + " ";
 		result += this.getBetrag() + " ";
+		result += this.getKonto_id();
 		return result;
 	}
 }
