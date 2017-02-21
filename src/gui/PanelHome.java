@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -53,16 +54,18 @@ public class PanelHome extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				try {
-					DatenbankCode.setKontostandByKartennummer(kartennummer, summeRechnungen, "auszahlen", mainFrame);
 					for (JCheckBox checkBox : allCheckBoxHome) {
 						if (checkBox.isSelected()){
 							int checkBoxId = (int) checkBox.getClientProperty("id");
 							double checkBoxBetrag = (double) checkBox.getClientProperty("betrag");
+							int checkBoxVersender = (int) checkBox.getClientProperty("versender");
 							DatenbankCode.deleteRechnungById(checkBoxId);
-						DatenbankCode.ueberweiseBezahlteRechnungByKartennummer(kartennummer, checkBoxBetrag);
+							DatenbankCode.setKontostandByKartennummer(kartennummer, summeRechnungen, "auszahlen", mainFrame);
+							DatenbankCode.ueberweiseBezahlteRechnungByKartennummer(checkBoxVersender, checkBoxBetrag);
 						}
 					}
 					JOptionPane.showMessageDialog(mainFrame, "Die Rechnung(en) wurden erfolgreich bezahlt!", "Rechnungen wurden bezahlt!", JOptionPane.INFORMATION_MESSAGE);
+					mainFrame.refresh(DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(kartennummer).getVorname(), DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(kartennummer).getName(), kartennummer);
 				} catch (Exception exc) {
 					Fehlermeldung.openFehlermeldungDialog("Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!", mainFrame);
 				}
@@ -105,6 +108,7 @@ public class PanelHome extends JPanel {
 			konto = DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(rechnung.getKartennummer());
 			JCheckBox chbox = new JCheckBox(rechnung.getBetrag() + " CHF " + konto.getVorname() + " " + konto.getName());
 			chbox.putClientProperty("id", rechnung.getId());
+			chbox.putClientProperty("versender", rechnung.getKartennummer());
 			chbox.putClientProperty("betrag", rechnung.getBetrag());
 			chbox.addItemListener(new ItemListener(){
 				

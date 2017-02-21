@@ -81,8 +81,7 @@ public class DatenbankCode {
 		}
 	}
 
-	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen,
-			MainFrame mainFrame) throws Exception {
+	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen, MainFrame mainFrame) throws Exception {
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
@@ -100,8 +99,7 @@ public class DatenbankCode {
 				if ((kontostand - betrag) >= 0) {
 					kontostand -= betrag;
 				} else {
-					throw new Exception(
-							"Der Betrag konnte nicht ausgezahlt werden, da Sie zu wenig Geld auf Ihrem Konto haben!");
+					throw new Exception("Der Betrag konnte nicht ausgezahlt werden, da Sie zu wenig Geld auf Ihrem Konto haben!");
 				}
 			} else {
 				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen
@@ -205,14 +203,17 @@ public class DatenbankCode {
 	
 	public static void ueberweiseBezahlteRechnungByKartennummer(int kartennummer, double betrag) {
 		try {
+			double kontostand = DatenbankCode.getKontostandVonDatenbank(kartennummer);
+			kontostand += betrag;
 			Connection con = ConnectionFactory.getInstance().getConnection();
-			String sql = "INSERT INTO databaseonlinebanking.konto (kontostand) VALUES (?) WHERE kartennummer = ?";
+			String sql = "UPDATE databaseonlinebanking.konto SET kontostand = ? WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setDouble(1, betrag);
+			ps.setDouble(1, kontostand);
 			ps.setInt(2, kartennummer);
 			ps.executeUpdate();
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException();
+			
 		}
 	}
 }

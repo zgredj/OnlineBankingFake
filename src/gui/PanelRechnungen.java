@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -19,7 +20,7 @@ import fehlermeldung.Fehlermeldung;
 public class PanelRechnungen extends JPanel {
 
 	JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
-	JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empf√§ngers");
+	JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empf‰ngers");
 	JLabel labelBetragRechnungen = new JLabel("Betrag ");
 	JLabel labelPasswordRechnungen = new JLabel("Passwort ");
 
@@ -95,6 +96,8 @@ public class PanelRechnungen extends JPanel {
 				textFieldBetragRechnungen.setText("");
 				textFieldKartennummerRechnungen.setText("");
 				textFieldPasswordRechnungen.setText("");
+				
+				JOptionPane.showMessageDialog(mainFrame, "Die Rechnung wurde erfolgreich erstellt!", "Rechnung erstellt!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
