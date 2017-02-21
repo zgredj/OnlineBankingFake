@@ -139,12 +139,13 @@ public class DatenbankCode {
 		ArrayList<Rechnung> arrayRechnungen = new ArrayList<Rechnung>();
 		try {
 			Connection con = ConnectionFactory.getInstance().getConnection();
-			String sql = "SELECT versender, betrag, konto_id FROM databaseonlinebanking.rechnung WHERE konto_id = ?";
+			String sql = "SELECT id, versender, betrag, konto_id FROM databaseonlinebanking.rechnung WHERE konto_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, konto_id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Rechnung rechnung = new Rechnung();
+				rechnung.setId(rs.getInt("id"));
 				rechnung.setKartennummer(rs.getInt("versender"));
 				rechnung.setBetrag(rs.getDouble("betrag"));
 				rechnung.setKonto_id(rs.getInt("konto_id"));
@@ -173,20 +174,33 @@ public class DatenbankCode {
 		}
 		return konto;
 	}
-	
+
 	public static int getAnzahlOfKontoIdVonRechnung(int myKonto_id) {
-	try {
-	Connection con = ConnectionFactory.getInstance().getConnection();
-	String sql = "SELECT COUNT(konto_id) AS anzahlKontoId FROM databaseonlinebanking.rechnung WHERE konto_id = ?";
-	PreparedStatement ps = con.prepareStatement(sql);
-	ps.setInt(1, myKonto_id);
-	ResultSet rs = ps.executeQuery();
-	while (rs.next()) {
-	return rs.getInt("anzahlKontoId");
+		try {
+			Connection con = ConnectionFactory.getInstance().getConnection();
+			String sql = "SELECT COUNT(konto_id) AS anzahlKontoId FROM databaseonlinebanking.rechnung WHERE konto_id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, myKonto_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return rs.getInt("anzahlKontoId");
+			}
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException();
+		}
+		return -1;
 	}
-	} catch (SQLException sqlexc) {
-	throw new RuntimeException();
-	}
-	return -1;
+
+	public static void deleteRechnungById(int id) {
+		try {
+			Connection con = ConnectionFactory.getInstance().getConnection();
+			String sql = "DELETE FROM databaseonlinebanking.rechnung WHERE id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException();
+		}
+
 	}
 }
