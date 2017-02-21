@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import datenbank.DatenbankCode;
 import datenbank.Konto;
@@ -22,10 +24,10 @@ public class PanelHome extends JPanel {
 
 	JPanel panelRechnungenListeHome = new JPanel();
 	JPanel westBoxHome = new JPanel();
-	JPanel rechnungenBezahlenHome = new JPanel(new BorderLayout());
+	JPanel panelRechnungenBezahlenHome = new JPanel(new BorderLayout());
 	JPanel panelRechnungenListeRandHome = new JPanel(new BorderLayout());
 
-	JButton buttonRechnungenBezahlenHome = new JButton("Bezahlen");
+	JButton buttonpanelRechnungenBezahlenHome = new JButton("Bezahlen");
 
 	public PanelHome(int kartennummer) {
 
@@ -39,16 +41,15 @@ public class PanelHome extends JPanel {
 		setLayout(new BorderLayout());
 		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
 
-		rechnungenBezahlenHome.add(labelOffeneRechnungenHome, BorderLayout.NORTH);
-		rechnungenBezahlenHome.add(panelRechnungenListeRandHome, BorderLayout.CENTER);
-		rechnungenBezahlenHome.add(buttonRechnungenBezahlenHome, BorderLayout.SOUTH);
+		panelRechnungenBezahlenHome.add(labelOffeneRechnungenHome, BorderLayout.NORTH);
+		panelRechnungenBezahlenHome.add(buttonpanelRechnungenBezahlenHome, BorderLayout.SOUTH);
 
 		panelRechnungenListeRandHome.add(panelRechnungenListeHome);
 
 		westBoxHome.setLayout(new BoxLayout(westBoxHome, BoxLayout.PAGE_AXIS));
 		panelRechnungenListeHome.setLayout(new BoxLayout(panelRechnungenListeHome, BoxLayout.Y_AXIS));
 
-		add(rechnungenBezahlenHome, BorderLayout.EAST);
+		add(panelRechnungenBezahlenHome, BorderLayout.EAST);
 		add(westBoxHome, BorderLayout.WEST);
 
 		westBoxHome.add(labelKartennummerHome);
@@ -56,8 +57,16 @@ public class PanelHome extends JPanel {
 
 		panelRechnungenListeRandHome.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 		panelRechnungenListeHome.setBorder(BorderFactory.createEtchedBorder(5, Color.BLACK, Color.BLACK));
-		rechnungenBezahlenHome.setBorder(BorderFactory.createEmptyBorder(30, 150, 200, 100));
+		panelRechnungenBezahlenHome.setBorder(BorderFactory.createEmptyBorder(30, 150, 200, 100));
 		setBorder(BorderFactory.createEmptyBorder(10, 70, 0, 0));
+		
+		for (JCheckBox checkboxHome : this.createRechnungCheckBoxes(kartennummer)) {
+			panelRechnungenListeHome.add(checkboxHome);
+		}
+
+		JScrollPane scrollPane = new JScrollPane(panelRechnungenListeHome);
+		scrollPane.setPreferredSize(new Dimension(100, 300));
+		panelRechnungenBezahlenHome.add(scrollPane, BorderLayout.CENTER);
 	}
 
 	public ArrayList<JCheckBox> createRechnungCheckBoxes(int kartennummer) {
