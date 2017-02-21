@@ -11,8 +11,7 @@ public class MainFrameTester {
 
 		 MainFrame br1 = new MainFrame();
 		 br1.getContentPane().removeAll();
-		 br1.getContentPane().add(new LayoutEingeloggt(br1, "Vorname",
-		 "nachname", 1));
+		 br1.getContentPane().add(new LayoutEingeloggt(br1, "Vorname", "nachname", 1));
 		 br1.getContentPane().revalidate();
 
 		 //PanelHome ph = new PanelHome(1);
