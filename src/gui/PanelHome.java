@@ -70,7 +70,7 @@ public class PanelHome extends JPanel {
 					
 					navigator.navigate(EnumGui.LayoutEingeloggt);
 				} catch (OnlineBankingException exc) {
-					fehlermeldung.openFehlermeldungDialog(new Translator().translate(exc.getErrorCode())); // "Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!"
+					fehlermeldung.openFehlermeldungDialog("Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!");
 				}
 			}
 		});
