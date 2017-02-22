@@ -60,7 +60,7 @@ public class RechnungJDBCDao {
 		}
 	}
 
-	public Rechnung getRechnungFromResultSet(ResultSet rs) throws SQLException {
+	private Rechnung getRechnungFromResultSet(ResultSet rs) throws SQLException {
 		Rechnung r = new Rechnung();
 		r.setId(rs.getInt("id"));
 		r.setKartennummer(rs.getInt("kartennummer"));

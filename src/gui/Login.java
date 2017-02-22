@@ -19,54 +19,52 @@ import javax.swing.JTextField;
 
 import datenbank.ConnectionFactory;
 import datenbank.DatenbankCode;
+import datenbank.User;
 import fehlermeldung.Fehlermeldung;
+import util.Helper;
 
 public class Login extends JPanel {
 
-	public Login(final MainFrame mainFrame) {
+	private JLabel labelLogin = new JLabel("Login");
+	private JLabel labelBbcBank = new JLabel("BBC BANK");
+	private JLabel labelKartennummer = new JLabel("Kartennummer:");
+	private JLabel labelPasswort = new JLabel("Passwort:");
+	private JLabel labelText = new JLabel("Noch kein Benutzerkonto?");
+	
+	private JPanel panelSeite = new JPanel();
+	private JPanel panelLogin = new JPanel(new BorderLayout());
+	private JPanel panelTitel = new JPanel(new BorderLayout());
+	private JPanel panelButtonLogin = new JPanel(new BorderLayout());
+	private JPanel panelText = new JPanel(new BorderLayout());
+	private JPanel panelButtonRegistrieren = new JPanel(new BorderLayout());
+	private JPanel panelTitelLogin = new JPanel(new BorderLayout());
+	private JPanel panelPlatzhalter = new JPanel();
+	private JPanel panelKartennummerPasswortLogin = new JPanel();
+	private JPanel panelTextRegistrieren = new JPanel();
+     
+	private JButton buttonLogin = new JButton("Login");
+	private JButton buttonRegistrieren = new JButton("Registrieren");
+     
+	private JTextField textFieldKartennummer = new JTextField(17);
+	private JPasswordField textFieldPasswort = new JPasswordField(20);
 
-		JPanel panelSeite = new JPanel();
-		JPanel panelLogin = new JPanel(new BorderLayout());
-		JPanel panelTitel = new JPanel(new BorderLayout());
-		JPanel panelButtonLogin = new JPanel(new BorderLayout());
-		JPanel panelText = new JPanel(new BorderLayout());
-		JPanel panelButtonRegistrieren = new JPanel(new BorderLayout());
-		JPanel panelTitelLogin = new JPanel(new BorderLayout());
-		JPanel panelPlatzhalter = new JPanel();
-		JPanel panelKartennummerPasswortLogin = new JPanel();
-		JPanel panelTextRegistrieren = new JPanel();
-
-		JLabel labelLogin = new JLabel("Login");
-		JLabel labelBbcBank = new JLabel("BBC BANK");
-		JLabel labelKartennummer = new JLabel("Kartennummer:");
-		JLabel labelPasswort = new JLabel("Passwort:");
-		JLabel labelText = new JLabel("Noch kein Benutzerkonto?");
-
-		JButton buttonLogin = new JButton("Login");
-		JButton buttonRegistrieren = new JButton("Registrieren");
-
-		final JTextField textFieldKartennummer = new JTextField(17);
-		final JPasswordField textFieldPasswort = new JPasswordField(20);
+	
+	public Login(final Navigator navigator, Fehlermeldung fehlermeldung) {
 
 		labelBbcBank.setFont(new Font("Arial", Font.PLAIN, 80));
-
-		panelTitel.add(labelBbcBank, BorderLayout.CENTER);
-
-		panelSeite.setLayout(new BorderLayout());
-
 		labelLogin.setFont(new Font("Arial", Font.PLAIN, 50));
-		panelLogin.add(labelLogin, BorderLayout.CENTER);
 		labelKartennummer.setFont(new Font("Arial", Font.PLAIN, 16));
-		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));
-
+		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));		
+		
+		panelTitel.add(labelBbcBank, BorderLayout.CENTER);
+		panelSeite.setLayout(new BorderLayout());		
+		panelLogin.add(labelLogin, BorderLayout.CENTER);
 		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
-
 		panelText.add(labelText);
 		panelButtonRegistrieren.add(buttonRegistrieren);
 		panelTitelLogin.add(panelTitel, BorderLayout.NORTH);
 		panelTitelLogin.add(panelLogin, BorderLayout.SOUTH);
-
 		panelKartennummerPasswortLogin.setLayout(new GridLayout(4, 2));
 		panelKartennummerPasswortLogin.add(labelKartennummer);
 		panelKartennummerPasswortLogin.add(textFieldKartennummer);
@@ -77,7 +75,6 @@ public class Login extends JPanel {
 		panelKartennummerPasswortLogin.setBorder(BorderFactory.createEmptyBorder(40, 0, 370, 200));
 		panelTextRegistrieren.add(panelText, BorderLayout.NORTH);
 		panelTextRegistrieren.add(panelButtonRegistrieren, BorderLayout.SOUTH);
-
 		panelSeite.add(panelTitelLogin, BorderLayout.NORTH);
 		panelSeite.add(panelKartennummerPasswortLogin, BorderLayout.CENTER);
 		panelSeite.add(panelTextRegistrieren, BorderLayout.SOUTH);
@@ -86,40 +83,21 @@ public class Login extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 
-				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
+				int kartennummer = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
-					Fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!");
 					textFieldKartennummer.setText("");
 					return;
 				}
 
 				String passwort = new String(textFieldPasswort.getPassword());
-
 				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(kartennummer);
-
-				String vorname = "Vorname";
-				String nachname = "Nachname";
-
-				try {
-					Connection con = ConnectionFactory.getInstance().getConnection();
-					String sql = "SELECT name, vorname FROM databaseonlinebanking.konto WHERE kartennummer = ?";
-					PreparedStatement ps = con.prepareStatement(sql);
-					ps.setInt(1, kartennummer);
-					ResultSet rs = ps.executeQuery();
-					while (rs.next()) {
-						nachname = rs.getString("name");
-						vorname = rs.getString("vorname");
-					}
-				} catch (SQLException sqlexc) {
-					throw new RuntimeException(sqlexc);
-				}
-
+			
 				if (passwort.equals(passwortVonDatenbank)) {
-					mainFrame.getContentPane().removeAll();
-					mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame, vorname, nachname, kartennummer));
-					mainFrame.getContentPane().revalidate();
+					DatenbankCode.setAllUserInformationsByKartennummer(kartennummer);
+					navigator.navigate(EnumGui.LayoutEingeloggt);
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!");
 					textFieldPasswort.setText("");
 				}
 			}
@@ -128,13 +106,10 @@ public class Login extends JPanel {
 		buttonRegistrieren.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new Registrieren(mainFrame));
-				mainFrame.getContentPane().revalidate();
+				navigator.navigate(EnumGui.Registrieren);
 			}
 		});
 
 		add(panelSeite);
-
 	}
 }

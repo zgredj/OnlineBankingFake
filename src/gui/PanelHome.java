@@ -1,14 +1,12 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -16,38 +14,41 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import datenbank.DatenbankCode;
 import datenbank.Konto;
 import datenbank.Rechnung;
+import datenbank.User;
 import fehlermeldung.Fehlermeldung;
+import fehlermeldung.OnlineBankingException;
 
 public class PanelHome extends JPanel {
 
-	JLabel labelOffeneRechnungenHome = new JLabel("Offene Rechnungen");
-
-	JPanel panelRechnungenListeHome = new JPanel();
-	JPanel westBoxHome = new JPanel();
-	JPanel panelRechnungenBezahlenHome = new JPanel(new BorderLayout());
-	JPanel panelRechnungenListeRandHome = new JPanel(new BorderLayout());
-
-	JButton buttonRechnungenBezahlenHome = new JButton("Bezahlen");
-
-	long summeRechnungen = 0;
+	private JLabel labelOffeneRechnungenHome = new JLabel("Offene Rechnungen");
+     
+	private JPanel panelRechnungenListeHome = new JPanel();
+	private JPanel panelWestBoxHome = new JPanel();
+	private JPanel panelRechnungenBezahlenHome = new JPanel(new BorderLayout());
+	private JPanel panelRechnungenListeRandHome = new JPanel(new BorderLayout());
+     
+	private JButton buttonRechnungenBezahlenHome = new JButton("Bezahlen");
+     
+	private long summeRechnungen = 0;
 	
-	public PanelHome(int kartennummer, MainFrame mainFrame) {
-		ArrayList<JCheckBox> allCheckBoxHome = this.createRechnungCheckBoxes(kartennummer); 
+	public PanelHome(Fehlermeldung fehlermeldung, Navigator navigator, User user) {
 		
-		JLabel labelKartennummerHome = new JLabel("Kartenummer:      " + kartennummer);
-		JLabel labelKontostandHome = new JLabel("Kontostand:         " + DatenbankCode.getKontostandVonDatenbank(kartennummer) + " CHF");
+		setLayout(new BorderLayout());
+		
+		ArrayList<JCheckBox> allCheckBoxHome = this.createRechnungCheckBoxes(user.getKartennummer()); 
+		
+		JLabel labelKartennummerHome = new JLabel("Kartenummer:      " + user.getKartennummer());
+		JLabel labelKontostandHome = new JLabel("Kontostand:         " + DatenbankCode.getKontostandVonDatenbank(user.getKartennummer()) + " CHF");
 
 		labelKartennummerHome.setFont(new Font("Arial", Font.PLAIN, 20));
 		labelKontostandHome.setFont(new Font("Arial", Font.PLAIN, 20));
-
-		setLayout(new BorderLayout());
+		
 		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
 
 		buttonRechnungenBezahlenHome.addActionListener(new ActionListener() {
@@ -60,14 +61,16 @@ public class PanelHome extends JPanel {
 							double checkBoxBetrag = (double) checkBox.getClientProperty("betrag");
 							int checkBoxVersender = (int) checkBox.getClientProperty("versender");
 							DatenbankCode.deleteRechnungById(checkBoxId);
-							DatenbankCode.setKontostandByKartennummer(kartennummer, summeRechnungen, "auszahlen", mainFrame);
+							DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), summeRechnungen, "auszahlen");
 							DatenbankCode.ueberweiseBezahlteRechnungByKartennummer(checkBoxVersender, checkBoxBetrag);
 						}
 					}
-					JOptionPane.showMessageDialog(mainFrame, "Die Rechnung(en) wurden erfolgreich bezahlt!", "Rechnungen wurden bezahlt!", JOptionPane.INFORMATION_MESSAGE);
-					mainFrame.refresh(DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(kartennummer).getVorname(), DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(kartennummer).getName(), kartennummer);
-				} catch (Exception exc) {
-					Fehlermeldung.openFehlermeldungDialog("Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!", mainFrame);
+					
+					fehlermeldung.openInfoDialog("Die Rechnung(en) wurden erfolgreich bezahlt!", "Rechnungen wurden bezahlt!");
+					
+					navigator.navigate(EnumGui.LayoutEingeloggt);
+				} catch (OnlineBankingException exc) {
+					fehlermeldung.openFehlermeldungDialog(new Translator().translate(exc.getErrorCode())); // "Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!"
 				}
 			}
 		});
@@ -76,15 +79,15 @@ public class PanelHome extends JPanel {
 		panelRechnungenBezahlenHome.add(buttonRechnungenBezahlenHome, BorderLayout.SOUTH);
 
 		panelRechnungenListeRandHome.add(panelRechnungenListeHome);
-
-		westBoxHome.setLayout(new BoxLayout(westBoxHome, BoxLayout.PAGE_AXIS));
+		
 		panelRechnungenListeHome.setLayout(new BoxLayout(panelRechnungenListeHome, BoxLayout.Y_AXIS));
 
+		panelWestBoxHome.add(labelKartennummerHome);
+		panelWestBoxHome.add(labelKontostandHome);
+		panelWestBoxHome.setLayout(new BoxLayout(panelWestBoxHome, BoxLayout.PAGE_AXIS));
+		
 		add(panelRechnungenBezahlenHome, BorderLayout.EAST);
-		add(westBoxHome, BorderLayout.WEST);
-
-		westBoxHome.add(labelKartennummerHome);
-		westBoxHome.add(labelKontostandHome);
+		add(panelWestBoxHome, BorderLayout.WEST);
 
 		panelRechnungenBezahlenHome.setBorder(BorderFactory.createEmptyBorder(30, 150, 200, 100));
 		panelRechnungenListeHome.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));

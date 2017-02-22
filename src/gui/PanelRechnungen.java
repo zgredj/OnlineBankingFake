@@ -9,71 +9,62 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import datenbank.DatenbankCode;
+import datenbank.User;
 import fehlermeldung.Fehlermeldung;
+import util.Helper;
 
 public class PanelRechnungen extends JPanel {
 
-	JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
-	JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfängers");
-	JLabel labelBetragRechnungen = new JLabel("Betrag ");
-	JLabel labelPasswordRechnungen = new JLabel("Passwort ");
+	private JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
+	private JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfängers");
+	private JLabel labelBetragRechnungen = new JLabel("Betrag ");
+	private JLabel labelPasswordRechnungen = new JLabel("Passwort ");
 
-	JTextField textFieldKartennummerRechnungen = new JTextField(10);
-	JTextField textFieldBetragRechnungen = new JTextField(10);
-	JPasswordField textFieldPasswordRechnungen = new JPasswordField(10);
+	private JTextField textFieldKartennummerRechnungen = new JTextField(10);
+	private JTextField textFieldBetragRechnungen = new JTextField(10);
+	private JPasswordField textFieldPasswordRechnungen = new JPasswordField(10);
 
-	JButton buttonAbsendenRechnungen = new JButton("absenden");
+	private JButton buttonAbsendenRechnungen = new JButton("absenden");
 
-	JPanel panelCenterMenuRechnungen = new JPanel(new BorderLayout());
-	JPanel panelNorthMenuRechnungen = new JPanel(new BorderLayout());
-	JPanel panelKartennummerRechnungen = new JPanel();
-	JPanel panelBetragRechnungen = new JPanel();
-	JPanel panelPasswordRechnungen = new JPanel();
-	JPanel panelRechnungenErstellen = new JPanel(new BorderLayout());
-	JPanel panelBoxRechnungen = new JPanel();
+	private JPanel panelCenterMenuRechnungen = new JPanel(new BorderLayout());
+	private JPanel panelNorthMenuRechnungen = new JPanel(new BorderLayout());
+	private JPanel panelKartennummerRechnungen = new JPanel();
+	private JPanel panelBetragRechnungen = new JPanel();
+	private JPanel panelPasswordRechnungen = new JPanel();
+	private JPanel panelRechnungenErstellen = new JPanel(new BorderLayout());
+	private JPanel panelBoxRechnungen = new JPanel();
 
-	public PanelRechnungen(final MainFrame mainFrame, final int kartennummer) {
+	public PanelRechnungen(final Fehlermeldung fehlermeldung, User user) {
+
+		setBorder(BorderFactory.createEmptyBorder(40, 100, 300, 200));
 		labelRechnungenerstellen.setFont(new Font("Arial", Font.PLAIN, 30));
-
-		panelKartennummerRechnungen.setLayout(new BoxLayout(panelKartennummerRechnungen, BoxLayout.PAGE_AXIS));
-		panelBetragRechnungen.setLayout(new BoxLayout(panelBetragRechnungen, BoxLayout.PAGE_AXIS));
-		panelPasswordRechnungen.setLayout(new BoxLayout(panelPasswordRechnungen, BoxLayout.PAGE_AXIS));
-		panelBoxRechnungen.setLayout(new BoxLayout(panelBoxRechnungen, BoxLayout.PAGE_AXIS));
-
-		panelRechnungenErstellen.add(labelRechnungenerstellen);
-
-		add(panelBoxRechnungen);
-
-		panelBoxRechnungen.add(panelRechnungenErstellen);
-		panelBoxRechnungen.add(panelCenterMenuRechnungen);
 
 		buttonAbsendenRechnungen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int kartennummerEmpfaenger = -1;
-				int kartennummerEmpfaengerUnchecked = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
+				int kartennummerEmpfaengerUnchecked = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
 				if (kartennummerEmpfaengerUnchecked > 0) {
 					kartennummerEmpfaenger = kartennummerEmpfaengerUnchecked;
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Die eingegebene Kartennummer ist keine Zahl!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Die eingegebene Kartennummer ist keine Zahl!");
 					textFieldKartennummerRechnungen.setText("");
 					return;
 				}
 
-				if (kartennummerEmpfaenger == kartennummer) {
-					Fehlermeldung.openFehlermeldungDialog("Sie kï¿½nnen sich nicht selbst eine Rechnung stellen!", mainFrame);
+				if (kartennummerEmpfaenger == user.getKartennummer()) {
+					fehlermeldung.openFehlermeldungDialog("Sie kï¿½nnen sich nicht selbst eine Rechnung stellen!");
 					return;
 				}
 
 				String passwortUnchecked = new String(textFieldPasswordRechnungen.getPassword());
-				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(kartennummer);
+				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(user.getKartennummer());
 				if (!passwortUnchecked.equals(passwortVonDatenbank)) {
-					Fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!");
 					textFieldPasswordRechnungen.setText("");
 					return;
 				}
@@ -82,24 +73,33 @@ public class PanelRechnungen extends JPanel {
 				try {
 					betrag = Double.parseDouble(textFieldBetragRechnungen.getText());
 				} catch (NumberFormatException nfexc) {
-					Fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag muss eine Zahl sein!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Der eingegebene Betrag muss eine Zahl sein!");
 					textFieldBetragRechnungen.setText("");
 					return;
 				}
 
 				try {
-					DatenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, kartennummer, betrag, mainFrame);
+					DatenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, user.getKartennummer(), betrag);
 				} catch (Exception exc) {
-					Fehlermeldung.openFehlermeldungDialog(exc.getMessage(), mainFrame);
+					fehlermeldung.openFehlermeldungDialog(exc.getMessage());
 				}
 
 				textFieldBetragRechnungen.setText("");
 				textFieldKartennummerRechnungen.setText("");
 				textFieldPasswordRechnungen.setText("");
-				
-				JOptionPane.showMessageDialog(mainFrame, "Die Rechnung wurde erfolgreich erstellt!", "Rechnung erstellt!", JOptionPane.INFORMATION_MESSAGE);
+				fehlermeldung.openInfoDialog("Die Rechnung wurde erfolgreich erstellt!", "Rechnung erstellt!");
 			}
 		});
+
+		panelKartennummerRechnungen.setLayout(new BoxLayout(panelKartennummerRechnungen, BoxLayout.PAGE_AXIS));
+		panelBetragRechnungen.setLayout(new BoxLayout(panelBetragRechnungen, BoxLayout.PAGE_AXIS));
+		panelPasswordRechnungen.setLayout(new BoxLayout(panelPasswordRechnungen, BoxLayout.PAGE_AXIS));
+		panelBoxRechnungen.setLayout(new BoxLayout(panelBoxRechnungen, BoxLayout.PAGE_AXIS));
+
+		panelRechnungenErstellen.add(labelRechnungenerstellen);
+
+		panelBoxRechnungen.add(panelRechnungenErstellen);
+		panelBoxRechnungen.add(panelCenterMenuRechnungen);
 
 		panelCenterMenuRechnungen.add(panelKartennummerRechnungen, BorderLayout.NORTH);
 		panelCenterMenuRechnungen.add(panelNorthMenuRechnungen, BorderLayout.CENTER);
@@ -117,9 +117,10 @@ public class PanelRechnungen extends JPanel {
 		panelPasswordRechnungen.add(labelPasswordRechnungen);
 		panelPasswordRechnungen.add(textFieldPasswordRechnungen);
 
-		setBorder(BorderFactory.createEmptyBorder(40, 100, 300, 200));
 		panelCenterMenuRechnungen.setBorder(BorderFactory.createEmptyBorder(15, 0, 40, 250));
 		panelBetragRechnungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 50, 0));
 		panelPasswordRechnungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 50, 0));
+
+		add(panelBoxRechnungen);
 	}
 }

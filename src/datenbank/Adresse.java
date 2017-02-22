@@ -1,11 +1,12 @@
 package datenbank;
 
 public class Adresse {
-	int id;
-	String strasse;
-	int hausnummer;
-	String wohnort;
-	int plz;
+	
+	private int id;
+	private String strasse;
+	private int hausnummer;
+	private String wohnort;
+	private int plz;
 
 	public int getId() {
 		return id;
@@ -45,15 +46,5 @@ public class Adresse {
 
 	public void setPlz(int plz) {
 		this.plz = plz;
-	}
-
-	public String toString() {
-		String result = "";
-		result += this.id + " ";
-		result += this.strasse + " ";
-		result += this.hausnummer + " ";
-		result += this.wohnort + " ";
-		result += this.plz + " ";
-		return result;
 	}
 }

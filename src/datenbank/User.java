@@ -1,30 +1,29 @@
 package datenbank;
 
-public class Konto {
-
+public class User {
+	
 	private int id;
-	private String name;
+	private String nachname;
 	private String vorname;
 	private String geburtsdatum;
 	private int kartennummer;
 	private String passwort;
 	private double kontostand;
-	private int adresse_id;
 
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNachname() {
+		return nachname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNachname(String nachname) {
+		this.nachname = nachname;
 	}
 
 	public String getVorname() {
@@ -65,13 +64,5 @@ public class Konto {
 
 	public void setKontostand(double kontostand) {
 		this.kontostand = kontostand;
-	}
-
-	public int getAdresse_id() {
-		return adresse_id;
-	}
-
-	public void setAdresse_id(int adresse_id) {
-		this.adresse_id = adresse_id;
 	}
 }

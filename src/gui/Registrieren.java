@@ -6,7 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,41 +22,41 @@ import datenbank.DatenbankCode;
 import datenbank.Konto;
 import datenbank.KontoJDBCDao;
 import fehlermeldung.Fehlermeldung;
+import util.Helper;
 
 public class Registrieren extends JPanel {
 
-	public Registrieren(final MainFrame mainFrame) {
+	private JButton buttonRegistrieren = new JButton("registrieren");
 
-		final JTextField textFieldKartennummer = new JTextField();
-		final JPasswordField textFieldPassword = new JPasswordField();
-		final JPasswordField textFieldPasswordWiederholen = new JPasswordField();
-		final JTextField textFieldVorname = new JTextField();
-		final JTextField textFieldNachname = new JTextField();
-		final JTextField textFieldGeburtsdatum = new JTextField();
-		final JTextField textFieldWohnort = new JTextField();
-		final JTextField textFieldPlz = new JTextField();
-		final JTextField textFieldStrasse = new JTextField();
-		final JTextField textFieldHausNr = new JTextField();
+	private JTextField textFieldKartennummer = new JTextField();
+	private JPasswordField textFieldPassword = new JPasswordField();
+	private JPasswordField textFieldPasswordWiederholen = new JPasswordField();
+	private JTextField textFieldVorname = new JTextField();
+	private JTextField textFieldNachname = new JTextField();
+	private JTextField textFieldGeburtsdatum = new JTextField();
+	private JTextField textFieldWohnort = new JTextField();
+	private JTextField textFieldPlz = new JTextField();
+	private JTextField textFieldStrasse = new JTextField();
+	private JTextField textFieldHausNr = new JTextField();
 
-		JLabel labelTitel = new JLabel("Neues Benutzerkonto");
+	private JLabel labelTitel = new JLabel("Neues Benutzerkonto");
+	private JLabel labelKartennummer = new JLabel("Kartennummer");
+	private JLabel labelPassword = new JLabel("Passwort");
+	private JLabel labelPasswordWiederholen = new JLabel("Passwort wiederholen");
+	private JLabel labelVorname = new JLabel("Vorname");
+	private JLabel labelNachname = new JLabel("Nachname");
+	private JLabel labelGeburtsdatum = new JLabel("Geburtsdatum");
+	private JLabel labelWohnort = new JLabel("Wohnort");
+	private JLabel labelPlz = new JLabel("PLZ");
+	private JLabel labelStrasse = new JLabel("Strasse");
+	private JLabel labelHausNr = new JLabel("Haus Nr.");
+	private JLabel labelLeer = new JLabel(" ");
 
-		JLabel labelKartennummer = new JLabel("Kartennummer");
-		JLabel labelPassword = new JLabel("Passwort");
-		JLabel labelPasswordWiederholen = new JLabel("Passwort wiederholen");
-		JLabel labelVorname = new JLabel("Vorname");
-		JLabel labelNachname = new JLabel("Nachname");
-		JLabel labelGeburtsdatum = new JLabel("Geburtsdatum");
-		JLabel labelWohnort = new JLabel("Wohnort");
-		JLabel labelPlz = new JLabel("PLZ");
-		JLabel labelStrasse = new JLabel("Strasse");
-		JLabel labelHausNr = new JLabel("Haus Nr.");
-		JLabel labelLeer = new JLabel(" ");
+	private JPanel panelKopfzeile = new JPanel(new BorderLayout());
+	private JPanel panelInhalt = new JPanel(new GridLayout(11, 2, 30, 15));
+	private JPanel panelOsten = new JPanel(new BorderLayout());
 
-		JPanel panelKopfzeile = new JPanel(new BorderLayout());
-		JPanel panelInhalt = new JPanel(new GridLayout(11, 2, 30, 15));
-		JPanel panelOsten = new JPanel(new BorderLayout());
-
-		JButton buttonRegistrieren = new JButton("registrieren");
+	public Registrieren(final Navigator navigator, Fehlermeldung fehlermeldung) {
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
 
@@ -65,16 +65,16 @@ public class Registrieren extends JPanel {
 				KontoJDBCDao kontoJDBCDao = new KontoJDBCDao(connection);
 				Konto konto = new Konto();
 
-				int kartennummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
+				int kartennummer = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
-					Fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!");
 					textFieldKartennummer.setText("");
 					return;
 				} else {
 					if (!DatenbankCode.istKartennummerVorhanden(kartennummer)) {
 						konto.setKartennummer(kartennummer);
 					} else {
-						Fehlermeldung.openFehlermeldungDialog("Die Kartennummer ist schon Vorhanden!", mainFrame);
+						fehlermeldung.openFehlermeldungDialog("Die Kartennummer ist schon Vorhanden!");
 						textFieldKartennummer.setText("");
 						return;
 					}
@@ -86,11 +86,11 @@ public class Registrieren extends JPanel {
 					if (passwort.length() <= 45) {
 						passwort1 = passwort;
 					} else {
-						Fehlermeldung.openFehlermeldungDialog("Das Passwort ist zu lang!", mainFrame);
+						fehlermeldung.openFehlermeldungDialog("Das Passwort ist zu lang!");
 						return;
 					}
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Es muss ein Passwort eingegeben werden!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Passwort eingegeben werden!");
 					textFieldPasswordWiederholen.setText("");
 					return;
 				}
@@ -98,8 +98,7 @@ public class Registrieren extends JPanel {
 				if (passwort1.equals(passwort2)) {
 					konto.setPasswort(passwort1);
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passw�rter stimmen nicht �berein!",
-							mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passw�rter stimmen nicht �berein!");
 					textFieldPassword.setText("");
 					textFieldPasswordWiederholen.setText("");
 					return;
@@ -110,11 +109,11 @@ public class Registrieren extends JPanel {
 					if (vorname.length() <= 45) {
 						konto.setVorname(vorname);
 					} else {
-						Fehlermeldung.openFehlermeldungDialog("Der Vorname ist zu lang!", mainFrame);
+						fehlermeldung.openFehlermeldungDialog("Der Vorname ist zu lang!");
 						return;
 					}
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Es muss ein Vorname eingegeben werden!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Vorname eingegeben werden!");
 					return;
 				}
 
@@ -123,11 +122,11 @@ public class Registrieren extends JPanel {
 					if (nachname.length() <= 45) {
 						konto.setName(nachname);
 					} else {
-						Fehlermeldung.openFehlermeldungDialog("Der Nachname ist zu lang!", mainFrame);
+						fehlermeldung.openFehlermeldungDialog("Der Nachname ist zu lang!");
 						return;
 					}
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Es muss ein Nachname eingegeben werden!", mainFrame); 
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Nachname eingegeben werden!");
 					return;
 				}
 
@@ -136,11 +135,11 @@ public class Registrieren extends JPanel {
 					if (geburtsdatum.length() <= 10) {
 						konto.setGeburtsdatum(geburtsdatum);
 					} else {
-						Fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!", mainFrame);
+						fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!");
 						return;
 					}
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Es muss ein Geburtsdatum eingegeben werden!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Geburtsdatum eingegeben werden!");
 					return;
 				}
 
@@ -152,17 +151,17 @@ public class Registrieren extends JPanel {
 					if (wohnort.length() <= 45) {
 						adresse.setWohnort(wohnort);
 					} else {
-						Fehlermeldung.openFehlermeldungDialog("Der Wohnort ist zu lang!", mainFrame);
+						fehlermeldung.openFehlermeldungDialog("Der Wohnort ist zu lang!");
 						return;
 					}
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Es muss ein Wohnort eingegeben werden!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Wohnort eingegeben werden!");
 					return;
 				}
 
-				int plz = mainFrame.checkDigitReturnIntOrNegativError(textFieldPlz.getText());
+				int plz = Helper.checkDigitReturnIntOrNegativError(textFieldPlz.getText());
 				if (plz < 0) {
-					Fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl sein!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl sein!");
 					textFieldPlz.setText("");
 					return;
 				} else {
@@ -174,17 +173,17 @@ public class Registrieren extends JPanel {
 					if (strasse.length() <= 45) {
 						adresse.setStrasse(strasse);
 					} else {
-						Fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!", mainFrame);
+						fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!");
 						return;
 					}
 				} else {
-					Fehlermeldung.openFehlermeldungDialog("Es muss eine Strasse eingegeben werden!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Es muss eine Strasse eingegeben werden!");
 					return;
 				}
 
-				int hausnummer = mainFrame.checkDigitReturnIntOrNegativError(textFieldHausNr.getText());
+				int hausnummer = Helper.checkDigitReturnIntOrNegativError(textFieldHausNr.getText());
 				if (hausnummer < 0) {
-					Fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl sein!", mainFrame);
+					fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl sein!");
 					textFieldHausNr.setText("");
 					return;
 				} else {
@@ -192,45 +191,50 @@ public class Registrieren extends JPanel {
 				}
 
 				kontoJDBCDao.insertKonto(konto);
-				adresseJDBCDao.insertAdresse(adresse);
+				adresseJDBCDao.insertAdresseIntoDatabase(adresse);
 
-				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new LayoutEingeloggt(mainFrame, vorname, nachname, kartennummer));
-				mainFrame.getContentPane().revalidate();
+				navigator.navigate(EnumGui.LayoutEingeloggt);
+				DatenbankCode.setAllUserInformationsByKartennummer(kartennummer);
+				
+				try {
+					connection.close();
+				} catch (SQLException e1) {
+					throw new RuntimeException();
+				}
 			}
 		});
 
-	panelInhalt.add(labelKartennummer);panelInhalt.add(textFieldKartennummer);
-
-	panelInhalt.add(labelPassword);panelInhalt.add(textFieldPassword);
-
-	panelInhalt.add(labelPasswordWiederholen);panelInhalt.add(textFieldPasswordWiederholen);
-
-	panelInhalt.add(labelVorname);panelInhalt.add(textFieldVorname);
-
-	panelInhalt.add(labelNachname);panelInhalt.add(textFieldNachname);
-
-	panelInhalt.add(labelGeburtsdatum);panelInhalt.add(textFieldGeburtsdatum);
-
-	panelInhalt.add(labelWohnort);panelInhalt.add(textFieldWohnort);
-
-	panelInhalt.add(labelPlz);panelInhalt.add(textFieldPlz);
-
-	panelInhalt.add(labelStrasse);panelInhalt.add(textFieldStrasse);
-
-	panelInhalt.add(labelHausNr);panelInhalt.add(textFieldHausNr);
-
-	panelInhalt.add(labelLeer);panelInhalt.add(buttonRegistrieren);
-
-	labelTitel.setFont(new Font("Arial",Font.PLAIN,55));
-
-	add(panelInhalt, BorderLayout.CENTER);
-		add(panelKopfzeile, BorderLayout.NORTH);
+		panelInhalt.add(labelKartennummer);
+		panelInhalt.add(textFieldKartennummer);
+		panelInhalt.add(labelPassword);
+		panelInhalt.add(textFieldPassword);
+		panelInhalt.add(labelPasswordWiederholen);
+		panelInhalt.add(textFieldPasswordWiederholen);
+		panelInhalt.add(labelVorname);
+		panelInhalt.add(textFieldVorname);
+		panelInhalt.add(labelNachname);
+		panelInhalt.add(textFieldNachname);
+		panelInhalt.add(labelGeburtsdatum);
+		panelInhalt.add(textFieldGeburtsdatum);
+		panelInhalt.add(labelWohnort);
+		panelInhalt.add(textFieldWohnort);
+		panelInhalt.add(labelPlz);
+		panelInhalt.add(textFieldPlz);
+		panelInhalt.add(labelStrasse);
+		panelInhalt.add(textFieldStrasse);
+		panelInhalt.add(labelHausNr);
+		panelInhalt.add(textFieldHausNr);
+		panelInhalt.add(labelLeer);
+		panelInhalt.add(buttonRegistrieren);
+		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
 
 		panelKopfzeile.add(labelTitel, BorderLayout.NORTH);
 		panelKopfzeile.add(panelInhalt, BorderLayout.WEST);
 		panelKopfzeile.add(panelOsten, BorderLayout.EAST);
-		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
 
+		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
+
+		add(panelInhalt, BorderLayout.CENTER);
+		add(panelKopfzeile, BorderLayout.NORTH);
 	}
 }

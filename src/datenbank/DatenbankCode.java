@@ -6,13 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import fehlermeldung.EnumErrorCode;
+import fehlermeldung.OnlineBankingException;
 import gui.MainFrame;
 
 public class DatenbankCode {
 
+	static Connection con = ConnectionFactory.getInstance().getConnection();
+
 	public static String getPasswortVonDatenbank(int kartennummer) {
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT passwort FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, kartennummer);
@@ -26,8 +29,8 @@ public class DatenbankCode {
 		return null;
 	}
 
-	public static void setRechnungVonDatenbank(int kartennummerEmpfaenger, int kartennummer, double betrag,
-			MainFrame mainFrame) throws Exception {
+	public static void setRechnungVonDatenbank(int kartennummerEmpfaenger, int kartennummer, double betrag)
+			throws Exception {
 
 		try {
 			int kontoIdEmpfaenger = -1;
@@ -38,7 +41,6 @@ public class DatenbankCode {
 				throw new Exception("Die eingegebene Kartennummer ist nicht vorhanden!");
 			}
 
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "INSERT INTO databaseonlinebanking.rechnung (versender, betrag, konto_id) VALUES (?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, kartennummer);
@@ -54,7 +56,6 @@ public class DatenbankCode {
 
 	public static int getKontoIdByKartennummerOrNull(int kartennummer) {
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT id FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, kartennummer);
@@ -65,12 +66,12 @@ public class DatenbankCode {
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
-		return -1;
+
+		throw new RuntimeException("kartennumber not found in db: " + kartennummer);
 	}
 
 	public static boolean istKartennummerVorhanden(int kartennummer) {
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT kartennummer FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, kartennummer);
@@ -81,9 +82,8 @@ public class DatenbankCode {
 		}
 	}
 
-	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen, MainFrame mainFrame) throws Exception {
+	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen) {
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, kartennummer);
@@ -99,7 +99,7 @@ public class DatenbankCode {
 				if ((kontostand - betrag) >= 0) {
 					kontostand -= betrag;
 				} else {
-					throw new Exception("Der Betrag konnte nicht ausgezahlt werden, da Sie zu wenig Geld auf Ihrem Konto haben!");
+					throw new OnlineBankingException(EnumErrorCode.CardNumberNotFoundInDB);
 				}
 			} else {
 				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen
@@ -119,7 +119,6 @@ public class DatenbankCode {
 
 	public static double getKontostandVonDatenbank(int kartennummer) {
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, kartennummer);
@@ -136,7 +135,6 @@ public class DatenbankCode {
 	public static ArrayList<Rechnung> getRechnungVonDatenbank(int konto_id) {
 		ArrayList<Rechnung> arrayRechnungen = new ArrayList<Rechnung>();
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT id, versender, betrag, konto_id FROM databaseonlinebanking.rechnung WHERE konto_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, konto_id);
@@ -158,7 +156,6 @@ public class DatenbankCode {
 	public static Konto getVorUndNachnameVonDatenbankByKartennummer(int kartennummerVersender) {
 		Konto konto = new Konto();
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT vorname, name FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, kartennummerVersender);
@@ -175,7 +172,6 @@ public class DatenbankCode {
 
 	public static int getAnzahlOfKontoIdVonRechnung(int myKonto_id) {
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "SELECT COUNT(konto_id) AS anzahlKontoId FROM databaseonlinebanking.rechnung WHERE konto_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, myKonto_id);
@@ -191,7 +187,6 @@ public class DatenbankCode {
 
 	public static void deleteRechnungById(int id) {
 		try {
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "DELETE FROM databaseonlinebanking.rechnung WHERE id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
@@ -200,12 +195,11 @@ public class DatenbankCode {
 			throw new RuntimeException();
 		}
 	}
-	
+
 	public static void ueberweiseBezahlteRechnungByKartennummer(int kartennummer, double betrag) {
 		try {
 			double kontostand = DatenbankCode.getKontostandVonDatenbank(kartennummer);
 			kontostand += betrag;
-			Connection con = ConnectionFactory.getInstance().getConnection();
 			String sql = "UPDATE databaseonlinebanking.konto SET kontostand = ? WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setDouble(1, kontostand);
@@ -213,7 +207,42 @@ public class DatenbankCode {
 			ps.executeUpdate();
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException();
-			
+
+		}
+	}
+
+	private static Konto getKontoFromResultSet(ResultSet rs) throws SQLException {
+		Konto k = new Konto();
+		k.setId(rs.getInt("id"));
+		k.setName(rs.getString("name"));
+		k.setVorname(rs.getString("vorname"));
+		k.setGeburtsdatum(rs.getString("geburtsdatum"));
+		k.setKartennummer(rs.getInt("kartennummer"));
+		k.setPasswort(rs.getString("passwort"));
+		k.setKontostand(rs.getDouble("kontostand"));
+		return k;
+	}
+	
+	public static void setAllUserInformationsByKartennummer(int kartennummer) {
+		try {
+			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, kartennummer);
+			ResultSet rs = ps.executeQuery();
+			Konto konto = new Konto();
+			while(rs.next()){
+				konto = getKontoFromResultSet(rs);
+			}
+			User user = new User();
+			user.setId(konto.getId());
+			user.setNachname(konto.getName());
+			user.setVorname(konto.getVorname());
+			user.setGeburtsdatum(konto.getGeburtsdatum());
+			user.setKartennummer(konto.getKartennummer());
+			user.setPasswort(konto.getPasswort());
+			user.setKontostand(konto.getKontostand());
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException();
 		}
 	}
 }
