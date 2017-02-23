@@ -65,7 +65,7 @@ public class LayoutEingeloggt extends JPanel {
 		buttonAusloggen.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				navigator.navigate(EnumGui.Login);
+				navigator.navigate(EnumGui.LOGIN);
 			}
 		});
 

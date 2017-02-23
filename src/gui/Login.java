@@ -94,7 +94,7 @@ public class Login extends JPanel {
 
 				if (passwort.equals(passwortVonDatenbank)) {
 					DatenbankCode.setAllUserInformationsByKartennummer(kartennummer, navigator);
-					navigator.navigate(EnumGui.LayoutEingeloggt);
+					navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 				} else {
 					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!");
 					textFieldPasswort.setText("");
@@ -105,7 +105,7 @@ public class Login extends JPanel {
 		buttonRegistrieren.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				navigator.navigate(EnumGui.Registrieren);
+				navigator.navigate(EnumGui.REGISTRIEREN);
 			}
 		});
 

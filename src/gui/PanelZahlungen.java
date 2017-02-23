@@ -132,7 +132,7 @@ public class PanelZahlungen extends JPanel {
 
 				fehlermeldung.openInfoDialog("Der Betrag wurde erfolgreich ausgezahlt!", "Betrag ausgezahlt!");
 
-				navigator.navigate(EnumGui.LayoutEingeloggt);
+				navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 			}
 		});
 
@@ -170,7 +170,7 @@ public class PanelZahlungen extends JPanel {
 
 				fehlermeldung.openInfoDialog("Der Betrag wurde erfolgreich eingezahlt!", "Betrag eingezahlt!");
 
-				navigator.navigate(EnumGui.LayoutEingeloggt);
+				navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 			}
 		});
 	}

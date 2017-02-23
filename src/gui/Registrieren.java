@@ -194,7 +194,7 @@ public class Registrieren extends JPanel {
 				adresseJDBCDao.insertAdresseIntoDatabase(adresse);
 
 				DatenbankCode.setAllUserInformationsByKartennummer(kartennummer, navigator);
-				navigator.navigate(EnumGui.LayoutEingeloggt);
+				navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 			}
 		});
 
