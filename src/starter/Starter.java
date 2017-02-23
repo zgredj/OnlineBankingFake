@@ -14,8 +14,8 @@ public class Starter {
 
 	private Starter() {
 		mainFrame = new MainFrame();
-		navigator = new Navigator(mainFrame.getContentPane(), fehlermeldung);
 		fehlermeldung = new Fehlermeldung(mainFrame);
+		navigator = new Navigator(mainFrame.getContentPane(), fehlermeldung);
 
 		navigator.navigate(EnumGui.Login);
 	}
