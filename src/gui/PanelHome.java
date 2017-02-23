@@ -22,7 +22,6 @@ import datenbank.Konto;
 import datenbank.Rechnung;
 import datenbank.User;
 import fehlermeldung.Fehlermeldung;
-import fehlermeldung.OnlineBankingException;
 
 public class PanelHome extends JPanel {
 
@@ -72,7 +71,7 @@ public class PanelHome extends JPanel {
 							"Rechnungen wurden bezahlt!");
 
 					navigator.navigate(EnumGui.LayoutEingeloggt);
-				} catch (OnlineBankingException exc) {
+				} catch (Exception exc) {
 					fehlermeldung.openFehlermeldungDialog(
 							"Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!");
 				}

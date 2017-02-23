@@ -47,8 +47,7 @@ public class PanelRechnungen extends JPanel {
 		buttonAbsendenRechnungen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int kartennummerEmpfaenger = -1;
-				int kartennummerEmpfaengerUnchecked = Helper
-						.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
+				int kartennummerEmpfaengerUnchecked = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
 				if (kartennummerEmpfaengerUnchecked > 0) {
 					kartennummerEmpfaenger = kartennummerEmpfaengerUnchecked;
 				} else {
@@ -82,7 +81,7 @@ public class PanelRechnungen extends JPanel {
 				try {
 					DatenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, user.getKartennummer(), betrag);
 				} catch (Exception exc) {
-					fehlermeldung.openFehlermeldungDialog(exc.getMessage());
+					fehlermeldung.openFehlermeldungDialog("Die eingegebene Kartennummer ist nicht vorhanden!");
 				}
 
 				textFieldBetragRechnungen.setText("");

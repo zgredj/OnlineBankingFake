@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import fehlermeldung.EnumErrorCode;
-import fehlermeldung.OnlineBankingException;
-import gui.MainFrame;
-
 public class DatenbankCode {
 
 	static Connection con = ConnectionFactory.getInstance().getConnection();
@@ -38,7 +34,7 @@ public class DatenbankCode {
 			if (kontoIdEmpfaengerUnchecked > 0) {
 				kontoIdEmpfaenger = kontoIdEmpfaengerUnchecked;
 			} else {
-				throw new Exception("Die eingegebene Kartennummer ist nicht vorhanden!");
+				throw new Exception();
 			}
 
 			String sql = "INSERT INTO databaseonlinebanking.rechnung (versender, betrag, konto_id) VALUES (?,?,?)";
@@ -82,7 +78,7 @@ public class DatenbankCode {
 		}
 	}
 
-	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen) {
+	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen) throws Exception {
 		try {
 			String sql = "SELECT kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -99,11 +95,10 @@ public class DatenbankCode {
 				if ((kontostand - betrag) >= 0) {
 					kontostand -= betrag;
 				} else {
-					throw new OnlineBankingException(EnumErrorCode.CardNumberNotFoundInDB);
+					throw new Exception();
 				}
 			} else {
-				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen
-						+ " --> einzahlen / auszahlen");
+				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen + " --> einzahlen / auszahlen");
 			}
 
 			sql = "UPDATE databaseonlinebanking.konto SET kontostand = ? WHERE kartennummer = ?";
