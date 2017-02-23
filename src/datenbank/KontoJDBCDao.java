@@ -14,7 +14,7 @@ public class KontoJDBCDao {
 		con = connection;
 	}
 
-	public void insertKonto(Konto k) {
+	public void insertKontoIntoDatabase(Konto k) {
 		try {
 			String sql = "INSERT INTO databaseonlinebanking.konto (name, vorname, geburtsdatum, kartennummer, passwort, kontostand) VALUES (?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);

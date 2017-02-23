@@ -190,7 +190,7 @@ public class Registrieren extends JPanel {
 					adresse.setHausnummer(hausnummer);
 				}
 
-				kontoJDBCDao.insertKonto(konto);
+				kontoJDBCDao.insertKontoIntoDatabase(konto);
 				adresseJDBCDao.insertAdresseIntoDatabase(adresse);
 
 				navigator.navigate(EnumGui.LayoutEingeloggt);
