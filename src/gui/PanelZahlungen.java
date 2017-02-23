@@ -120,10 +120,7 @@ public class PanelZahlungen extends JPanel {
 					}
 				} else {
 
-					fehlermeldung.openFehlermeldungDialog("Die Passwörter stimmen nicht ueberein!");
-
-					fehlermeldung.openFehlermeldungDialog("Die Passwoerter stimmen nicht ueberein!");
-
+					fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!");
 					textFieldPasswortAuszahlen.setText("");
 					return;
 				}
