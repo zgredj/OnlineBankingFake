@@ -33,7 +33,7 @@ public class LayoutEingeloggt extends JPanel {
 
 	public LayoutEingeloggt(Navigator navigator, Fehlermeldung fehlermeldung, User user) {
 
-		labelTitel.setText("Willkommen");
+		labelTitel.setText("BBC Bank");
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 		labelName.setText(user.getVorname() + "  " + user.getNachname());
 		labelName.setFont(new Font("Arial", Font.PLAIN, 16));
