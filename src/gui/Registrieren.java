@@ -66,8 +66,8 @@ public class Registrieren extends JPanel {
 				Konto konto = new Konto();
 
 				int kartennummer = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
-				if (kartennummer < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!");
+				if ((kartennummer < 0) || (kartennummer > 20000000)) {
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl zwischen 1 und 20 000 000 sein!");
 					textFieldKartennummer.setText("");
 					return;
 				} else {
@@ -160,7 +160,7 @@ public class Registrieren extends JPanel {
 				}
 
 				int plz = Helper.checkDigitReturnIntOrNegativError(textFieldPlz.getText());
-				if (plz < 0) {
+				if ((plz < 0) || (plz > 100000)) {
 					fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl sein!");
 					textFieldPlz.setText("");
 					return;
@@ -182,7 +182,7 @@ public class Registrieren extends JPanel {
 				}
 
 				int hausnummer = Helper.checkDigitReturnIntOrNegativError(textFieldHausNr.getText());
-				if (hausnummer < 0) {
+				if ((hausnummer < 0) || (hausnummer > 100000)) {
 					fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl sein!");
 					textFieldHausNr.setText("");
 					return;
