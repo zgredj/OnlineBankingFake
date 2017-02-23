@@ -113,12 +113,12 @@ public class PanelZahlungen extends JPanel {
 					try {
 						DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), betrag, "auszahlen");
 					} catch (Exception exc) {
-						fehlermeldung.openFehlermeldungDialog(exc.getMessage());
+						fehlermeldung.openFehlermeldungDialog("Sie haben zu wenig Gedl auf dem Konto, um diesen Betrag auszahlen zu koennen!");
 						textFieldBetragAuszahlen.setText("");
 						return;
 					}
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Die Passwï¿½rter stimmen nicht ï¿½berein!");
+					fehlermeldung.openFehlermeldungDialog("Die Passwörter stimmen nicht überein!");
 					textFieldPasswortAuszahlen.setText("");
 					return;
 				}

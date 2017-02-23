@@ -60,20 +60,20 @@ public class PanelHome extends JPanel {
 							int checkBoxId = (int) checkBox.getClientProperty("id");
 							double checkBoxBetrag = (double) checkBox.getClientProperty("betrag");
 							int checkBoxVersender = (int) checkBox.getClientProperty("versender");
-							DatenbankCode.deleteRechnungById(checkBoxId);
 							DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), summeRechnungen,
 									"auszahlen");
+							DatenbankCode.deleteRechnungById(checkBoxId);
 							DatenbankCode.ueberweiseBezahlteRechnungByKartennummer(checkBoxVersender, checkBoxBetrag);
 						}
 					}
 
 					fehlermeldung.openInfoDialog("Die Rechnung(en) wurden erfolgreich bezahlt!",
 							"Rechnungen wurden bezahlt!");
-
 					navigator.navigate(EnumGui.LayoutEingeloggt);
 				} catch (Exception exc) {
 					fehlermeldung.openFehlermeldungDialog(
 							"Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!");
+					return;
 				}
 			}
 		});
