@@ -1,6 +1,5 @@
-package starter; 
+package starter;
 
-import datenbank.User;
 import fehlermeldung.Fehlermeldung;
 import gui.EnumGui;
 import gui.MainFrame;
@@ -17,7 +16,7 @@ public class Starter {
 		fehlermeldung = new Fehlermeldung(mainFrame);
 		navigator = new Navigator(mainFrame.getContentPane(), fehlermeldung);
 
-		navigator.navigate(EnumGui.Login);
+		navigator.navigate(EnumGui.LOGIN);
 	}
 
 	public static void main(String[] args) {

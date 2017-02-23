@@ -16,7 +16,7 @@ import javax.swing.JTabbedPane;
 import datenbank.User;
 import fehlermeldung.Fehlermeldung;
 
-public class LayoutEingeloggt extends JPanel {
+public class PanelEingeloggt extends JPanel {
 
 	private JLabel labelTitel = new JLabel();
 	private JLabel labelName = new JLabel();
@@ -31,9 +31,9 @@ public class LayoutEingeloggt extends JPanel {
 
 	private JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 
-	public LayoutEingeloggt(Navigator navigator, Fehlermeldung fehlermeldung, User user) {
+	public PanelEingeloggt(Navigator navigator, Fehlermeldung fehlermeldung, User user) {
 
-		labelTitel.setText("Willkommen");
+		labelTitel.setText("BBC Bank");
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 		labelName.setText(user.getVorname() + "  " + user.getNachname());
 		labelName.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -65,7 +65,7 @@ public class LayoutEingeloggt extends JPanel {
 		buttonAusloggen.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				navigator.navigate(EnumGui.Login);
+				navigator.navigate(EnumGui.LOGIN);
 			}
 		});
 

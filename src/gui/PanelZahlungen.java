@@ -113,16 +113,14 @@ public class PanelZahlungen extends JPanel {
 					try {
 						DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), betrag, "auszahlen");
 					} catch (Exception exc) {
-						fehlermeldung.openFehlermeldungDialog("Sie haben zu wenig Gedl auf dem Konto, um diesen Betrag auszahlen zu koennen!");
+						fehlermeldung.openFehlermeldungDialog(
+								"Sie haben zu wenig Gedl auf dem Konto, um diesen Betrag auszahlen zu koennen!");
 						textFieldBetragAuszahlen.setText("");
 						return;
 					}
 				} else {
 
-					fehlermeldung.openFehlermeldungDialog("Die Passwörter stimmen nicht ueberein!");
-
-					fehlermeldung.openFehlermeldungDialog("Die Passwoerter stimmen nicht ueberein!");
-
+					fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!");
 					textFieldPasswortAuszahlen.setText("");
 					return;
 				}
@@ -132,7 +130,7 @@ public class PanelZahlungen extends JPanel {
 
 				fehlermeldung.openInfoDialog("Der Betrag wurde erfolgreich ausgezahlt!", "Betrag ausgezahlt!");
 
-				navigator.navigate(EnumGui.LayoutEingeloggt);
+				navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 			}
 		});
 
@@ -170,7 +168,7 @@ public class PanelZahlungen extends JPanel {
 
 				fehlermeldung.openInfoDialog("Der Betrag wurde erfolgreich eingezahlt!", "Betrag eingezahlt!");
 
-				navigator.navigate(EnumGui.LayoutEingeloggt);
+				navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 			}
 		});
 	}

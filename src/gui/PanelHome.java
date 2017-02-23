@@ -69,7 +69,7 @@ public class PanelHome extends JPanel {
 
 					fehlermeldung.openInfoDialog("Die Rechnung(en) wurden erfolgreich bezahlt!",
 							"Rechnungen wurden bezahlt!");
-					navigator.navigate(EnumGui.LayoutEingeloggt);
+					navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 				} catch (Exception exc) {
 					fehlermeldung.openFehlermeldungDialog(
 							"Die Rechnung(en) konnten nicht bezahlt werden, da Sie zu wenig Geld auf dem Konto haben!");

@@ -5,10 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,13 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import datenbank.ConnectionFactory;
 import datenbank.DatenbankCode;
-import datenbank.User;
 import fehlermeldung.Fehlermeldung;
 import util.Helper;
 
-public class Login extends JPanel {
+public class PanelLogin extends JPanel {
 
 	private JLabel labelLogin = new JLabel("Login");
 	private JLabel labelBbcBank = new JLabel("BBC BANK");
@@ -48,7 +42,7 @@ public class Login extends JPanel {
 	private JTextField textFieldKartennummer = new JTextField(17);
 	private JPasswordField textFieldPasswort = new JPasswordField(20);
 
-	public Login(final Navigator navigator, Fehlermeldung fehlermeldung) {
+	public PanelLogin(final Navigator navigator, Fehlermeldung fehlermeldung) {
 
 		labelBbcBank.setFont(new Font("Arial", Font.PLAIN, 80));
 		labelLogin.setFont(new Font("Arial", Font.PLAIN, 50));
@@ -94,7 +88,7 @@ public class Login extends JPanel {
 
 				if (passwort.equals(passwortVonDatenbank)) {
 					DatenbankCode.setAllUserInformationsByKartennummer(kartennummer, navigator);
-					navigator.navigate(EnumGui.LayoutEingeloggt);
+					navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 				} else {
 					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!");
 					textFieldPasswort.setText("");
@@ -105,7 +99,7 @@ public class Login extends JPanel {
 		buttonRegistrieren.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				navigator.navigate(EnumGui.Registrieren);
+				navigator.navigate(EnumGui.REGISTRIEREN);
 			}
 		});
 

@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,12 +18,13 @@ import datenbank.Adresse;
 import datenbank.AdresseJDBCDao;
 import datenbank.ConnectionFactory;
 import datenbank.DatenbankCode;
+import datenbank.IAdresseDao;
 import datenbank.Konto;
 import datenbank.KontoJDBCDao;
 import fehlermeldung.Fehlermeldung;
 import util.Helper;
 
-public class Registrieren extends JPanel {
+public class PanelRegistrieren extends JPanel {
 
 	private JButton buttonRegistrieren = new JButton("registrieren");
 
@@ -56,7 +56,7 @@ public class Registrieren extends JPanel {
 	private JPanel panelInhalt = new JPanel(new GridLayout(11, 2, 30, 15));
 	private JPanel panelOsten = new JPanel(new BorderLayout());
 
-	public Registrieren(final Navigator navigator, Fehlermeldung fehlermeldung) {
+	public PanelRegistrieren(final Navigator navigator, Fehlermeldung fehlermeldung) {
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
 
@@ -67,7 +67,8 @@ public class Registrieren extends JPanel {
 
 				int kartennummer = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if ((kartennummer < 0) || (kartennummer > 20000000)) {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl zwischen 1 und 20 000 000 sein!");
+					fehlermeldung
+							.openFehlermeldungDialog("Die Kartennummer muss eine Zahl zwischen 1 und 20 000 000 sein!");
 					textFieldKartennummer.setText("");
 					return;
 				} else {
@@ -143,7 +144,7 @@ public class Registrieren extends JPanel {
 					return;
 				}
 
-				AdresseJDBCDao adresseJDBCDao = new AdresseJDBCDao(connection);
+				IAdresseDao adresseJDBCDao = new AdresseJDBCDao(connection);
 				Adresse adresse = new Adresse();
 
 				String wohnort = textFieldWohnort.getText();
@@ -194,7 +195,7 @@ public class Registrieren extends JPanel {
 				adresseJDBCDao.insertAdresseIntoDatabase(adresse);
 
 				DatenbankCode.setAllUserInformationsByKartennummer(kartennummer, navigator);
-				navigator.navigate(EnumGui.LayoutEingeloggt);
+				navigator.navigate(EnumGui.LAYOUTEINGELOGGT);
 			}
 		});
 
@@ -222,7 +223,7 @@ public class Registrieren extends JPanel {
 		panelInhalt.add(buttonRegistrieren);
 		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
-		
+
 		panelGanzeGUI.add(labelTitel, BorderLayout.NORTH);
 		panelGanzeGUI.add(panelInhalt, BorderLayout.WEST);
 		panelGanzeGUI.add(panelOsten, BorderLayout.EAST);

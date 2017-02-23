@@ -4,9 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-public class RechnungJDBCDao {
+public class RechnungJDBCDao implements IRechnungDao {
 
 	private Connection con = null;
 
@@ -26,45 +25,15 @@ public class RechnungJDBCDao {
 		}
 	}
 
-	public Rechnung findRechnungById(int id) {
+	public Rechnung getRechnungFromResultSet(ResultSet rs) {
 		try {
-			Rechnung r = null;
-			String sql = "SELECT id, kartennummer, betrag FROM databaseonlinebanking.rechnung WHERE id = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				r = getRechnungFromResultSet(rs);
-				break;
-			}
+			Rechnung r = new Rechnung();
+			r.setId(rs.getInt("id"));
+			r.setKartennummer(rs.getInt("kartennummer"));
+			r.setBetrag(rs.getDouble("betrag"));
 			return r;
 		} catch (SQLException sqlexc) {
-			throw new RuntimeException(sqlexc);
+			throw new RuntimeException();
 		}
-	}
-
-	public ArrayList<Rechnung> getAllRechnungen() {
-		try {
-			ArrayList<Rechnung> rechnungen = new ArrayList<Rechnung>();
-
-			String sql = "SELECT id, kartennummer, betrag FROM databaseonlinebanking.rechnung";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				Rechnung r = getRechnungFromResultSet(rs);
-				rechnungen.add(r);
-			}
-			return rechnungen;
-		} catch (SQLException sqlexc) {
-			throw new RuntimeException(sqlexc);
-		}
-	}
-
-	private Rechnung getRechnungFromResultSet(ResultSet rs) throws SQLException {
-		Rechnung r = new Rechnung();
-		r.setId(rs.getInt("id"));
-		r.setKartennummer(rs.getInt("kartennummer"));
-		r.setBetrag(rs.getDouble("betrag"));
-		return r;
 	}
 }
