@@ -194,8 +194,7 @@ public class Registrieren extends JPanel {
 				adresseJDBCDao.insertAdresseIntoDatabase(adresse);
 
 				navigator.navigate(EnumGui.LayoutEingeloggt);
-				DatenbankCode.setAllUserInformationsByKartennummer(kartennummer);
-
+				DatenbankCode.setAllUserInformationsByKartennummer(kartennummer, navigator);
 				try {
 					connection.close();
 				} catch (SQLException e1) {
@@ -234,7 +233,7 @@ public class Registrieren extends JPanel {
 
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 
-		add(panelInhalt, BorderLayout.CENTER);
 		add(panelGanzeGUI, BorderLayout.NORTH);
+		add(panelInhalt, BorderLayout.CENTER);
 	}
 }

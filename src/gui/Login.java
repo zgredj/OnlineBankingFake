@@ -93,7 +93,7 @@ public class Login extends JPanel {
 				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(kartennummer);
 
 				if (passwort.equals(passwortVonDatenbank)) {
-					DatenbankCode.setAllUserInformationsByKartennummer(kartennummer);
+					DatenbankCode.setAllUserInformationsByKartennummer(kartennummer, navigator);
 					navigator.navigate(EnumGui.LayoutEingeloggt);
 				} else {
 					fehlermeldung.openFehlermeldungDialog("Die Kartennummer oder das Passwort ist falsch!");

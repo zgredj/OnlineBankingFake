@@ -13,22 +13,21 @@ public class Navigator {
 	private Fehlermeldung fehlermeldung;
 	private User user;
 
-	public Navigator(Container container, Fehlermeldung fehlermeldung, User user) {
+	public Navigator(Container container, Fehlermeldung fehlermeldung) {
 		this.container = container;
 		this.fehlermeldung = fehlermeldung;
-		this.user = user;
 	}
 
 	public void navigate(EnumGui gui) {
 		switch (gui) {
+		case Login:
+			changeGuiPanel(new Login(this, fehlermeldung));
+			break;
 		case LayoutEingeloggt:
 			changeGuiPanel(new LayoutEingeloggt(this, fehlermeldung, user));
 			break;
 		case Registrieren:
 			changeGuiPanel(new Registrieren(this, fehlermeldung));
-			break;
-		case Login:
-			changeGuiPanel(new Login(this, fehlermeldung));
 			break;
 		}
 	}
@@ -37,5 +36,13 @@ public class Navigator {
 		container.removeAll();
 		container.add(panel);
 		container.revalidate();
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

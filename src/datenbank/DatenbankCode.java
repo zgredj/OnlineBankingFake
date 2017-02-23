@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import gui.Navigator;
+
 public class DatenbankCode {
 
 	static Connection con = ConnectionFactory.getInstance().getConnection();
@@ -218,7 +220,7 @@ public class DatenbankCode {
 		return k;
 	}
 
-	public static void setAllUserInformationsByKartennummer(int kartennummer) {
+	public static void setAllUserInformationsByKartennummer(int kartennummer, Navigator nav) {
 		try {
 			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -236,6 +238,7 @@ public class DatenbankCode {
 			user.setKartennummer(konto.getKartennummer());
 			user.setPasswort(konto.getPasswort());
 			user.setKontostand(konto.getKontostand());
+			nav.setUser(user);
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException();
 		}
