@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,6 +18,7 @@ import datenbank.Adresse;
 import datenbank.AdresseJDBCDao;
 import datenbank.ConnectionFactory;
 import datenbank.DatenbankCode;
+import datenbank.IAdresseDao;
 import datenbank.Konto;
 import datenbank.KontoJDBCDao;
 import fehlermeldung.Fehlermeldung;
@@ -143,7 +143,7 @@ public class Registrieren extends JPanel {
 					return;
 				}
 
-				AdresseJDBCDao adresseJDBCDao = new AdresseJDBCDao(connection);
+				IAdresseDao adresseJDBCDao = new AdresseJDBCDao(connection);
 				Adresse adresse = new Adresse();
 
 				String wohnort = textFieldWohnort.getText();
