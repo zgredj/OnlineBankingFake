@@ -135,11 +135,11 @@ public class Registrieren extends JPanel {
 					if (geburtsdatum.length() <= 10) {
 						konto.setGeburtsdatum(geburtsdatum);
 					} else {
-						fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!");
+						fehlermeldung.openFehlermeldungDialog("Das Geburtsdatum darf maximal 10 Zeichen lang sein!!");
 						return;
 					}
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Das Geburtsdatum darf maximal 10 Zeichen lang sein!!");
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Datum eingegeben werden!");
 					return;
 				}
 
