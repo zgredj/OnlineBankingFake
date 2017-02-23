@@ -161,7 +161,7 @@ public class Registrieren extends JPanel {
 
 				int plz = Helper.checkDigitReturnIntOrNegativError(textFieldPlz.getText());
 				if ((plz < 0) || (plz > 100000)) {
-					fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl sein!");
+					fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl zwischen 1 & 100 000 sein!");
 					textFieldPlz.setText("");
 					return;
 				} else {
@@ -183,7 +183,7 @@ public class Registrieren extends JPanel {
 
 				int hausnummer = Helper.checkDigitReturnIntOrNegativError(textFieldHausNr.getText());
 				if ((hausnummer < 0) || (hausnummer > 100000)) {
-					fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl sein!");
+					fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl zwischen 1 & 100 000 sein!");
 					textFieldHausNr.setText("");
 					return;
 				} else {
