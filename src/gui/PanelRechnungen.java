@@ -21,7 +21,7 @@ import util.Helper;
 public class PanelRechnungen extends JPanel {
 
 	private JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
-	private JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfängers");
+	private JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfï¿½ngers");
 	private JLabel labelBetragRechnungen = new JLabel("Betrag ");
 	private JLabel labelPasswordRechnungen = new JLabel("Passwort ");
 
@@ -47,7 +47,8 @@ public class PanelRechnungen extends JPanel {
 		buttonAbsendenRechnungen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int kartennummerEmpfaenger = -1;
-				int kartennummerEmpfaengerUnchecked = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
+				int kartennummerEmpfaengerUnchecked = Helper
+						.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
 				if (kartennummerEmpfaengerUnchecked > 0) {
 					kartennummerEmpfaenger = kartennummerEmpfaengerUnchecked;
 				} else {

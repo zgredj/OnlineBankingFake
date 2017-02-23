@@ -1,7 +1,5 @@
 package gui;
 
 public enum EnumGui {
-	LayoutEingeloggt,
-	Registrieren,
-	Login
+	LayoutEingeloggt, Registrieren, Login // TODO CAPSLOCK
 }

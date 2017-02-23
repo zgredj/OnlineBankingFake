@@ -24,16 +24,16 @@ public class KontoJDBCDao {
 			ps.setInt(4, k.getKartennummer());
 			ps.setString(5, k.getPasswort());
 			ps.setDouble(6, k.getKontostand());
-			
+
 			ps.executeUpdate();
-			
+
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
 	}
 
 	public Konto findKontoById(int id) {
-		
+
 		try {
 			Konto k = null;
 			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto WHERE id = ?";
@@ -66,7 +66,7 @@ public class KontoJDBCDao {
 			throw new RuntimeException(sqlexc);
 		}
 	}
-	
+
 	public Konto getKontoFromResultSet(ResultSet rs) throws SQLException {
 		Konto k = new Konto();
 		k.setId(rs.getInt("id"));

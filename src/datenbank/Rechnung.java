@@ -1,7 +1,7 @@
 package datenbank;
 
 public class Rechnung {
-  
+
 	private int id;
 	private int kartennummer;
 	private double betrag;

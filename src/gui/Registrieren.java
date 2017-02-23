@@ -195,7 +195,7 @@ public class Registrieren extends JPanel {
 
 				navigator.navigate(EnumGui.LayoutEingeloggt);
 				DatenbankCode.setAllUserInformationsByKartennummer(kartennummer);
-				
+
 				try {
 					connection.close();
 				} catch (SQLException e1) {

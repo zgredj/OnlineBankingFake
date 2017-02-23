@@ -107,22 +107,19 @@ public class PanelZahlungen extends JPanel {
 					return;
 				}
 
-				String passwort;
 				String passwortUnchecked = new String(textFieldPasswortAuszahlen.getPassword());
 				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(user.getKartennummer());
 				if (passwortUnchecked.equals(passwortVonDatenbank)) {
-					passwort = passwortUnchecked;
+					try {
+						DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), betrag, "auszahlen");
+					} catch (Exception exc) {
+						fehlermeldung.openFehlermeldungDialog(exc.getMessage());
+						textFieldBetragAuszahlen.setText("");
+						return;
+					}
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Die Passwörter stimmen nicht überein!");
+					fehlermeldung.openFehlermeldungDialog("Die Passwï¿½rter stimmen nicht ï¿½berein!");
 					textFieldPasswortAuszahlen.setText("");
-					return;
-				}
-
-				try {
-					DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), betrag, "auszahlen");
-				} catch (Exception exc) {
-					fehlermeldung.openFehlermeldungDialog(exc.getMessage());
-					textFieldBetragAuszahlen.setText("");
 					return;
 				}
 
@@ -150,20 +147,18 @@ public class PanelZahlungen extends JPanel {
 					return;
 				}
 
-				String passwort;
 				String passwortUnchecked = new String(textFieldPasswortEinzahlen.getPassword());
 				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(user.getKartennummer());
 				if (passwortUnchecked.equals(passwortVonDatenbank)) {
-					passwort = passwortUnchecked;
+					try {
+						DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), betrag, "einzahlen");
+					} catch (Exception exc) {
+
+					}
 				} else {
 					fehlermeldung.openFehlermeldungDialog("Falsches Passwort eingegeben!");
 					textFieldPasswortEinzahlen.setText("");
 					return;
-				}
-				try {
-					DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), betrag, "einzahlen");
-				} catch (Exception exc) {
-
 				}
 
 				textFieldBetragEinzahlen.setText("");

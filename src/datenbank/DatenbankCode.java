@@ -222,7 +222,7 @@ public class DatenbankCode {
 		k.setKontostand(rs.getDouble("kontostand"));
 		return k;
 	}
-	
+
 	public static void setAllUserInformationsByKartennummer(int kartennummer) {
 		try {
 			String sql = "SELECT id, name, vorname, geburtsdatum, kartennummer, passwort, kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
@@ -230,7 +230,7 @@ public class DatenbankCode {
 			ps.setInt(1, kartennummer);
 			ResultSet rs = ps.executeQuery();
 			Konto konto = new Konto();
-			while(rs.next()){
+			while (rs.next()) {
 				konto = getKontoFromResultSet(rs);
 			}
 			User user = new User();

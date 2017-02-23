@@ -1,4 +1,4 @@
-package Starter;
+package starter; 
 
 import datenbank.User;
 import fehlermeldung.Fehlermeldung;
@@ -12,16 +12,15 @@ public class Starter {
 	private MainFrame mainFrame;
 	private Fehlermeldung fehlermeldung;
 	private User user = new User();
-	
-	private Starter()
-	{
+
+	private Starter() {
 		mainFrame = new MainFrame();
 		navigator = new Navigator(mainFrame.getContentPane(), fehlermeldung, user);
 		fehlermeldung = new Fehlermeldung(mainFrame);
-		
+
 		navigator.navigate(EnumGui.Login);
 	}
-			
+
 	public static void main(String[] args) {
 		new Starter();
 	}

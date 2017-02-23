@@ -30,7 +30,7 @@ public class Login extends JPanel {
 	private JLabel labelKartennummer = new JLabel("Kartennummer:");
 	private JLabel labelPasswort = new JLabel("Passwort:");
 	private JLabel labelText = new JLabel("Noch kein Benutzerkonto?");
-	
+
 	private JPanel panelSeite = new JPanel();
 	private JPanel panelLogin = new JPanel(new BorderLayout());
 	private JPanel panelTitel = new JPanel(new BorderLayout());
@@ -41,23 +41,22 @@ public class Login extends JPanel {
 	private JPanel panelPlatzhalter = new JPanel();
 	private JPanel panelKartennummerPasswortLogin = new JPanel();
 	private JPanel panelTextRegistrieren = new JPanel();
-     
+
 	private JButton buttonLogin = new JButton("Login");
 	private JButton buttonRegistrieren = new JButton("Registrieren");
-     
+
 	private JTextField textFieldKartennummer = new JTextField(17);
 	private JPasswordField textFieldPasswort = new JPasswordField(20);
 
-	
 	public Login(final Navigator navigator, Fehlermeldung fehlermeldung) {
 
 		labelBbcBank.setFont(new Font("Arial", Font.PLAIN, 80));
 		labelLogin.setFont(new Font("Arial", Font.PLAIN, 50));
 		labelKartennummer.setFont(new Font("Arial", Font.PLAIN, 16));
-		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));		
-		
+		labelPasswort.setFont(new Font("Arial", Font.PLAIN, 16));
+
 		panelTitel.add(labelBbcBank, BorderLayout.CENTER);
-		panelSeite.setLayout(new BorderLayout());		
+		panelSeite.setLayout(new BorderLayout());
 		panelLogin.add(labelLogin, BorderLayout.CENTER);
 		panelButtonLogin.setBorder(BorderFactory.createEmptyBorder(5, 90, 0, 0));
 		panelButtonLogin.add(buttonLogin);
@@ -92,7 +91,7 @@ public class Login extends JPanel {
 
 				String passwort = new String(textFieldPasswort.getPassword());
 				String passwortVonDatenbank = DatenbankCode.getPasswortVonDatenbank(kartennummer);
-			
+
 				if (passwort.equals(passwortVonDatenbank)) {
 					DatenbankCode.setAllUserInformationsByKartennummer(kartennummer);
 					navigator.navigate(EnumGui.LayoutEingeloggt);

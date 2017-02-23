@@ -12,7 +12,7 @@ public class AdresseJDBCDao {
 
 	public AdresseJDBCDao(Connection connection) {
 		con = connection;
-		
+
 	}
 
 	public void insertAdresseIntoDatabase(Adresse a) {

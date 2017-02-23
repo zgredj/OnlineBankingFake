@@ -30,7 +30,7 @@ public class LayoutEingeloggt extends JPanel {
 	private JPanel panelRechnungen = new JPanel(new BorderLayout());
 
 	private JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
-	
+
 	public LayoutEingeloggt(Navigator navigator, Fehlermeldung fehlermeldung, User user) {
 
 		labelTitel.setText("Willkommen");
@@ -46,7 +46,7 @@ public class LayoutEingeloggt extends JPanel {
 		panelKopfzeile.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 30));
 		panelKopfzeile.add(labelTitel, BorderLayout.WEST);
 		panelKopfzeile.add(panelKopfzeileEAST, BorderLayout.EAST);
-		
+
 		tabbedPaneMenu.addTab("Home", panelHome);
 		tabbedPaneMenu.addTab("Zahlungen", panelZahlungen);
 		tabbedPaneMenu.addTab("Rechnugen", panelRechnungen);
@@ -68,10 +68,10 @@ public class LayoutEingeloggt extends JPanel {
 				navigator.navigate(EnumGui.Login);
 			}
 		});
-		
+
 		panelAusloggen.add(buttonAusloggen);
 		panelAusloggen.setBorder(BorderFactory.createEmptyBorder(10, 670, 0, 0));
-		
+
 		panelAlles.add(panelAusloggen, BorderLayout.SOUTH);
 		panelAlles.add(tabbedPaneMenu, BorderLayout.CENTER);
 		panelAlles.add(panelKopfzeile, BorderLayout.NORTH);

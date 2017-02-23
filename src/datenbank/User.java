@@ -1,7 +1,7 @@
 package datenbank;
 
 public class User {
-	
+
 	private int id;
 	private String nachname;
 	private String vorname;
@@ -13,7 +13,7 @@ public class User {
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}

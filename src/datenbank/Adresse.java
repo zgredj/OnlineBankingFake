@@ -1,7 +1,7 @@
 package datenbank;
 
 public class Adresse {
-	
+
 	private int id;
 	private String strasse;
 	private int hausnummer;

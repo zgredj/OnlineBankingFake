@@ -1,5 +1,5 @@
 package fehlermeldung;
 
 public enum EnumErrorCode {
-	CardNumberNotFoundInDB
+	CardNumberNotFoundInDB // TODO: CAPSLOCK
 }
