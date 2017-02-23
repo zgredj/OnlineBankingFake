@@ -80,7 +80,8 @@ public class DatenbankCode {
 		}
 	}
 
-	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen) throws Exception {
+	public static void setKontostandByKartennummer(int kartennummer, double betrag, String einOderAusZahlen)
+			throws Exception {
 		try {
 			String sql = "SELECT kontostand FROM databaseonlinebanking.konto WHERE kartennummer = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -100,7 +101,8 @@ public class DatenbankCode {
 					throw new Exception();
 				}
 			} else {
-				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen + " --> einzahlen / auszahlen");
+				System.err.println("Es muss angegeben werden, ob ein- oder ausgezahlt werden soll! " + einOderAusZahlen
+						+ " --> einzahlen / auszahlen");
 			}
 
 			sql = "UPDATE databaseonlinebanking.konto SET kontostand = ? WHERE kartennummer = ?";

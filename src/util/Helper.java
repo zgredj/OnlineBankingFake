@@ -2,7 +2,6 @@ package util;
 
 public class Helper {
 
-
 	public static int checkDigitReturnIntOrNegativError(String uncheckedString) {
 		int checkedInteger = -1;
 		try {

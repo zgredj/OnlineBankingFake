@@ -47,7 +47,8 @@ public class PanelRechnungen extends JPanel {
 		buttonAbsendenRechnungen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int kartennummerEmpfaenger = -1;
-				int kartennummerEmpfaengerUnchecked = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
+				int kartennummerEmpfaengerUnchecked = Helper
+						.checkDigitReturnIntOrNegativError(textFieldKartennummerRechnungen.getText());
 				if (kartennummerEmpfaengerUnchecked > 0) {
 					kartennummerEmpfaenger = kartennummerEmpfaengerUnchecked;
 				} else {

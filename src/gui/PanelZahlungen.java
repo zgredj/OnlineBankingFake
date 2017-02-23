@@ -113,7 +113,8 @@ public class PanelZahlungen extends JPanel {
 					try {
 						DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), betrag, "auszahlen");
 					} catch (Exception exc) {
-						fehlermeldung.openFehlermeldungDialog("Sie haben zu wenig Gedl auf dem Konto, um diesen Betrag auszahlen zu koennen!");
+						fehlermeldung.openFehlermeldungDialog(
+								"Sie haben zu wenig Gedl auf dem Konto, um diesen Betrag auszahlen zu koennen!");
 						textFieldBetragAuszahlen.setText("");
 						return;
 					}

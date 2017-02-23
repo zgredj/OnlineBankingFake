@@ -1,6 +1,5 @@
-package starter; 
+package starter;
 
-import datenbank.User;
 import fehlermeldung.Fehlermeldung;
 import gui.EnumGui;
 import gui.MainFrame;

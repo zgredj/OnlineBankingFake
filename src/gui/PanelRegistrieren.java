@@ -67,7 +67,8 @@ public class PanelRegistrieren extends JPanel {
 
 				int kartennummer = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if ((kartennummer < 0) || (kartennummer > 20000000)) {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl zwischen 1 und 20 000 000 sein!");
+					fehlermeldung
+							.openFehlermeldungDialog("Die Kartennummer muss eine Zahl zwischen 1 und 20 000 000 sein!");
 					textFieldKartennummer.setText("");
 					return;
 				} else {
@@ -222,7 +223,7 @@ public class PanelRegistrieren extends JPanel {
 		panelInhalt.add(buttonRegistrieren);
 		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
-		
+
 		panelGanzeGUI.add(labelTitel, BorderLayout.NORTH);
 		panelGanzeGUI.add(panelInhalt, BorderLayout.WEST);
 		panelGanzeGUI.add(panelOsten, BorderLayout.EAST);
