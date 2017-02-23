@@ -24,7 +24,7 @@ import datenbank.KontoJDBCDao;
 import fehlermeldung.Fehlermeldung;
 import util.Helper;
 
-public class Registrieren extends JPanel {
+public class PanelRegistrieren extends JPanel {
 
 	private JButton buttonRegistrieren = new JButton("registrieren");
 
@@ -56,7 +56,7 @@ public class Registrieren extends JPanel {
 	private JPanel panelInhalt = new JPanel(new GridLayout(11, 2, 30, 15));
 	private JPanel panelOsten = new JPanel(new BorderLayout());
 
-	public Registrieren(final Navigator navigator, Fehlermeldung fehlermeldung) {
+	public PanelRegistrieren(final Navigator navigator, Fehlermeldung fehlermeldung) {
 
 		buttonRegistrieren.addActionListener(new ActionListener() {
 

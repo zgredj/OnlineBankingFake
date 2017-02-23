@@ -21,13 +21,13 @@ public class Navigator {
 	public void navigate(EnumGui gui) {
 		switch (gui) {
 		case LOGIN:
-			changeGuiPanel(new Login(this, fehlermeldung));
+			changeGuiPanel(new PanelLogin(this, fehlermeldung));
 			break;
 		case LAYOUTEINGELOGGT:
-			changeGuiPanel(new LayoutEingeloggt(this, fehlermeldung, user));
+			changeGuiPanel(new PanelEingeloggt(this, fehlermeldung, user));
 			break;
 		case REGISTRIEREN:
-			changeGuiPanel(new Registrieren(this, fehlermeldung));
+			changeGuiPanel(new PanelRegistrieren(this, fehlermeldung));
 			break;
 		}
 	}

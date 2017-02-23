@@ -23,7 +23,7 @@ import datenbank.User;
 import fehlermeldung.Fehlermeldung;
 import util.Helper;
 
-public class Login extends JPanel {
+public class PanelLogin extends JPanel {
 
 	private JLabel labelLogin = new JLabel("Login");
 	private JLabel labelBbcBank = new JLabel("BBC BANK");
@@ -48,7 +48,7 @@ public class Login extends JPanel {
 	private JTextField textFieldKartennummer = new JTextField(17);
 	private JPasswordField textFieldPasswort = new JPasswordField(20);
 
-	public Login(final Navigator navigator, Fehlermeldung fehlermeldung) {
+	public PanelLogin(final Navigator navigator, Fehlermeldung fehlermeldung) {
 
 		labelBbcBank.setFont(new Font("Arial", Font.PLAIN, 80));
 		labelLogin.setFont(new Font("Arial", Font.PLAIN, 50));
