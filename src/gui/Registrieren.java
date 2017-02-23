@@ -52,7 +52,7 @@ public class Registrieren extends JPanel {
 	private JLabel labelHausNr = new JLabel("Haus Nr.");
 	private JLabel labelLeer = new JLabel(" ");
 
-	private JPanel panelKopfzeile = new JPanel(new BorderLayout());
+	private JPanel panelGanzeGUI = new JPanel(new BorderLayout());
 	private JPanel panelInhalt = new JPanel(new GridLayout(11, 2, 30, 15));
 	private JPanel panelOsten = new JPanel(new BorderLayout());
 
@@ -228,13 +228,13 @@ public class Registrieren extends JPanel {
 		panelInhalt.add(buttonRegistrieren);
 		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
 
-		panelKopfzeile.add(labelTitel, BorderLayout.NORTH);
-		panelKopfzeile.add(panelInhalt, BorderLayout.WEST);
-		panelKopfzeile.add(panelOsten, BorderLayout.EAST);
+		panelGanzeGUI.add(labelTitel, BorderLayout.NORTH);
+		panelGanzeGUI.add(panelInhalt, BorderLayout.WEST);
+		panelGanzeGUI.add(panelOsten, BorderLayout.EAST);
 
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 
 		add(panelInhalt, BorderLayout.CENTER);
-		add(panelKopfzeile, BorderLayout.NORTH);
+		add(panelGanzeGUI, BorderLayout.NORTH);
 	}
 }
