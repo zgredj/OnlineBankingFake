@@ -118,11 +118,11 @@ public class PanelZahlungen extends JPanel {
 						return;
 					}
 				} else {
-<<<<<<< HEAD
-					fehlermeldung.openFehlermeldungDialog("Die Passwörter stimmen nicht überein!");
-=======
-					fehlermeldung.openFehlermeldungDialog("Die Passwoerter stimmen nicht ï¿½berein!");
->>>>>>> refs/remotes/origin/master
+
+					fehlermeldung.openFehlermeldungDialog("Die Passwörter stimmen nicht ueberein!");
+
+					fehlermeldung.openFehlermeldungDialog("Die Passwoerter stimmen nicht ueberein!");
+
 					textFieldPasswortAuszahlen.setText("");
 					return;
 				}
