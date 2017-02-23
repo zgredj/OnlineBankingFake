@@ -86,7 +86,7 @@ public class Registrieren extends JPanel {
 					if (passwort.length() <= 45) {
 						passwort1 = passwort;
 					} else {
-						fehlermeldung.openFehlermeldungDialog("Das Passwort ist zu lang!");
+						fehlermeldung.openFehlermeldungDialog("Das Passwort darf maximal 45 Zeichen lang sein!");
 						return;
 					}
 				} else {
@@ -98,7 +98,7 @@ public class Registrieren extends JPanel {
 				if (passwort1.equals(passwort2)) {
 					konto.setPasswort(passwort1);
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passw�rter stimmen nicht �berein!");
+					fehlermeldung.openFehlermeldungDialog("Die eingegebenen Passwoerter stimmen nicht ueberein!");
 					textFieldPassword.setText("");
 					textFieldPasswordWiederholen.setText("");
 					return;
@@ -109,7 +109,7 @@ public class Registrieren extends JPanel {
 					if (vorname.length() <= 45) {
 						konto.setVorname(vorname);
 					} else {
-						fehlermeldung.openFehlermeldungDialog("Der Vorname ist zu lang!");
+						fehlermeldung.openFehlermeldungDialog("Der Vorname darf maximal 45 Zeichen lang sein!");
 						return;
 					}
 				} else {
@@ -122,7 +122,7 @@ public class Registrieren extends JPanel {
 					if (nachname.length() <= 45) {
 						konto.setName(nachname);
 					} else {
-						fehlermeldung.openFehlermeldungDialog("Der Nachname ist zu lang!");
+						fehlermeldung.openFehlermeldungDialog("Der Nachname darf maximal 45 Zeichen lang sein!");
 						return;
 					}
 				} else {
@@ -139,7 +139,7 @@ public class Registrieren extends JPanel {
 						return;
 					}
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Es muss ein Geburtsdatum eingegeben werden!");
+					fehlermeldung.openFehlermeldungDialog("Das Geburtsdatum darf maximal 10 Zeichen lang sein!!");
 					return;
 				}
 
@@ -151,7 +151,7 @@ public class Registrieren extends JPanel {
 					if (wohnort.length() <= 45) {
 						adresse.setWohnort(wohnort);
 					} else {
-						fehlermeldung.openFehlermeldungDialog("Der Wohnort ist zu lang!");
+						fehlermeldung.openFehlermeldungDialog("Der Wohnort darf maximal 45 Zeichen lang sein!");
 						return;
 					}
 				} else {
@@ -173,7 +173,7 @@ public class Registrieren extends JPanel {
 					if (strasse.length() <= 45) {
 						adresse.setStrasse(strasse);
 					} else {
-						fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!");
+						fehlermeldung.openFehlermeldungDialog("Die Strasse darf maximal 45 Zeichen lang sein!");
 						return;
 					}
 				} else {
