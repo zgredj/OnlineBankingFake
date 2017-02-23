@@ -232,16 +232,9 @@ public class Registrieren extends JPanel {
 		panelGanzeGUI.add(panelInhalt, BorderLayout.WEST);
 		panelGanzeGUI.add(panelOsten, BorderLayout.EAST);
 
-<<<<<<< HEAD
 		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
 
-=======
->>>>>>> branch 'master' of https://github.com/zgredj/OnlineBankingFake.git
 		add(panelGanzeGUI, BorderLayout.NORTH);
 		add(panelInhalt, BorderLayout.CENTER);
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/zgredj/OnlineBankingFake.git
 	}
 }
