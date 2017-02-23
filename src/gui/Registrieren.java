@@ -227,14 +227,14 @@ public class Registrieren extends JPanel {
 		panelInhalt.add(labelLeer);
 		panelInhalt.add(buttonRegistrieren);
 		panelInhalt.setBorder(BorderFactory.createEmptyBorder(40, 30, 10, 0));
-
+		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
+		
 		panelGanzeGUI.add(labelTitel, BorderLayout.NORTH);
 		panelGanzeGUI.add(panelInhalt, BorderLayout.WEST);
 		panelGanzeGUI.add(panelOsten, BorderLayout.EAST);
 
-		labelTitel.setFont(new Font("Arial", Font.PLAIN, 55));
-
-		add(panelInhalt, BorderLayout.CENTER);
 		add(panelGanzeGUI, BorderLayout.NORTH);
+		add(panelInhalt, BorderLayout.CENTER);
+		
 	}
 }
