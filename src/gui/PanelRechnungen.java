@@ -21,7 +21,7 @@ import util.Helper;
 public class PanelRechnungen extends JPanel {
 
 	private JLabel labelRechnungenerstellen = new JLabel("Rechnungen erstellen");
-	private JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empf�ngers");
+	private JLabel labelKartennummerDesEmpfaengers = new JLabel("Kartennummer des Empfaengers");
 	private JLabel labelBetragRechnungen = new JLabel("Betrag ");
 	private JLabel labelPasswordRechnungen = new JLabel("Passwort ");
 
@@ -57,7 +57,7 @@ public class PanelRechnungen extends JPanel {
 				}
 
 				if (kartennummerEmpfaenger == user.getKartennummer()) {
-					fehlermeldung.openFehlermeldungDialog("Sie k�nnen sich nicht selbst eine Rechnung stellen!");
+					fehlermeldung.openFehlermeldungDialog("Sie koennen sich nicht selbst eine Rechnung stellen!");
 					return;
 				}
 

@@ -118,7 +118,7 @@ public class PanelZahlungen extends JPanel {
 						return;
 					}
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Die Passw�rter stimmen nicht �berein!");
+					fehlermeldung.openFehlermeldungDialog("Die Passwoerter stimmen nicht �berein!");
 					textFieldPasswortAuszahlen.setText("");
 					return;
 				}
