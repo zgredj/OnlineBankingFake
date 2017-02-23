@@ -12,7 +12,6 @@ public class AdresseJDBCDao {
 
 	public AdresseJDBCDao(Connection connection) {
 		con = connection;
-
 	}
 
 	public void insertAdresseIntoDatabase(Adresse a) {
@@ -29,15 +28,5 @@ public class AdresseJDBCDao {
 		} catch (SQLException sqlexc) {
 			throw new RuntimeException(sqlexc);
 		}
-	}
-
-	private Adresse getAdresseFromResultSet(ResultSet rs) throws SQLException {
-		Adresse a = new Adresse();
-		a.setId(rs.getInt("id"));
-		a.setStrasse(rs.getString("strasse"));
-		a.setHausnummer(rs.getInt("hausnummer"));
-		a.setWohnort(rs.getString("wohnort"));
-		a.setPlz(rs.getInt("plz"));
-		return a;
 	}
 }

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+// TODO implements Dao interface
 public class KontoJDBCDao {
 
 	private Connection con = null;

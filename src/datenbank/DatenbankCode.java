@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import gui.Navigator;
 
+// TODO not static, pro Tabelle eine Dao und eine JDBCDao klasse
 public class DatenbankCode {
 
 	static Connection con = ConnectionFactory.getInstance().getConnection();
