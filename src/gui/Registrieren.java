@@ -66,8 +66,8 @@ public class Registrieren extends JPanel {
 				Konto konto = new Konto();
 
 				int kartennummer = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
-				if (kartennummer < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!");
+				if ((kartennummer < 0) || (kartennummer > 20000000)) {
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl zwischen 1 und 20 000 000 sein!");
 					textFieldKartennummer.setText("");
 					return;
 				} else {
@@ -135,11 +135,11 @@ public class Registrieren extends JPanel {
 					if (geburtsdatum.length() <= 10) {
 						konto.setGeburtsdatum(geburtsdatum);
 					} else {
-						fehlermeldung.openFehlermeldungDialog("Das Datum ist zu lang!");
+						fehlermeldung.openFehlermeldungDialog("Das Geburtsdatum darf maximal 10 Zeichen lang sein!!");
 						return;
 					}
 				} else {
-					fehlermeldung.openFehlermeldungDialog("Das Geburtsdatum darf maximal 10 Zeichen lang sein!!");
+					fehlermeldung.openFehlermeldungDialog("Es muss ein Datum eingegeben werden!");
 					return;
 				}
 
@@ -160,8 +160,8 @@ public class Registrieren extends JPanel {
 				}
 
 				int plz = Helper.checkDigitReturnIntOrNegativError(textFieldPlz.getText());
-				if (plz < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl sein!");
+				if ((plz < 0) || (plz > 100000)) {
+					fehlermeldung.openFehlermeldungDialog("Die PLZ muss eine Zahl zwischen 1 & 100 000 sein!");
 					textFieldPlz.setText("");
 					return;
 				} else {
@@ -182,8 +182,8 @@ public class Registrieren extends JPanel {
 				}
 
 				int hausnummer = Helper.checkDigitReturnIntOrNegativError(textFieldHausNr.getText());
-				if (hausnummer < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl sein!");
+				if ((hausnummer < 0) || (hausnummer > 100000)) {
+					fehlermeldung.openFehlermeldungDialog("Die Hausnummer muss eine Zahl zwischen 1 & 100 000 sein!");
 					textFieldHausNr.setText("");
 					return;
 				} else {
