@@ -43,11 +43,12 @@ public class PanelHome extends JPanel {
 		ArrayList<JCheckBox> allCheckBoxHome = this.createRechnungCheckBoxes(user.getKartennummer());
 
 		JLabel labelKartennummerHome = new JLabel("Kartenummer:      " + user.getKartennummer());
-		JLabel labelKontostandHome = new JLabel(
-				"Kontostand:         " + DatenbankCode.getKontostandVonDatenbank(user.getKartennummer()) + " CHF");
+		JLabel labelKontostandHome = new JLabel("Kontostand:         " + DatenbankCode.getKontostandVonDatenbank(user.getKartennummer()) + " CHF");
+		JLabel labelZinssatzHome = new JLabel("Zinssatz:             0.00 %");
 
 		labelKartennummerHome.setFont(new Font("Arial", Font.PLAIN, 20));
 		labelKontostandHome.setFont(new Font("Arial", Font.PLAIN, 20));
+		labelZinssatzHome.setFont(new Font("Arial", Font.PLAIN, 20));
 
 		labelOffeneRechnungenHome.setFont(new Font("Arial", Font.BOLD, 20));
 
@@ -87,6 +88,7 @@ public class PanelHome extends JPanel {
 
 		panelWestBoxHome.add(labelKartennummerHome);
 		panelWestBoxHome.add(labelKontostandHome);
+		panelWestBoxHome.add(labelZinssatzHome);
 		panelWestBoxHome.setLayout(new BoxLayout(panelWestBoxHome, BoxLayout.PAGE_AXIS));
 
 		add(panelRechnungenBezahlenHome, BorderLayout.EAST);
