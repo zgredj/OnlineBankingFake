@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import datenbank.DatenbankCode;
 import datenbank.User;
 import fehlermeldung.Fehlermeldung;
 
@@ -28,7 +29,7 @@ public class PanelEingeloggt extends JPanel {
 	private JPanel panelHome = new JPanel(new BorderLayout());
 	private JPanel panelZahlungen = new JPanel(new BorderLayout());
 	private JPanel panelRechnungen = new JPanel(new BorderLayout());
-
+	
 	private JTabbedPane tabbedPaneMenu = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 
 	public PanelEingeloggt(Navigator navigator, Fehlermeldung fehlermeldung, User user) {
@@ -60,7 +61,16 @@ public class PanelEingeloggt extends JPanel {
 		PanelRechnungen panelRechnungenInstance = new PanelRechnungen(fehlermeldung, user);
 		panelRechnungen.add(panelRechnungenInstance);
 
-		JPanel panelAusloggen = new JPanel(new FlowLayout());
+		JPanel panelButtons = new JPanel(new FlowLayout());
+		
+		JButton buttonKontoloeschen = new JButton("Konto loeschen");
+		buttonKontoloeschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DatenbankCode.deleteKartennummerUndKontoVonDatenbank(user.getKartennummer());
+				navigator.navigate(EnumGui.LOGIN);
+			}
+		});
+		
 		JButton buttonAusloggen = new JButton("Ausloggen");
 		buttonAusloggen.addActionListener(new ActionListener() {
 
@@ -69,10 +79,11 @@ public class PanelEingeloggt extends JPanel {
 			}
 		});
 
-		panelAusloggen.add(buttonAusloggen);
-		panelAusloggen.setBorder(BorderFactory.createEmptyBorder(10, 670, 0, 0));
+		panelButtons.add(buttonKontoloeschen);
+		panelButtons.add(buttonAusloggen);
+		panelButtons.setBorder(BorderFactory.createEmptyBorder(10, 500, 0, 10));
 
-		panelAlles.add(panelAusloggen, BorderLayout.SOUTH);
+		panelAlles.add(panelButtons, BorderLayout.SOUTH);
 		panelAlles.add(tabbedPaneMenu, BorderLayout.CENTER);
 		panelAlles.add(panelKopfzeile, BorderLayout.NORTH);
 		panelAlles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));

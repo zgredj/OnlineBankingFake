@@ -78,7 +78,7 @@ public class PanelLogin extends JPanel {
 
 				int kartennummer = Helper.checkDigitReturnIntOrNegativError(textFieldKartennummer.getText());
 				if (kartennummer < 0) {
-					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine Zahl sein!");
+					fehlermeldung.openFehlermeldungDialog("Die Kartennummer muss eine positive Zahl sein!");
 					textFieldKartennummer.setText("");
 					return;
 				}

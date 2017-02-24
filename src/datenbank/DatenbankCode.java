@@ -245,4 +245,15 @@ public class DatenbankCode {
 			throw new RuntimeException();
 		}
 	}
+	
+	public static void deleteKartennummerUndKontoVonDatenbank(int kartennummer) {
+		try {
+			String sql = "UPDATE konto SET kartennummer = -1, passwort = '' WHERE kartennummer = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, kartennummer);
+			ps.executeUpdate();
+		} catch (SQLException sqlexc) {
+			throw new RuntimeException();
+		}
+	}
 }
