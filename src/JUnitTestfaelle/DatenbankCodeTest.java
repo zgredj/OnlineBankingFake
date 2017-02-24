@@ -10,9 +10,9 @@ public class DatenbankCodeTest {
 
 	@Test
 	public void testGetVorUndNachnameVonDatenbankByKartennummer() {
-		int existierendeKartennummer = 10;
-		String expectedVorname = "Marco";
-		String expectedNachname = "Rohr";
+		int existierendeKartennummer = 1;
+		String expectedVorname = "Andrin";
+		String expectedNachname = "Kappeler";
 		
 		Konto k = DatenbankCode.getVorUndNachnameVonDatenbankByKartennummer(existierendeKartennummer);
 		
