@@ -118,17 +118,7 @@ public class PanelHome extends JPanel {
 			chbox.putClientProperty("id", rechnung.getId());
 			chbox.putClientProperty("versender", rechnung.getKartennummer());
 			chbox.putClientProperty("betrag", rechnung.getBetrag());
-			// chbox.addItemListener(new ItemListener() {
-			//
-			// public void itemStateChanged(ItemEvent e) {
-			// if (e.getStateChange() == ItemEvent.SELECTED) {
-			// summeRechnungen += rechnung.getBetrag();
-			// } else if(e.getStateChange() == ItemEvent.DESELECTED){
-			// summeRechnungen -= rechnung.getBetrag();
-			// }
-			// }
-			//
-			// });
+		
 			arrayCheckBoxes.add(chbox);
 		}
 		return arrayCheckBoxes;
