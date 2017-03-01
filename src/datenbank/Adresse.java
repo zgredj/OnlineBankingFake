@@ -24,7 +24,7 @@ public class Adresse {
 		this.strasse = strasse;
 	}
 
-	public int getHausnummer() {
+	public int getHausnummer( ) {
 		return hausnummer;
 	}
 
