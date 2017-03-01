@@ -34,7 +34,7 @@ public class PanelHome extends JPanel {
 
 	private JButton buttonRechnungenBezahlenHome = new JButton("Bezahlen");
 
-	private long summeRechnungen = 0;
+	private double summeRechnungen = 0;
 
 	public PanelHome(Fehlermeldung fehlermeldung, Navigator navigator, User user) {
 
@@ -61,8 +61,7 @@ public class PanelHome extends JPanel {
 							int checkBoxId = (int) checkBox.getClientProperty("id");
 							double checkBoxBetrag = (double) checkBox.getClientProperty("betrag");
 							int checkBoxVersender = (int) checkBox.getClientProperty("versender");
-							DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), summeRechnungen,
-									"auszahlen");
+							DatenbankCode.setKontostandByKartennummer(user.getKartennummer(), checkBoxBetrag, "auszahlen");
 							DatenbankCode.deleteRechnungById(checkBoxId);
 							DatenbankCode.ueberweiseBezahlteRechnungByKartennummer(checkBoxVersender, checkBoxBetrag);
 						}
@@ -119,17 +118,17 @@ public class PanelHome extends JPanel {
 			chbox.putClientProperty("id", rechnung.getId());
 			chbox.putClientProperty("versender", rechnung.getKartennummer());
 			chbox.putClientProperty("betrag", rechnung.getBetrag());
-			chbox.addItemListener(new ItemListener() {
-
-				public void itemStateChanged(ItemEvent e) {
-					if (e.getStateChange() == ItemEvent.SELECTED) {
-						summeRechnungen += rechnung.getBetrag();
-					} else {
-						summeRechnungen -= rechnung.getBetrag();
-					}
-				}
-
-			});
+			// chbox.addItemListener(new ItemListener() {
+			//
+			// public void itemStateChanged(ItemEvent e) {
+			// if (e.getStateChange() == ItemEvent.SELECTED) {
+			// summeRechnungen += rechnung.getBetrag();
+			// } else if(e.getStateChange() == ItemEvent.DESELECTED){
+			// summeRechnungen -= rechnung.getBetrag();
+			// }
+			// }
+			//
+			// });
 			arrayCheckBoxes.add(chbox);
 		}
 		return arrayCheckBoxes;
