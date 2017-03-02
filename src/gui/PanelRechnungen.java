@@ -83,6 +83,8 @@ public class PanelRechnungen extends JPanel {
 					DatenbankCode.setRechnungVonDatenbank(kartennummerEmpfaenger, user.getKartennummer(), betrag);
 				} catch (Exception exc) {
 					fehlermeldung.openFehlermeldungDialog("Die eingegebene Kartennummer ist nicht vorhanden!");
+					textFieldKartennummerRechnungen.setText("");
+					return;
 				}
 
 				textFieldBetragRechnungen.setText("");

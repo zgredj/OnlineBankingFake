@@ -18,7 +18,6 @@ public class Starter {
 
 		navigator.navigate(EnumGui.LOGIN);
 	}
-
 	public static void main(String[] args) {
 		new Starter();
 	}
